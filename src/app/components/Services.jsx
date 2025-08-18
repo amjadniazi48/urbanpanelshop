@@ -2,18 +2,18 @@ import React from "react";
 import { MoveRight,Paintbrush,ShieldPlus,PaintRoller,BookCheck,Settings } from "lucide-react";
 const Services = () => {
   return (
-    <div className="container-xxl service py-5 mt-5" style={{backgroundColor: "#e4f0dd"}}>
-      <div className="container">
+
+     <div className="row p-5 mt-5"  style={{backgroundColor: "#e4f0dd"}}>
         <div className="text-center wow fadeInUp" data-wow-delay="0.1s">
         
           <h1 className="mb-5">Explore Our Services</h1>
         </div>
         <div className="row g-4 wow fadeInUp" data-wow-delay="0.3s">
           <div className="col-lg-4">
-            <ul class="nav nav-tabs flex-column" role="tablist">
-              <li class="nav-item">
+            <ul className="nav nav-tabs flex-column" role="tablist">
+              <li className="nav-item">
                 <a
-                  class="nav-link active"
+                  className="nav-link active"
                   href="#"
                   data-bs-toggle="tab"
                   role="tab"
@@ -23,27 +23,27 @@ const Services = () => {
                 Ceramic Coating
                 </a>
               </li>
-              <li class="nav-item"  >
-                <a class="nav-link text-white" href="#" data-bs-toggle="tab" role="tab" data-bs-target="#tab-pane-2" style={{backgroundColor: "#099994"}}>
+              <li className="nav-item"  >
+                <a className="nav-link text-white" href="#" data-bs-toggle="tab" role="tab" data-bs-target="#tab-pane-2" style={{backgroundColor: "#099994"}}>
                  <ShieldPlus />&nbsp;
                  Paint Protection
                 </a>
               </li>
-              <li class="nav-item">
-                <a class="nav-link text-white" href="#" data-bs-toggle="tab" role="tab" data-bs-target="#tab-pane-3" style={{backgroundColor: "#099994"}}>
+              <li className="nav-item">
+                <a className="nav-link text-white" href="#" data-bs-toggle="tab" role="tab" data-bs-target="#tab-pane-3" style={{backgroundColor: "#099994"}}>
                 <PaintRoller />&nbsp;
                 Paint Protection and Customizations
                 </a>
               </li>
-              <li class="nav-item">
-                <a class="nav-link text-white" href="#" data-bs-toggle="tab" role="tab" data-bs-target="#tab-pane-4" style={{backgroundColor: "#099994"}}>
+              <li className="nav-item">
+                <a className="nav-link text-white" href="#" data-bs-toggle="tab" role="tab" data-bs-target="#tab-pane-4" style={{backgroundColor: "#099994"}}>
                     
                  <BookCheck />&nbsp;
                 Paint Correction
                 </a>
               </li>
-               <li class="nav-item">
-                <a class="nav-link text-white" href="#" data-bs-toggle="tab" role="tab" data-bs-target="#tab-pane-4" style={{backgroundColor: "#099994"}}>
+               <li className="nav-item">
+                <a className="nav-link text-white" href="#" data-bs-toggle="tab" role="tab" data-bs-target="#tab-pane-4" style={{backgroundColor: "#099994"}}>
                     
                  <Settings />&nbsp;
                  Bumper Repair and Replacement
@@ -217,7 +217,8 @@ const Services = () => {
           </div>
         </div>
       </div>
-    </div>
+    
+  
   );
 };
 

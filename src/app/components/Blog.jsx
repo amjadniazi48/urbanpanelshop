@@ -1,7 +1,7 @@
 export default function Blog() {
   return (
   
-      <section className="container-xxl py-5  bg-secondary" >
+      <div className="row   bg-secondary" style={{paddingTop:"5rem", paddingBottom:"5rem"}} >
         <h2 className="h1 text-center pt-1 pb-4 mb-1 mb-lg-3">Latest News &amp; Tips</h2>
         <div className="position-relative px-xl-5">
           
@@ -167,6 +167,6 @@ export default function Blog() {
             </div>
           </div>
         </div>
-      </section>
+      </div>
   )
 }

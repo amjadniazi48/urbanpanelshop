@@ -1,42 +1,12 @@
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+    --swiper-theme-color: #007aff !important;
 }
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
-
-html,
-body {
-  max-width: 100vw;
-  overflow-x: hidden;
-}
-
-body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-* {
-  box-sizing: border-box;
-  padding: 0;
-  margin: 0;
-}
-
-a {
-  color: inherit;
-  text-decoration: none;
-}
-
-@media (prefers-color-scheme: dark) {
-  html {
-    color-scheme: dark;
-  }
+.btn-primary {
+    --si-btn-hover-color: #fff;
+    --si-btn-active-color: #fff;
+    --si-btn-hover-bg: #0DBBB6 !important;
+    --si-btn-active-bg: #0DBBB6 !important;
+    --si-btn-hover-border-color: #0DBBB6 !important;
+    --si-btn-active-border-color: #0DBBB6 !important;
+    --si-btn-disabled-color: #fff;
 }

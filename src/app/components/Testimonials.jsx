@@ -2,8 +2,8 @@ import React from "react";
 
 const Testimonials = () => {
   return (
-<section className="container-xxl py-5  bg-body-secondary" >
-<div className="row">
+
+<div className="row " style={{paddingTop: "5rem",paddingBottom: "5rem",backgroundColor: "#e4f0dd"}}>
   <div className="col-md-4 d-none d-md-block">
 
     {/* Swiper tabs (Author images) */}
@@ -144,7 +144,7 @@ const Testimonials = () => {
     </div>
   </div>
 </div>
-</section>
+
   );
 };
 
