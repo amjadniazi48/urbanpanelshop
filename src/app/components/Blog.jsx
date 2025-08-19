@@ -138,7 +138,7 @@ export default function Blog() {
                       <a href="#" className="btn btn-icon btn-light bg-white border-white btn-sm rounded-circle position-absolute top-0 end-0 zindex-5 me-3 mt-3" data-bs-toggle="tooltip" data-bs-placement="left" title="Read later" aria-label="Read later">
                         <i className="bx bx-bookmark"></i>
                       </a>
-                      <img src="assets/img/landing/medical/news/04.jpg" className="card-img-top" alt="Image" />
+                      <img src="assets/img/landing/digital-agency/blog/05.jpg" className="card-img-top" alt="Image" />
                     </div>
                     <div className="card-body pb-4">
                       <div className="d-flex align-items-center justify-content-between mb-3">
