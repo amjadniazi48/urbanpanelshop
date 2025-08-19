@@ -151,7 +151,7 @@ export default function Blog() {
                     </div>
                     <div className="card-footer py-4">
                       <a href="#" className="d-flex align-items-center text-decoration-none">
-                        <img src="assets/img/avatar/37.jpg" className="rounded" width="48" alt="Avatar" />
+                        <img src="assets/img/avatar/02.jpg" className="rounded" width="48" alt="Avatar" />
                         <div className="ps-3">
                           <h6 className="fs-base fw-semibold mb-0">Jenny Wilson</h6>
                           <span className="fs-sm text-muted">Ph.D. Physiology</span>
