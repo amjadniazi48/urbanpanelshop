@@ -1,6 +1,6 @@
 import { Inter, JetBrains_Mono } from "next/font/google"
 
-import "./globals.css"
+
 import Script from "next/script"
 import Footer from "./components/Footer";
 const interSans = Inter({
@@ -48,6 +48,7 @@ export default function RootLayout({ children }) {
        
         {/* Main Theme Styles + Bootstrap */}
         <link rel="stylesheet" media="screen" href="/assets/css/theme.min.css" />
+        <link rel="stylesheet" media="screen" href="/assets/css/style.css" />
       </head>
       <body className={`${interSans.variable} ${jetBrainsMono.variable}`}>
         {/* Page Loading Overlay */}

@@ -1,7 +1,7 @@
 export default function Blog() {
   return (
   
-      <div className="row   bg-secondary" style={{paddingTop:"5rem", paddingBottom:"5rem"}} >
+      <div className="row   bg-secondary p-5"  >
         <h2 className="h1 text-center pt-1 pb-4 mb-1 mb-lg-3">Latest News &amp; Tips</h2>
         <div className="position-relative px-xl-5">
           

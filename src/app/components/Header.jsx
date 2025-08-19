@@ -1,5 +1,7 @@
 import React from "react";
-
+import {
+Contact
+} from "lucide-react";
 const Header = () => {
   return (
     <header className="header navbar navbar-expand-lg bg-light position-absolute navbar-sticky">
@@ -137,8 +139,8 @@ const Header = () => {
           target="_blank"
           rel="noopener"
         >
-          <i className="bx bx-cart fs-5 lh-1 me-1"></i>
-          &nbsp;Contact Us
+          <Contact />
+          &nbsp;&nbsp;Contact Us
         </a>
       </div>
     </header>

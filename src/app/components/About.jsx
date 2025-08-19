@@ -2,7 +2,7 @@ import React from 'react'
 import { MoveRight } from "lucide-react";
 const About = () => {
   return (
-       <section className="container pt-5 mt-2 mt-md-4 mt-lg-5">
+       <section className="container p-5 mt-2 mt-md-4 mt-lg-5">
         <div className="row pt-xl-3">
           <div className="col-md-5 text-center text-md-start pb-5">
             <h1 className="mb-4">About Urban Club</h1>

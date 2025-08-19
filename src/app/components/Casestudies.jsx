@@ -4,7 +4,7 @@ import React from 'react'
 
 const Casestudies = () => {
   return (
-        <section className=" pt-5 bg-body-tertiary" >
+        <section className=" p-5 bg-body-tertiary" >
         <div className="container">
           <h2 className="h1 text-center text-md-start mb-lg-4">Case Studies</h2>
           <div className="row align-items-center pb-5">

@@ -3,7 +3,7 @@ import React from "react";
 const Testimonials = () => {
   return (
 
-<div className="row " style={{paddingTop: "5rem",paddingBottom: "5rem",backgroundColor: "#e4f0dd"}}>
+<div className="row p-5" style={{paddingTop: "5rem",paddingBottom: "5rem",backgroundColor: "#e4f0dd"}}>
   <div className="col-md-4 d-none d-md-block">
 
     {/* Swiper tabs (Author images) */}

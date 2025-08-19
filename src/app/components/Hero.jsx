@@ -152,10 +152,7 @@ const Hero = () => {
             <i className="bx bxl-youtube"></i>
           </a>
         </div>
-        <a href="#" className="nav-link px-0">
-          Our case studies
-         &nbsp;<MoveRight />
-        </a>
+     
       </div>
     </section>
   );

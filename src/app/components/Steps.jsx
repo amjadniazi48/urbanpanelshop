@@ -3,7 +3,7 @@ import React from 'react'
 const Steps = () => {
   return (
  
-<div className="steps  p-5 ">
+<div className="steps  p-5 " style={{backgroundColor: "#F0F0F0"}}>
  <h2 className="h1 text-center pt-1 pb-4 mb-1 mb-lg-3">Repair Workflow</h2>
   {/* Step*/}
   <div className="step">
