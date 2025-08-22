@@ -70,7 +70,7 @@ const Casestudies = () => {
                           <h3 className="mb-2 text-white">Complete Dent Repair & Body Restoration</h3>
                           <p className="fs-sm text-white border-bottom pb-3 mb-3">Payment Service Provider Company</p>
                           <p className="pb-2 pb-lg-3 mb-3 text-white">Aenean dolor elit tempus tellus imperdiet. Elementum, ac convallis morbi sit est feugiat ultrices. Cras tortor maecenas pulvinar nec ac justo. Massa sem eget semper...</p>
-                          <a href="#" className="btn btn-primary">View case study</a>
+                          <a href="#" className="btn btn-secondary">View case study</a>
                         </div>
 
                         {/* Item */}

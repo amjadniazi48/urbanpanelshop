@@ -48,7 +48,8 @@ export default function RootLayout({ children }) {
        
         {/* Main Theme Styles + Bootstrap */}
         <link rel="stylesheet" media="screen" href="/assets/css/theme.min.css" />
-        <link rel="stylesheet" media="screen" href="/assets/css/style.css" />
+         <link rel="stylesheet" media="screen" href="/assets/vendor/img-comparison-slider/dist/styles.css" />
+        
       </head>
       <body className={`${interSans.variable} ${jetBrainsMono.variable}`}>
         {/* Page Loading Overlay */}
@@ -105,6 +106,7 @@ export default function RootLayout({ children }) {
 
         {/* Vendor Scripts */}
         <Script src="/assets/vendor/jarallax/dist/jarallax.min.js" strategy="lazyOnload" />
+        <Script src="assets/vendor/img-comparison-slider/dist/index.js" strategy="lazyOnload" />
         <Script src="/assets/vendor/@lottiefiles/lottie-player/dist/lottie-player.js" strategy="lazyOnload" />
         <Script src="/assets/vendor/swiper/swiper-bundle.min.js" strategy="lazyOnload" />
         <Script src="/assets/vendor/lightgallery/lightgallery.min.js" strategy="lazyOnload" />

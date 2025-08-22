@@ -3,12 +3,13 @@ import Hero from "./components/Hero";
 
 
 import About from "./components/About";
-import Blog from "./components/Blog";
+
 
 import Services from "./components/Services";
 import Testimonials from "./components/Testimonials";
 import Casestudies from "./components/Casestudies";
 import Steps from "./components/Steps";
+import Carcomparsion from "./components/Carcomparsion";
 
 export default function Home() {
   return (
@@ -17,11 +18,12 @@ export default function Home() {
       <Hero />
       <About />
       <Services />
-      <Steps/>
       <Casestudies/>
-      <Testimonials />
+      <Steps/>
+    
+     <Testimonials/>
      
-      <Blog />
+      <Carcomparsion />
     
     </>
   );
