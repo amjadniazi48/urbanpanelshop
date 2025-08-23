@@ -3,7 +3,7 @@ import React from 'react'
 const Steps = () => {
   return (
  
-<div className="steps " style={{paddingLeft:"18rem",paddingRight:"18rem",paddingTop:"5rem",paddingBottom:"5rem"}}>
+<div className="steps " style={{paddingLeft:"5rem",paddingRight:"5rem",paddingTop:"5rem", paddingBottom:"5rem"}}>
 
 <h2 className="display-4 mb-0 text-center"><span className="text-gradient-primary">Repair Workflow</span></h2>
   {/* Step*/}

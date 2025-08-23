@@ -30,8 +30,8 @@ export default function Carcomparsion() {
             height="36"
             xmlns="http://www.w3.org/2000/svg"
             x="0px"
-            y="0px"
-            viewBox="0 0 36 36"
+            y="10px"
+            viewBox="0 0 5 36"
           >
             <g>
               <circle fill="currentColor" cx="18" cy="18" r="18" />
@@ -44,9 +44,9 @@ export default function Carcomparsion() {
           
         </div>
       </img-comparison-slider>
-      <div className="position-relative py-lg-4">
+      <div className="position-relative py-lg-4 text-center">
          <a
-                style={{marginLeft:"40%"}}
+                style={{textAlign:"center"}}
                 href="#"
                 className="btn btn-primary"  
                 target="_blank"
