@@ -1,62 +1,80 @@
-"use client";
-import { AlignCenter, ChevronsLeftRight,Contact,SearchCheck } from "lucide-react";
+"use client"
+import { ReactCompareSlider, ReactCompareSliderImage } from "react-compare-slider"
+import { SearchCheck } from "lucide-react"
 
-export default function Carcomparsion() {
+export default function CarComparison() {
   return (
     <div className=" bg-secondary p-5">
       <h2 className="h1 text-center pt-1 pb-4 mb-1 mb-lg-3">Recent Repairs</h2>
       <p style={{ textAlign: "center" }}>
-        Take a look at our latest panel beating and smash repair projects in
-        Melbourne
+        Take a look at our latest panel beating and smash repair projects in Melbourne
       </p>
-      <img-comparison-slider style={{ width: "60%", marginLeft: "25%" }}>
-        <figure slot="first" className="position-relative">
-          <img src="/assets/img/portfolio/grid/2.webp" alt="Image before" />
-          <figcaption className="badge position-absolute top-50 start-0 translate-middle-y bg-white rounded text-nav fs-sm fw-semibold lh-1 px-3 py-2 ms-3 ms-sm-4">
-            Before
-          </figcaption>
-        </figure>
-
-        <figure slot="second" className="position-relative">
-          <img src="/assets/img/portfolio/grid/1.webp" alt="Image after" />
-          <figcaption className="badge position-absolute top-50 end-0 translate-middle-y bg-white rounded text-nav fs-sm fw-semibold lh-1 px-3 py-2 me-3 me-sm-4">
-            After
-          </figcaption>
-        </figure>
-        <div slot="handle">
-          <svg
-            className="text-primary shadow-primary rounded-circle"
-            width="36"
-            height="36"
-            xmlns="http://www.w3.org/2000/svg"
-            x="0px"
-            y="10px"
-            viewBox="0 0 5 36"
+      <ReactCompareSlider
+        style={{ width: "60%", height: "auto", margin: "0 auto" }}
+        handle={
+          <div
+            style={{
+              width: "40px",
+              height: "40px",
+              backgroundColor: "#3b82f6",
+              borderRadius: "50%",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              cursor: "grab",
+              boxShadow: "0 2px 8px rgba(0,0,0,0.3)",
+            }}
           >
-            <g>
-              <circle fill="currentColor" cx="18" cy="18" r="18" />
-            </g>
-            <path
-              fill="#fff"
-              d="M22.2,17.2h-8.3v-3.3L9.7,18l4.2,4.2v-3.3h8.3v3.3l4.2-4.2l-4.2-4.2V17.2z"
+            <div
+              style={{
+                width: "0",
+                height: "0",
+                borderTop: "6px solid transparent",
+                borderBottom: "6px solid transparent",
+                borderRight: "8px solid white",
+                marginRight: "2px",
+              }}
             />
-          </svg>
-          
-        </div>
-      </img-comparison-slider>
+            <div
+              style={{
+                width: "0",
+                height: "0",
+                borderTop: "6px solid transparent",
+                borderBottom: "6px solid transparent",
+                borderLeft: "8px solid white",
+                marginLeft: "2px",
+              }}
+            />
+          </div>
+        }
+        itemOne={
+          <ReactCompareSliderImage
+            src="/assets/img/portfolio/grid/2.webp"
+            srcSet="/assets/img/portfolio/grid/2.webp"
+            alt="Image one"
+          />
+        }
+        itemTwo={
+          <ReactCompareSliderImage
+            src="/assets/img/portfolio/grid/1.webp"
+            srcSet="/assets/img/portfolio/grid/1.webp"
+            alt="Image two"
+          />
+        }
+      />
+
       <div className="position-relative py-lg-4 text-center">
-         <a
-                style={{textAlign:"center"}}
-                href="#"
-                className="btn btn-primary"  
-                target="_blank"
-                rel="noopener"
-              >
-               <SearchCheck />
-                &nbsp;&nbsp;Explore All Comparsions
-              </a>
-              </div>
+        <a
+          style={{ textAlign: "center" }}
+          href="#"
+          className="btn btn-primary"
+          target="_blank"
+          rel="noreferrer noopener"
+        >
+          <SearchCheck />
+          &nbsp;&nbsp;Explore All Comparsions
+        </a>
+      </div>
     </div>
-   
-  );
+  )
 }
