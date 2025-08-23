@@ -5,7 +5,7 @@ const Steps = () => {
  
 <div className="steps " style={{paddingLeft:"18rem",paddingRight:"18rem",paddingTop:"5rem",paddingBottom:"5rem"}}>
 
-<h2 class="display-4 mb-0 text-center"><span class="text-gradient-primary">Repair Workflow</span></h2>
+<h2 className="display-4 mb-0 text-center"><span className="text-gradient-primary">Repair Workflow</span></h2>
   {/* Step*/}
   <div className="step">
     <div className="step-number">
