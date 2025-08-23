@@ -1,5 +1,5 @@
 "use client";
-import { AlignCenter, ChevronsLeftRight,Contact } from "lucide-react";
+import { AlignCenter, ChevronsLeftRight,Contact,SearchCheck } from "lucide-react";
 
 export default function Carcomparsion() {
   return (
@@ -52,7 +52,7 @@ export default function Carcomparsion() {
                 target="_blank"
                 rel="noopener"
               >
-                <Contact />
+               <SearchCheck />
                 &nbsp;&nbsp;Explore All Comparsions
               </a>
               </div>

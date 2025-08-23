@@ -1,6 +1,6 @@
 import React from "react";
 import {
-Contact
+MailPlus
 } from "lucide-react";
 const Header = () => {
   return (
@@ -139,7 +139,7 @@ const Header = () => {
           target="_blank"
           rel="noopener"
         >
-          <Contact />
+       <MailPlus />
           &nbsp;&nbsp;Contact Us
         </a>
       </div>

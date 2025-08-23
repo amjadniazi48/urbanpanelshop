@@ -3,8 +3,9 @@ import React from 'react'
 const Steps = () => {
   return (
  
-<div className="steps  p-5 ">
- <h2 className="h1 text-center pt-1 pb-4 mb-1 mb-lg-3">Repair Workflow</h2>
+<div className="steps " style={{paddingLeft:"18rem",paddingRight:"18rem",paddingTop:"5rem",paddingBottom:"5rem"}}>
+
+<h2 class="display-4 mb-0 text-center"><span class="text-gradient-primary">Repair Workflow</span></h2>
   {/* Step*/}
   <div className="step">
     <div className="step-number">
