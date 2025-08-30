@@ -69,7 +69,8 @@ const Hero = () => {
                       </p>
                     </div>
                     <div className="scale-up delay-1">
-                      <a href="#" className="btn btn-primary shadow-primary btn-lg">
+                      <a href="#" className="btn  btn-lg" 
+                      style={{backgroundColor:"#f7a604",color:"#000000",boxShadow:"0 2px 8px rgba(0,0,0,0.3)"}}>
                         Start your project
                       </a>
                     </div>
@@ -88,7 +89,8 @@ const Hero = () => {
                       </p>
                     </div>
                     <div className="scale-up delay-1">
-                      <a href="#" className="btn btn-primary shadow-primary btn-lg">
+                      <a href="#" className="btn   btn-lg" 
+                      style={{backgroundColor:"#f7a604",color:"#000000",boxShadow:"0 2px 8px rgba(0,0,0,0.3)"}}>
                         View case studies
                       </a>
                     </div>
@@ -107,7 +109,8 @@ const Hero = () => {
                       </p>
                     </div>
                     <div className="scale-up delay-1">
-                      <a href="#" className="btn btn-primary shadow-primary btn-lg">
+                      <a href="#" className="btn   btn-lg"
+                       style={{backgroundColor:"#f7a604",color:"#000000",boxShadow:"0 2px 8px rgba(0,0,0,0.3)"}}>
                         Work with us
                       </a>
                     </div>
@@ -127,6 +130,7 @@ const Hero = () => {
             href="#"
             className="btn btn-icon btn-secondary btn-linkedin rounded-circle me-2"
             aria-label="LinkedIn"
+            style={{backgroundColor:"#f7a604",color:"#000000"}}
           >
             <i className="bx bxl-linkedin"></i>
           </a>

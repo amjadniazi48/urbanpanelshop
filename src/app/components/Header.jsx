@@ -7,7 +7,7 @@ const Header = () => {
     <header className="header navbar navbar-expand-lg bg-light position-absolute navbar-sticky">
       <div className="container px-3">
         <a href="index.html" className="navbar-brand pe-3">
-          <img src="assets/img/logourbanclub.jpeg" width="150" alt="urbanclub" />
+          <img src="assets/img/logourbanclub.png" width="150" alt="urbanclub" />
          
         </a>
         <div id="navbarNav" className="offcanvas offcanvas-end">
@@ -135,9 +135,10 @@ const Header = () => {
 
         <a
           href="#"
-          className="btn btn-primary btn-sm fs-sm rounded d-none d-lg-inline-flex"
+          className="btn btn-sm fs-sm rounded d-none d-lg-inline-flex"
           target="_blank"
           rel="noopener"
+          style={{backgroundColor:"#f7a604",color:"#000000"}}
         >
        <MailPlus />
           &nbsp;&nbsp;Contact Us

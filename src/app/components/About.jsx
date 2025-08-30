@@ -1,23 +1,65 @@
-import React from 'react'
-import { MoveRight } from "lucide-react";
+"use client"
+import { ArrowRight } from "lucide-react"
+
 const About = () => {
   return (
-      <section className="container pt-2 mt-2 mt-md-4 mt-lg-5">
-        <div className="row pt-xl-3">
-          <div className="col-md-5 text-center text-md-start pb-5">
-           <h2 className="display-4 mb-0 text-center"><span className="text-gradient-primary">Urban Panel Shop</span></h2>
-            <p className="fs-lg pb-lg-3 mb-4">We create diverse, complex, web and mobile solutions for any business need. With us you get quality software and perfect service every time.</p>
-            <a href="about-v2.html" className="btn btn-primary shadow-primary btn-lg">More About Us</a>
-            <div className="mt-3 mt-sm-0 pt-4 pt-sm-5 mt-xl-4">
-              <h2 className="h6 mb-4">Some of our awards:</h2>
-              <img src="assets/img/landing/software-agency-1/awards.svg" alt="Awards" />
-            </div>
-          </div>
-          <div className="col-xl-6 col-md-7 offset-xl-1 pb-4 pb-sm-3 pb-lg-0 mb-4 mb-sm-5 mb-lg-0">
-            <img src="assets/img/landing/software-agency-1/about-img.jpg" className="rounded-3 shadow-sm" alt="Image" />
+    <section className="container my-5 py-lg-5 py-md-4 py-3">
+      <div className="row gy-4 py-xl-3">
+        <div className="col-md-6">
+          <img src="assets/img/landing/software-agency-1/panelshop.jpg" alt="Image" className="rounded-3 shadow-lg" />
+        </div>
+        <div className="col-lg-5 col-md-6 offset-lg-1 d-flex">
+          <div className="align-self-center ps-lg-0 ps-md-4">
+            <h2 className="display-3 mb-lg-4 mb-3 text-gradient-primary">About Urban Panel Shop</h2>
+            <p className="mb-4 pb-lg-3 fs-lg">
+              Erat pharetra sed at fringilla etiam nullam platea fringilla. Gravida sodales sit mauris amet massa justo.
+              Egestas ipsum amet tortor hendrerit amet phasellus adipiscing. Eget porta posuere pellentesque sed commodo
+              gravida dignissim dignissim iaculis. Elementum nibh duis at in.
+            </p>
+
+            <a
+              href="#"
+              className="btn btn-lg btn-outline-primary d-inline-flex align-items-center"
+              style={{
+                borderColor: "#f7a604",
+                color: "#f7a604",
+                backgroundColor: "transparent",
+                transition: "all 0.3s ease",
+              }}
+              onMouseEnter={(e) => {
+                e.target.style.backgroundColor = "#f7a604"
+                e.target.style.color = "#000000"
+                const arrow = e.target.querySelector(".arrow-icon")
+                if (arrow) {
+                  arrow.style.transform = "translateX(4px)"
+                  arrow.style.color = "#000000"
+                }
+              }}
+              onMouseLeave={(e) => {
+                e.target.style.backgroundColor = "transparent"
+                e.target.style.color = "#f7a604"
+                const arrow = e.target.querySelector(".arrow-icon")
+                if (arrow) {
+                  arrow.style.transform = "translateX(0px)"
+                  arrow.style.color = "#f7a604"
+                }
+              }}
+            >
+              More about us &nbsp;
+              <ArrowRight
+                size={20}
+                strokeWidth={2}
+                className="ms-2 arrow-icon"
+                style={{
+                  transition: "all 0.3s ease",
+                  transform: "translateX(0px)",
+                }}
+              />
+            </a>
           </div>
         </div>
-      </section>
+      </div>
+    </section>
   )
 }
 
