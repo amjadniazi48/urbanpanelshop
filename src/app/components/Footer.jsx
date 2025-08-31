@@ -4,8 +4,8 @@ export default function Footer() {
       <div className="container pt-lg-4">
         <div className="row pb-5">
           <div className="col-lg-4 col-md-6">
-            <div className="navbar-brand text-white p-0 me-0 mb-3 mb-lg-4">
-            About URS Club
+            <div className="navbar-brand text-white   mb-3 mb-lg-4 pt-5">
+              About URS Club
             </div>
             <p className="fs-sm pb-lg-3 mb-4 text-white">
               Proin ipsum pharetra, senectus eget scelerisque varius pretium platea velit. Lacus, eget eu vitae nullam

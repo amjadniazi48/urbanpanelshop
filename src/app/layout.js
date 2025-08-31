@@ -138,7 +138,7 @@ export default function RootLayout({ children }) {
           strategy="lazyOnload"
         />
         <Script
-          src="/assets/vendor/swiper/swiper-bundle.min.js"
+          src="./assets/vendor/swiper/swiper-bundle.min.js"
           strategy="lazyOnload"
         />
         <Script
