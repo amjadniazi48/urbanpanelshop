@@ -1,15 +1,23 @@
 import React from "react";
-import {
-MailPlus
-} from "lucide-react";
+import { ImageUp } from "lucide-react";
 const Header = () => {
   return (
-    <header className="header navbar navbar-expand-lg bg-light position-absolute navbar-sticky">
+    <header className="header navbar navbar-expand-lg bg-light position-relative navbar-sticky">
       <div className="container px-3">
         <a href="index.html" className="navbar-brand pe-3">
-          <img src="assets/img/logourbanclub.png" width="150" alt="urbanclub" />
-         
+          <img src="assets/img/logourbanclub.png" width="230" alt="urbanclub" />
         </a>
+        <button
+          className="navbar-toggler"
+          type="button"
+          data-bs-toggle="offcanvas"
+          data-bs-target="#navbarNav"
+          aria-controls="navbarNav"
+          aria-label="Toggle navigation"
+        >
+          <span className="navbar-toggler-icon"></span>
+        </button>
+
         <div id="navbarNav" className="offcanvas offcanvas-end">
           <div className="offcanvas-header border-bottom">
             <h5 className="offcanvas-title">Menu</h5>
@@ -31,17 +39,11 @@ const Header = () => {
                 >
                   Home
                 </a>
-             
               </li>
               <li className="nav-item">
-                <a
-                  href="#"
-                  className="nav-link"
-                  data-bs-toggle="dropdown"
-                >
+                <a href="#" className="nav-link" data-bs-toggle="dropdown">
                   About Us
                 </a>
-            
               </li>
               <li className="nav-item dropdown">
                 <a
@@ -49,7 +51,7 @@ const Header = () => {
                   className="nav-link dropdown-toggle"
                   data-bs-toggle="dropdown"
                 >
-                 Our Services
+                  Our Services
                 </a>
                 <ul className="dropdown-menu">
                   <li>
@@ -110,12 +112,12 @@ const Header = () => {
               </li>
               <li className="nav-item">
                 <a href="components/typography.html" className="nav-link">
-                 Gallery
+                  Gallery
                 </a>
               </li>
               <li className="nav-item">
                 <a href="docs/getting-started.html" className="nav-link">
-                  Blog
+                  Contact Us
                 </a>
               </li>
             </ul>
@@ -138,10 +140,10 @@ const Header = () => {
           className="btn btn-sm fs-sm rounded d-none d-lg-inline-flex"
           target="_blank"
           rel="noopener"
-          style={{backgroundColor:"#f7a604",color:"#000000"}}
+          style={{ backgroundColor: "#f7a604", color: "#000000" }}
         >
-       <MailPlus />
-          &nbsp;&nbsp;Contact Us
+          <ImageUp />
+          &nbsp;&nbsp;UPLOAD YOUR SMASH
         </a>
       </div>
     </header>

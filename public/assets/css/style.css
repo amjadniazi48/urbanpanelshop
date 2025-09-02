@@ -225,4 +225,8 @@ body {
   opacity: 1;
   transition: opacity 0.3s ease-in-out;
 }
-
+.text-gradient-secondary {
+    background: linear-gradient(90deg, #1E3A8A, #2563EB 40%, #F97316);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}

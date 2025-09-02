@@ -162,6 +162,7 @@ export default function RootLayout({ children }) {
           strategy="lazyOnload"
         />
         <Script src="/assets/js/theme.min.js" strategy="lazyOnload" />
+        <Script src="assets/js/index.js" strategy="lazyOnload" />
       </body>
     </html>
   );
