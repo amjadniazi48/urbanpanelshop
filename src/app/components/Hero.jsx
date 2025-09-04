@@ -1,9 +1,10 @@
 import React from "react";
 import Decorativesvg from "./Decorativesvg";
-import  { Gavel , Car, KeySquare,Award } from "lucide-react";
+import { Gavel, Car, KeySquare, Award } from "lucide-react";
+
 const Hero = () => {
   return (
-    <section className="container  mt-2 mb-md-3 mb-lg-4 mb-xl-5">
+    <section className="container mt-2 mb-md-3 mb-lg-4 mb-xl-5">
       <div className="row align-items-center align-items-lg-stretch mb-2 mb-sm-3">
         {/* Parallax gfx */}
         <div className="col-xl-7 col-md-6 d-flex justify-content-center justify-content-md-end overflow-hidden order-md-2 mt-n5 mt-sm-n4 mt-md-0">
@@ -33,7 +34,7 @@ const Hero = () => {
         {/* Text */}
         <div className="col-xl-5 col-md-6 d-flex flex-column order-md-1">
           <div
-            className="text-center text-md-start  mt-5 mt-sm-5 "
+            className="text-center text-md-start mt-5 mt-sm-5"
             style={{
               backgroundImage: "url(assets/img/landing/pattern.png)",
               backgroundSize: "contain",
@@ -41,33 +42,36 @@ const Hero = () => {
             }}
           >
             <h3 className="display-4 mb-4 text-gradient-primary">
-              Smash Repair and Towning with Urban Panel
+              Smash Repair and Towing with Urban Panel
             </h3>
-            <p className="fs-lg mb-0 d-md-none d-xl-block">
+            <p className="fs-lg mb-0">
               Odio venenatis a, non egestas ut ultrices ultrices quis orci ipsum
               eu tellus tempor sed amet mauris pellentesque ut vitae.
             </p>
-       
           </div>
-          <div className="d-sm-flex d-md-none d-lg-flex justify-content-center justify-content-md-start mt-auto pt-3 pt-md-0">
-            <div className="d-flex align-items-center w-100 pe-xxl-2 mb-2 mb-md-0">
-             <Gavel   size={90}  color="#E09302" strokeWidth={2} />&nbsp;&nbsp;
+
+          {/* Features Row 1 */}
+          <div className="d-flex flex-column flex-sm-row justify-content-center justify-content-md-start mt-4">
+            <div className="d-flex align-items-center w-100 pe-xxl-2 mb-3 mb-sm-0">
+              <Gavel size={70} color="#E09302" strokeWidth={2} />
               <div className="ps-2 ms-1">Panel & Smash Repairs</div>
             </div>
             <div className="vr d-none d-sm-block text-border my-2 mx-4"></div>
             <div className="d-flex align-items-center w-100 ps-xxl-2">
-             <Award size={90}  color="#E09302" strokeWidth={2} />&nbsp;&nbsp;
+              <Award size={70} color="#E09302" strokeWidth={2} />
               <div className="ps-2 ms-1">Quality Assurance</div>
             </div>
           </div>
-           <div className="d-sm-flex d-md-none d-lg-flex justify-content-center justify-content-md-start mt-auto pt-3 pt-md-0">
-            <div className="d-flex align-items-center w-100 pe-xxl-2 mb-2 mb-md-0">
-             <Car   size={90}  color="#E09302" strokeWidth={2} />&nbsp;&nbsp;
+
+          {/* Features Row 2 */}
+          <div className="d-flex flex-column flex-sm-row justify-content-center justify-content-md-start mt-4">
+            <div className="d-flex align-items-center w-100 pe-xxl-2 mb-3 mb-sm-0">
+              <Car size={70} color="#E09302" strokeWidth={2} />
               <div className="ps-2 ms-1">Free Pickup & Delivery</div>
             </div>
             <div className="vr d-none d-sm-block text-border my-2 mx-4"></div>
             <div className="d-flex align-items-center w-100 ps-xxl-2">
-              <KeySquare  size={65}  color="#E09302" strokeWidth={2} />&nbsp;&nbsp;
+              <KeySquare size={65} color="#E09302" strokeWidth={2} />
               <div className="ps-2 ms-1">Backup Cars</div>
             </div>
           </div>
