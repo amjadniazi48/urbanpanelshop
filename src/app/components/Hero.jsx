@@ -34,7 +34,7 @@ const Hero = () => {
         {/* Text */}
         <div className="col-xl-5 col-md-6 d-flex flex-column order-md-1">
           <div
-            className="text-center text-md-start mt-5 mt-sm-5"
+            className="text-center text-md-start mt-5 mt-sm-5 mb-5"
             style={{
               backgroundImage: "url(assets/img/landing/pattern.png)",
               backgroundSize: "contain",
@@ -53,12 +53,12 @@ const Hero = () => {
           {/* Features Row 1 */}
           <div className="d-flex flex-column flex-sm-row justify-content-center justify-content-md-start mt-4">
             <div className="d-flex align-items-center w-100 pe-xxl-2 mb-3 mb-sm-0">
-              <Gavel size={70} color="#E09302" strokeWidth={2} />
+               <img src="assets/img/siteicons/mechanic.png" width="75px" alt="" />
               <div className="ps-2 ms-1">Panel & Smash Repairs</div>
             </div>
             <div className="vr d-none d-sm-block text-border my-2 mx-4"></div>
             <div className="d-flex align-items-center w-100 ps-xxl-2">
-              <Award size={70} color="#E09302" strokeWidth={2} />
+                <img src="assets/img/siteicons/service.png" width="68px" alt="" />
               <div className="ps-2 ms-1">Quality Assurance</div>
             </div>
           </div>
@@ -66,12 +66,12 @@ const Hero = () => {
           {/* Features Row 2 */}
           <div className="d-flex flex-column flex-sm-row justify-content-center justify-content-md-start mt-4">
             <div className="d-flex align-items-center w-100 pe-xxl-2 mb-3 mb-sm-0">
-              <Car size={70} color="#E09302" strokeWidth={2} />
+              <img src="assets/img/siteicons/car.png" width="85px" alt="" />
               <div className="ps-2 ms-1">Free Pickup & Delivery</div>
             </div>
             <div className="vr d-none d-sm-block text-border my-2 mx-4"></div>
             <div className="d-flex align-items-center w-100 ps-xxl-2">
-              <KeySquare size={65} color="#E09302" strokeWidth={2} />
+              <img src="assets/img/siteicons/backup-car.png" width="85px" alt="" />
               <div className="ps-2 ms-1">Backup Cars</div>
             </div>
           </div>

@@ -230,3 +230,13 @@ body {
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
 }
+.accordion {
+    --si-accordion-color: var(--si-body-color);
+    --si-accordion-btn-font-weight: 600;
+    --si-accordion-btn-color: var(--si-heading-color);
+    --si-accordion-btn-icon-box-size: 2.25rem;
+    --si-accordion-btn-icon-box-border-radius: 50%;
+    --si-accordion-btn-icon-box-bg: #f2d293;
+    --si-accordion-btn-icon-box-active-bg: #F7A604;
+    --si-accordion-btn-icon-box-active-shadow: 0 -0.5rem 1.125rem -0.5rem rgba(99, 102, 241, .9);
+}
