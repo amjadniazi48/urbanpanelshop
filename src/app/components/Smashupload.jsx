@@ -33,13 +33,13 @@ const Smashupload = () => {
               href="#"
               target="_blank"
               rel="noopener"
-              className="btn btn-lg d-inline-flex align-items-center justify-content-center rounded"
-              style={{
-                backgroundColor: "#ffb014",
-                color: "#000",
-                padding: "12px 20px",
-                fontWeight: "600"
-              }}
+              className="btn btn-lg d-inline-flex align-items-center justify-content-center rounded btn-outline-warning"
+              // style={{
+              //   backgroundColor: "#ffb014",
+              //   color: "#000",
+              //   padding: "12px 20px",
+              //   fontWeight: "600"
+              // }}
             >
               <ImageUp size={28} strokeWidth={2.2} />
               <span className="ms-2">UPLOAD YOUR SMASH</span>

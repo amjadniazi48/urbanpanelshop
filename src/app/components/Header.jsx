@@ -1,13 +1,23 @@
 import React from "react";
 import { ImageUp } from "lucide-react";
+
 const Header = () => {
   return (
-      <header class="header navbar navbar-expand-lg navbar-dark  position-absolute navbar-sticky" style={{backgroundColor:"#F7F7F7"}}>
-   
+    <header
+      className="header navbar navbar-expand-lg navbar-light position-absolute navbar-sticky shadow-sm"
+      style={{ backgroundColor: "#F7F7F7" }}
+    >
       <div className="container px-3">
+        {/* Logo */}
         <a href="index.html" className="navbar-brand pe-3">
-          <img src="assets/img/logourbanclub.png" width="150" alt="urbanclub" />
+          <img
+            src="assets/img/logourbanclub.png"
+            width="150"
+            alt="urbanclub"
+          />
         </a>
+
+        {/* Toggler */}
         <button
           className="navbar-toggler"
           type="button"
@@ -19,8 +29,9 @@ const Header = () => {
           <span className="navbar-toggler-icon"></span>
         </button>
 
-        <div id="navbarNav" className="offcanvas offcanvas-end">
-          <div className="offcanvas-header border-bottom">
+        {/* Offcanvas Menu (Navigation in center) */}
+        <div id="navbarNav" className="offcanvas offcanvas-end flex-grow-1">
+          <div className="offcanvas-header border-bottom d-lg-none">
             <h5 className="offcanvas-title">Menu</h5>
             <button
               type="button"
@@ -30,20 +41,14 @@ const Header = () => {
             ></button>
           </div>
           <div className="offcanvas-body">
-            <ul className="navbar-nav me-auto mb-2 mb-lg-0">
-              <li className="nav-item dropdown">
-                <a
-                  href="#"
-                  className="nav-link  active"
-                  data-bs-toggle="dropdown"
-                  aria-current="page"
-                  
-                >
+            <ul className="navbar-nav mx-auto mb-2 mb-lg-0">
+              <li className="nav-item">
+                <a href="#" className="nav-link active">
                   Home
                 </a>
               </li>
               <li className="nav-item">
-                <a href="#" className="nav-link" data-bs-toggle="dropdown">
+                <a href="#" className="nav-link">
                   About Us
                 </a>
               </li>
@@ -123,16 +128,28 @@ const Header = () => {
                 </a>
               </li>
             </ul>
+
+            {/* Upload Button inside offcanvas (mobile only) */}
+            <a
+              href="#"
+              className="btn w-100  d-lg-none btn-outline-warning"
+              target="_blank"
+              rel="noopener"
+              // style={{ backgroundColor: "#F7A604", color: "black" }}
+            >
+              <ImageUp />
+              &nbsp;&nbsp;UPLOAD YOUR SMASH
+            </a>
           </div>
-    
         </div>
 
+        {/* Upload Button (Desktop, always right side) */}
         <a
           href="#"
-          className="btn   bt-primary"
+          className="btn d-none d-lg-inline-flex ms-lg-3"
           target="_blank"
           rel="noopener"
-          style={{ backgroundColor: "#F7A604",color:"black" }}
+          style={{ backgroundColor: "#F7A604", color: "black" }}
         >
           <ImageUp />
           &nbsp;&nbsp;UPLOAD YOUR SMASH

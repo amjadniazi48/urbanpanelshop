@@ -18,22 +18,22 @@ export default function CarComparison() {
           {/* Text Section */}
           <div className="col-lg-6 col-md-12 mb-4 mb-lg-0">
             <div className="pe-lg-4">
-              <h3 className="display-5 text-center text-lg-start mb-3 text-warning fw-bold">
+              <h5 className="display-5 text-center text-lg-start mb-3 text-warning fw-bold">
                 Recent Repairs
-              </h3>
+              </h5>
               <p className="lead text-white text-center text-lg-start mb-4">
                 Take a look at our latest panel beating and smash repair projects in Melbourne
               </p>
               <div className="text-center text-lg-start">
                 <a
                   href="#"
-                  className="btn btn-lg px-4 py-3"
+                  className="btn btn-lg px-4 py-3 btn-outline-warning"
                   style={{
-                    backgroundColor: "#f7a604",
-                    color: "#000000",
-                    border: "none",
+                  
+                  
                     borderRadius: "0.5rem",
                     fontWeight: "600",
+                    marginTop: "3rem",
                   }}
                   target="_blank"
                   rel="noreferrer noopener"
