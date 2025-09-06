@@ -4,11 +4,12 @@ import { CarFront, ImageUp } from "lucide-react";
 const Smashupload = () => {
   return (
     <section
-      className="bg-secondary "
+      className="container py-2 mt-5 mb-2 shadow-lg"
       style={{
         backgroundImage: "url(assets/img/landing/saas-3/cta-bg.jpg)",
         backgroundSize: "cover",
         backgroundPosition: "center",
+            borderRadius: "1rem",
       }}
     >
       <div className="container py-5">

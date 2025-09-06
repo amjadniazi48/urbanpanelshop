@@ -2,11 +2,8 @@ import React from "react";
 import { ImageUp } from "lucide-react";
 const Header = () => {
   return (
-    <header className="header navbar navbar-expand-lg  position-relative navbar-sticky"
-     style={{
-        backgroundColor: "#FFBA08",
-      }}
-    >
+      <header class="header navbar navbar-expand-lg navbar-dark position-absolute navbar-sticky">
+   
       <div className="container px-3">
         <a href="index.html" className="navbar-brand pe-3">
           <img src="assets/img/logourbanclub.png" width="150" alt="urbanclub" />
@@ -40,7 +37,7 @@ const Header = () => {
                   className="nav-link  active"
                   data-bs-toggle="dropdown"
                   aria-current="page"
-                   style={{color: "black"}}
+                  
                 >
                   Home
                 </a>
@@ -132,10 +129,10 @@ const Header = () => {
 
         <a
           href="#"
-          className="btn  btn-lg bt-primary"
+          className="btn   bt-primary"
           target="_blank"
           rel="noopener"
-          style={{ backgroundColor: "#241C43", color: "white", }}
+          style={{ backgroundColor: "#F7A604",color:"black" }}
         >
           <ImageUp />
           &nbsp;&nbsp;UPLOAD YOUR SMASH
