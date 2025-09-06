@@ -4,7 +4,7 @@ const Urbanservices = () => {
   return (
   
       <section className=" bg-dark p-5 " data-bs-theme="dark">
-        <h2 className="h1 mb-4 text-center text-warning text-uppercase">Expert panel and paint services you can trust</h2>
+        <h2 className="h1 mb-4 text-center text-warning ">Expert Panel & Paint Services you can trust</h2>
        <p className="mb-4 mx-auto pb-3 fs-lg text-center text-white" style={{ maxWidth: "636px" }}>
         We create websites and mobile apps, marketing materials, branding, web design, UX/UI design and illustrations.
        </p>

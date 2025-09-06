@@ -2,7 +2,7 @@ import React from "react";
 import { ImageUp } from "lucide-react";
 const Header = () => {
   return (
-      <header class="header navbar navbar-expand-lg navbar-dark position-absolute navbar-sticky">
+      <header class="header navbar navbar-expand-lg navbar-dark  position-absolute navbar-sticky" style={{backgroundColor:"#F7F7F7"}}>
    
       <div className="container px-3">
         <a href="index.html" className="navbar-brand pe-3">
