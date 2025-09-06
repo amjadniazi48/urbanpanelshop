@@ -4,7 +4,9 @@ import { Gavel, Car, KeySquare, Award } from "lucide-react";
 
 const Hero = () => {
   return (
-    <section className="container mt-2 mb-md-3 mb-lg-4 mb-xl-5">
+    <section className="container mt-2 mb-md-3 mb-lg-4 mb-xl-5"
+    
+    >
       <div className="row align-items-center align-items-lg-stretch mb-2 mb-sm-3">
         {/* Parallax gfx */}
         <div className="col-xl-7 col-md-6 d-flex justify-content-center justify-content-md-end overflow-hidden order-md-2 mt-n5 mt-sm-n4 mt-md-0">
@@ -32,7 +34,10 @@ const Hero = () => {
         </div>
 
         {/* Text */}
-        <div className="col-xl-5 col-md-6 d-flex flex-column order-md-1">
+        <div className="col-xl-5 col-md-6 d-flex flex-column order-md-1"
+        
+        
+        >
           <div
             className="text-center text-md-start mt-5 mt-sm-5 mb-5"
             style={{
@@ -41,9 +46,9 @@ const Hero = () => {
               backgroundPosition: "center",
             }}
           >
-            <h3 className="display-4 mb-4 text-gradient-primary">
+            <h5 className="display-5 mb-4 text-gradient-primary">
               Smash Repair and Towing with Urban Panel
-            </h3>
+            </h5>
             <p className="fs-lg mb-0">
               Odio venenatis a, non egestas ut ultrices ultrices quis orci ipsum
               eu tellus tempor sed amet mauris pellentesque ut vitae.

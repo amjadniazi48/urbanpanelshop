@@ -2,10 +2,14 @@ import React from "react";
 import { ImageUp } from "lucide-react";
 const Header = () => {
   return (
-    <header className="header navbar navbar-expand-lg bg-light position-relative navbar-sticky">
+    <header className="header navbar navbar-expand-lg  position-relative navbar-sticky"
+     style={{
+        backgroundColor: "#FFBA08",
+      }}
+    >
       <div className="container px-3">
         <a href="index.html" className="navbar-brand pe-3">
-          <img src="assets/img/logourbanclub.png" width="230" alt="urbanclub" />
+          <img src="assets/img/logourbanclub.png" width="150" alt="urbanclub" />
         </a>
         <button
           className="navbar-toggler"
@@ -36,6 +40,7 @@ const Header = () => {
                   className="nav-link  active"
                   data-bs-toggle="dropdown"
                   aria-current="page"
+                   style={{color: "black"}}
                 >
                   Home
                 </a>
@@ -122,25 +127,15 @@ const Header = () => {
               </li>
             </ul>
           </div>
-          <div className="offcanvas-header border-top">
-            <a
-              href="#"
-              className="btn btn-primary w-100"
-              target="_blank"
-              rel="noopener"
-            >
-              <i className="bx bx-cart fs-4 lh-1 me-1"></i>
-              &nbsp;Buy now
-            </a>
-          </div>
+    
         </div>
 
         <a
           href="#"
-          className="btn btn-sm fs-sm rounded d-none d-lg-inline-flex"
+          className="btn  btn-lg bt-primary"
           target="_blank"
           rel="noopener"
-          style={{ backgroundColor: "#f7a604", color: "#000000" }}
+          style={{ backgroundColor: "#241C43", color: "white", }}
         >
           <ImageUp />
           &nbsp;&nbsp;UPLOAD YOUR SMASH

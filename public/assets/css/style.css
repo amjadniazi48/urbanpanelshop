@@ -89,7 +89,7 @@ Show all properties (68 more)
 }
 .navbar {
     --si-navbar-padding-x: 0;
-    --si-navbar-padding-y: 0.5rem;
+    --si-navbar-padding-y: 0.2rem;
     --si-navbar-color: #33354d; /* Keep base text color dark for readability */
     --si-navbar-hover-color: #F7A604; /* Gold hover */
     --si-navbar-disabled-color: #bfa86f; /* Muted gold for disabled */
