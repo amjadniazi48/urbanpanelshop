@@ -132,10 +132,10 @@ const Header = () => {
             {/* Upload Button inside offcanvas (mobile only) */}
             <a
               href="#"
-              className="btn w-100  d-lg-none btn-outline-warning"
+              className="btn w-100  d-lg-none"
               target="_blank"
               rel="noopener"
-              // style={{ backgroundColor: "#F7A604", color: "black" }}
+               style={{ backgroundColor: "#F7A604", color: "black" }}
             >
               <ImageUp />
               &nbsp;&nbsp;UPLOAD YOUR SMASH
