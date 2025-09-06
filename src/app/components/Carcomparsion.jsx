@@ -17,6 +17,12 @@ export default function CarComparison() {
         <div className="row align-items-center min-vh-50">
           {/* Text Section */}
           <div className="col-lg-6 col-md-12 mb-4 mb-lg-0">
+              <img
+                    src="assets/img/siteicons/car-comp.png"
+                    width="70px"
+                    alt="car repair"
+                    className="mb-2"
+                  />
             <div className="pe-lg-4">
               <h5 className="display-5 text-center text-lg-start mb-3 text-warning fw-bold">
                 Recent Repairs
@@ -33,7 +39,7 @@ export default function CarComparison() {
                   
                     borderRadius: "0.5rem",
                     fontWeight: "600",
-                    marginTop: "3rem",
+                    marginTop: "2rem",
                   }}
                   target="_blank"
                   rel="noreferrer noopener"

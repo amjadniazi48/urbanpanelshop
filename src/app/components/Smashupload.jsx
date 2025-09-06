@@ -17,7 +17,12 @@ const Smashupload = () => {
           
           {/* LEFT COLUMN - Text and Button */}
           <div className="col-md-6 text-center text-md-start mb-4 mb-md-0">
-            <CarFront size={80} color="#FFBA08" strokeWidth={2} className="mb-3" />
+          <img
+                    src="assets/img/siteicons/impact.png"
+                    width="100px"
+                    alt="car smashed"
+                    className=""
+                  />
             
             <h2 className="h1 text-white mb-4">
               Start your journey to a <br />
