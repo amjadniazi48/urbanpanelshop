@@ -6,12 +6,7 @@ const Urbanservices = () => {
       <section className=" bg-dark p-5 " data-bs-theme="dark">
      {/* Heading with logo on the left */}
       <div className="d-flex align-items-center justify-content-center mb-4">
-        <img
-          src="assets/img/siteicons/professional-success.png"
-          width="55"
-          alt="car smashed"
-          className="me-3"
-        />
+       
         <h2 className="h1 text-warning text-center m-0">
           Expert Panel & Paint Services you can trust
         </h2>
