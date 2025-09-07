@@ -21,7 +21,7 @@ export default function CarComparison() {
                     src="assets/img/siteicons/car-comp.png"
                     width="70px"
                     alt="car repair"
-                    className="mb-2"
+                  className="mb-2 d-block mx-auto mx-lg-0"
                   />
             <div className="pe-lg-4">
               <h5 className="display-5 text-center text-lg-start mb-3 text-warning fw-bold">
