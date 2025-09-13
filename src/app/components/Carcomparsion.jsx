@@ -107,7 +107,7 @@ export default function CarComparison() {
                 itemOne={
                   <div className="position-relative h-100 w-100">
                     <ReactCompareSliderImage
-                      src="/assets/img/portfolio/grid/2.webp"
+                      src="/assets/img/smashes/1.jpg"
                       alt="Before repair image"
                       style={{ objectFit: "cover" }}
                     />
@@ -119,7 +119,7 @@ export default function CarComparison() {
                 itemTwo={
                   <div className="position-relative h-100 w-100">
                     <ReactCompareSliderImage
-                      src="/assets/img/portfolio/grid/1.webp"
+                      src="/assets/img/smashes/2.jpg"
                       alt="After repair image"
                       style={{ objectFit: "cover" }}
                     />

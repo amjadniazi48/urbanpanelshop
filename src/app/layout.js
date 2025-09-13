@@ -1,6 +1,7 @@
 import { Poppins } from "next/font/google";
 import Script from "next/script";
-
+import Header from "./components/Header";
+import Footer from "./components/Footer";
 
 const poppins = Poppins({
   subsets: ["latin"],
@@ -42,7 +43,7 @@ export const viewport = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en" className={`${poppins.variable}`}>
+    <html lang="en" className={poppins.variable}>
       <head>
         {/* Vendor Styles */}
         <link
@@ -63,15 +64,9 @@ export default function RootLayout({ children }) {
           href="/assets/css/theme.min.css"
         />
         <link rel="stylesheet" media="screen" href="/assets/css/style.css" />
-        <style>{`
-                html {
-                  font-family: ${poppins.style.fontFamily};
-                  --font-sans: ${poppins.variable};
-                  --font-mono: ui-monospace, SFMono-Regular, "SF Mono", Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
-                }
-        `}</style>
       </head>
-      <body className={`${poppins.variable}`}>
+
+      <body className={poppins.variable}>
         {/* Page Loading Overlay */}
         <div className="page-loading active" id="page-loading">
           <div className="page-loading-inner">
@@ -79,8 +74,13 @@ export default function RootLayout({ children }) {
             <span>Loading...</span>
           </div>
         </div>
-        <main className="page-wrapper">{children}</main>
-      
+
+        <main className="page-wrapper">
+          <Header />
+          {children}
+          <Footer />
+        </main>
+
         {/* Back to top button */}
         <a href="#top" className="btn-scroll-top" data-scroll>
           <span className="btn-scroll-top-tooltip text-muted fs-sm me-2">
@@ -89,36 +89,25 @@ export default function RootLayout({ children }) {
           <i className="btn-scroll-top-icon bx bx-chevron-up"></i>
         </a>
 
-        {/* Preloader Script - Improved */}
+        {/* Preloader Script */}
         <Script id="preloader-script" strategy="afterInteractive">
           {`
             (function () {
-              // Remove preloader when page is fully loaded
               function removePreloader() {
                 const preloader = document.querySelector('.page-loading');
                 if (preloader) {
                   preloader.classList.remove('active');
-                  setTimeout(function () {
-                    preloader.remove();
-                  }, 500);
+                  setTimeout(() => preloader.remove(), 500);
                 }
               }
-
-              // Multiple fallback methods to ensure preloader is removed
               if (document.readyState === 'complete') {
                 removePreloader();
               } else {
                 window.addEventListener('load', removePreloader);
-                
-                // Fallback timer - force remove after 2 seconds
                 setTimeout(removePreloader, 2000);
-                
-                // Additional fallback for when DOM is ready
-                if (document.readyState === 'loading') {
-                  document.addEventListener('DOMContentLoaded', function() {
-                    setTimeout(removePreloader, 1000);
-                  });
-                }
+                document.addEventListener('DOMContentLoaded', () => {
+                  setTimeout(removePreloader, 1000);
+                });
               }
             })();
           `}
@@ -130,7 +119,7 @@ export default function RootLayout({ children }) {
           strategy="lazyOnload"
         />
         <Script
-          src="assets/vendor/img-comparison-slider/dist/index.js"
+          src="/assets/vendor/img-comparison-slider/dist/index.js"
           strategy="lazyOnload"
         />
         <Script
@@ -162,7 +151,7 @@ export default function RootLayout({ children }) {
           strategy="lazyOnload"
         />
         <Script src="/assets/js/theme.min.js" strategy="lazyOnload" />
-        <Script src="assets/js/index.js" strategy="lazyOnload" />
+        <Script src="/assets/js/index.js" strategy="lazyOnload" />
       </body>
     </html>
   );

@@ -62,7 +62,7 @@ const Urbanservices = () => {
            {/* Item */}
             <div className="swiper-slide">
               <a href="#" className="card-portfolio position-relative d-block rounded-3 overflow-hidden">
-                <span className="position-absolute top-0 start-0 w-100 h-100 zindex-1" style={{ background: "linear-gradient(180deg, rgba(17, 24, 39, 0.00) 35.56%, #111827 95.3%);" }}></span>
+                <span className="position-absolute top-0 start-0 w-100 h-100 zindex-1" style={{ background: "linear-gradient(180deg, rgba(17, 24, 39, 0.00) 35.56%, #111827 95.3%)" }}></span>
                 <div className="position-absolute bottom-0 w-100 zindex-2 p-4">
                   <div className="px-md-3">
                     <h3 className="h4 text-white mb-0">Transportation</h3>
@@ -81,7 +81,7 @@ const Urbanservices = () => {
            {/* Item */}
             <div className="swiper-slide">
               <a href="#" className="card-portfolio position-relative d-block rounded-3 overflow-hidden">
-                <span className="position-absolute top-0 start-0 w-100 h-100 zindex-1" style={{ background: "linear-gradient(180deg, rgba(17, 24, 39, 0.00) 35.56%, #111827 95.3%);" }}></span>
+                <span className="position-absolute top-0 start-0 w-100 h-100 zindex-1" style={{ background: "linear-gradient(180deg, rgba(17, 24, 39, 0.00) 35.56%, #111827 95.3%)" }}></span>
                 <div className="position-absolute bottom-0 w-100 zindex-2 p-4">
                   <div className="px-md-3">
                     <h3 className="h4 text-white mb-0">Marketing</h3>
@@ -100,7 +100,7 @@ const Urbanservices = () => {
            {/* Item */}
             <div className="swiper-slide">
               <a href="#" className="card-portfolio position-relative d-block rounded-3 overflow-hidden">
-                <span className="position-absolute top-0 start-0 w-100 h-100 zindex-1" style={{ background: "linear-gradient(180deg, rgba(17, 24, 39, 0.00) 35.56%, #111827 95.3%);" }}></span>
+                <span className="position-absolute top-0 start-0 w-100 h-100 zindex-1" style={{ background: "linear-gradient(180deg, rgba(17, 24, 39, 0.00) 35.56%, #111827 95.3%)" }}></span>
                 <div className="position-absolute bottom-0 w-100 zindex-2 p-4">
                   <div className="px-3">
                     <h3 className="h4 text-white mb-0">Robotics</h3>
@@ -119,7 +119,7 @@ const Urbanservices = () => {
            {/* Item */}
             <div className="swiper-slide">
               <a href="#" className="card-portfolio position-relative d-block rounded-3 overflow-hidden">
-                <span className="position-absolute top-0 start-0 w-100 h-100 zindex-1" style={{ background: "linear-gradient(180deg, rgba(17, 24, 39, 0.00) 35.56%, #111827 95.3%);" }}></span>
+                <span className="position-absolute top-0 start-0 w-100 h-100 zindex-1" style={{ background: "linear-gradient(180deg, rgba(17, 24, 39, 0.00) 35.56%, #111827 95.3%)" }}></span>
                 <div className="position-absolute bottom-0 w-100 zindex-2 p-4">
                   <div className="px-3">
                     <h3 className="h4 text-white mb-0">Programming</h3>

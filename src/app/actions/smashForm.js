@@ -1,47 +1,153 @@
+// app/actions/smashForm.js
 "use server"
 
 import { z } from "zod"
 
-const smashFormSchema = z.object({
-  name: z.string().min(1, "Name is required"),
-  phone: z.string().min(1, "Phone is required"),
-  email: z.string().email("Invalid email address"),
-  suburb: z.string().min(1, "Suburb is required"),
-  description: z.string().min(1, "Smash details are required"),
-  model: z.string().min(1, "Car model is required"),
-  year: z.string().min(4, "Year must be at least 4 digits"),
-  registration: z.string().min(1, "Registration is required"),
-  myfault: z.string(),
-})
+// Simple in-memory rate limiting
+const rateLimitMap = new Map()
+
+// Create a custom validation function that collects all errors
+function validateFormData(formData) {
+  const errors = {};
+  let isValid = true;
+
+  // Validate name
+  if (!formData.name || formData.name.trim() === '') {
+    errors.name = "Name is required";
+    isValid = false;
+  }
+
+  // Validate phone
+  if (!formData.phone || formData.phone.trim() === '') {
+    errors.phone = "Phone is required";
+    isValid = false;
+  }
+
+  // Validate email
+  if (!formData.email || formData.email.trim() === '') {
+    errors.email = "Email is required";
+    isValid = false;
+  } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
+    errors.email = "Invalid email address";
+    isValid = false;
+  }
+
+  // Validate suburb
+  if (!formData.suburb || formData.suburb.trim() === '') {
+    errors.suburb = "Suburb is required";
+    isValid = false;
+  }
+
+  // Validate carMake
+  if (!formData.carMake || formData.carMake.trim() === '') {
+    errors.carMake = "Car model is required";
+    isValid = false;
+  }
+
+  // Validate year
+  if (!formData.year || formData.year.trim() === '') {
+    errors.year = "Year is required";
+    isValid = false;
+  } else if (formData.year.length < 4) {
+    errors.year = "Year must be at least 4 digits";
+    isValid = false;
+  } else {
+    const yearNum = parseInt(formData.year);
+    if (isNaN(yearNum) || yearNum < 1900 || yearNum > new Date().getFullYear() + 1) {
+      errors.year = "Year must be a valid year";
+      isValid = false;
+    }
+  }
+
+  // Validate registration
+  if (!formData.registration || formData.registration.trim() === '') {
+    errors.registration = "Registration is required";
+    isValid = false;
+  }
+
+  // Validate smashDetails
+  if (!formData.smashDetails || formData.smashDetails.trim() === '') {
+    errors.smashDetails = "Smash details are required";
+    isValid = false;
+  }
+
+  // Validate at least one image
+  const hasImage = (formData.photo1 && formData.photo1.size > 0) || 
+                  (formData.photo2 && formData.photo2.size > 0) || 
+                  (formData.photo3 && formData.photo3.size > 0);
+  
+  if (!hasImage) {
+    errors.photo1 = "At least one image is required";
+    isValid = false;
+  }
+
+  return { isValid, errors };
+}
 
 export async function uploadSmashForm(prevState, formData) {
-  try {
-    const jwt = process.env.STRAPI_JWT
-    const strapiUrl = process.env.STRAPI_URL
-
-    // Extract all form fields
-    const formFields = {
-      name: formData.get("name"),
-      phone: formData.get("phone"),
-      email: formData.get("email"),
-      suburb: formData.get("suburb"),
-      description: formData.get("smashDetails"),
-      model: formData.get("carMake"),
-      year: formData.get("year"),
-      registration: formData.get("registration"),
-      myfault: formData.get("fault"),
-    }
-
-    const validationResult = smashFormSchema.safeParse(formFields)
-    if (!validationResult.success) {
-      const errors = validationResult.error.errors.map((err) => `${err.path[0]}: ${err.message}`).join(", ")
+  // Simple rate limiting
+  const ip = "user-ip"
+  const now = Date.now()
+  const windowStart = now - 60000 // 1 minute window
+  
+  if (rateLimitMap.has(ip)) {
+    const timestamps = rateLimitMap.get(ip).filter(time => time > windowStart)
+    if (timestamps.length >= 5) {
       return {
-        message: `Validation errors: ${errors}`,
+        message: "Too many requests. Please try again later.",
+        fieldErrors: {},
+        success: false,
+        formData: Object.fromEntries(formData)
       }
     }
+    timestamps.push(now)
+    rateLimitMap.set(ip, timestamps)
+  } else {
+    rateLimitMap.set(ip, [now])
+  }
 
-    const validatedData = validationResult.data
+  const jwt = process.env.STRAPI_JWT
+  const strapiUrl = process.env.STRAPI_URL
 
+  if (!jwt || !strapiUrl) {
+    console.error("Missing Strapi configuration")
+    return {
+      message: "Server configuration error",
+      fieldErrors: {},
+      success: false,
+      formData: Object.fromEntries(formData)
+    }
+  }
+
+  // Extract all form fields
+  const rawFormData = {
+    name: formData.get("name"),
+    phone: formData.get("phone"),
+    email: formData.get("email"),
+    suburb: formData.get("suburb"),
+    smashDetails: formData.get("smashDetails"),
+    carMake: formData.get("carMake"),
+    year: formData.get("year"),
+    registration: formData.get("registration"),
+    fault: formData.get("fault"),
+    photo1: formData.get("photo1"),
+    photo2: formData.get("photo2"),
+    photo3: formData.get("photo3"),
+  }
+
+  // Validate form data using our custom validation
+  const { isValid, errors } = validateFormData(rawFormData);
+  
+  if (!isValid) {
+    return {
+      message: "Please correct the errors below",
+      fieldErrors: errors,
+      success: false,
+      formData: rawFormData
+    }
+  }
+
+  try {
     // Get image files
     const photo1 = formData.get("photo1")
     const photo2 = formData.get("photo2")
@@ -59,8 +165,6 @@ export async function uploadSmashForm(prevState, formData) {
         uploadFormData.append("files", file)
       })
 
-      console.log("[v0] Uploading images first (Strapi v5 pattern)")
-
       const uploadResponse = await fetch(`${strapiUrl}/api/upload`, {
         method: "POST",
         headers: {
@@ -70,34 +174,37 @@ export async function uploadSmashForm(prevState, formData) {
       })
 
       if (!uploadResponse.ok) {
-        const uploadError = await uploadResponse.json()
+        const uploadError = await uploadResponse.text()
         console.error("Failed to upload images:", uploadError)
         return {
-          message: `Failed to upload images: ${uploadError.error?.message || "Unknown error"}`,
+          message: "Failed to upload images. Please try again.",
+          fieldErrors: {
+            photo1: "Image upload failed. Please try again."
+          },
+          success: false,
+          formData: rawFormData
         }
       }
 
       const uploadedFiles = await uploadResponse.json()
       uploadedImageIds = uploadedFiles.map((file) => file.id)
-      console.log("Successfully uploaded images with IDs:", uploadedImageIds)
     }
 
+    // Map form field names to Strapi field names
     const smashData = {
       data: {
-        name: validatedData.name,
-        phone: validatedData.phone,
-        email: validatedData.email,
-        suburb: validatedData.suburb,
-        description: validatedData.description,
-        model: validatedData.model,
-        year: Number.parseInt(validatedData.year),
-        registration: validatedData.registration,
-        myfault: validatedData.myfault === "1", // Convert to boolean
-        images: uploadedImageIds, // Include uploaded image IDs
+        name: rawFormData.name,
+        phone: rawFormData.phone,
+        email: rawFormData.email,
+        suburb: rawFormData.suburb,
+        description: rawFormData.smashDetails,
+        model: rawFormData.carMake,
+        year: Number.parseInt(rawFormData.year),
+        registration: rawFormData.registration,
+        myfault: rawFormData.fault === "1",
+        images: uploadedImageIds,
       },
     }
-
-    console.log("[v0] Creating smash record with image IDs:", smashData)
 
     const res = await fetch(`${strapiUrl}/api/smashes`, {
       method: "POST",
@@ -109,21 +216,31 @@ export async function uploadSmashForm(prevState, formData) {
     })
 
     if (!res.ok) {
-      const errorData = await res.json()
+      const errorData = await res.text()
       console.error("Strapi error:", errorData)
-      throw new Error(`Failed to save in Strapi: ${res.statusText}`)
+      return {
+        message: "Failed to save data. Please try again.",
+        fieldErrors: {},
+        success: false,
+        formData: rawFormData
+      }
     }
 
     const result = await res.json()
-    console.log("Successfully created smash record:", result.data.id)
 
     return {
-      message: `Form submitted successfully ✅ ${imageFiles.length > 0 ? `with ${imageFiles.length} image(s)` : ""}`,
+      message: `Form submitted successfully ✅ with ${imageFiles.length} image(s)`,
+      fieldErrors: {},
+      success: true,
+      formData: initialState.formData
     }
   } catch (err) {
     console.error("Error in uploadSmashForm:", err)
     return {
       message: `Error submitting form ❌: ${err.message}`,
+      fieldErrors: {},
+      success: false,
+      formData: rawFormData
     }
   }
 }

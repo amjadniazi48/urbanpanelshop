@@ -1,6 +1,8 @@
+"use client";
 import React from "react";
 import { ImageUp } from "lucide-react";
-
+import Link from "next/link";
+import Image from "next/image";
 const Header = () => {
   return (
     <header
@@ -9,13 +11,14 @@ const Header = () => {
     >
       <div className="container px-3">
         {/* Logo */}
-        <a href="index.html" className="navbar-brand pe-3">
-          <img
-            src="assets/img/logourbanclub.png"
-            width="150"
+        <Link href="/" className="navbar-brand pe-3">
+          <Image
+            src="/assets/img/logourbanclub.png"
+            width={150}
+            height={40}
             alt="urbanclub"
           />
-        </a>
+        </Link>
 
         {/* Toggler */}
         <button
@@ -29,10 +32,17 @@ const Header = () => {
           <span className="navbar-toggler-icon"></span>
         </button>
 
-        {/* Offcanvas Menu (Navigation in center) */}
-        <div id="navbarNav" className="offcanvas offcanvas-end flex-grow-1">
+        {/* Offcanvas Menu */}
+        <div
+          id="navbarNav"
+          className="offcanvas offcanvas-end flex-grow-1"
+          tabIndex={-1} // important for React hydration
+          aria-labelledby="navbarNavLabel"
+        >
           <div className="offcanvas-header border-bottom d-lg-none">
-            <h5 className="offcanvas-title">Menu</h5>
+            <h5 className="offcanvas-title" id="navbarNavLabel">
+              Menu
+            </h5>
             <button
               type="button"
               className="btn-close"
@@ -40,120 +50,110 @@ const Header = () => {
               aria-label="Close"
             ></button>
           </div>
+
           <div className="offcanvas-body">
             <ul className="navbar-nav mx-auto mb-2 mb-lg-0">
               <li className="nav-item">
-                <a href="#" className="nav-link active">
+                <Link href="/" className="nav-link active">
                   Home
-                </a>
+                </Link>
               </li>
               <li className="nav-item">
-                <a href="#" className="nav-link">
+                <Link href="/about" className="nav-link">
                   About Us
-                </a>
+                </Link>
               </li>
               <li className="nav-item dropdown">
                 <a
                   href="#"
                   className="nav-link dropdown-toggle"
                   data-bs-toggle="dropdown"
+                  role="button"
+                  aria-expanded="false"
                 >
                   Our Services
                 </a>
                 <ul className="dropdown-menu">
                   <li>
-                    <a href="account-details.html" className="dropdown-item">
+                    <Link href="/account/details" className="dropdown-item">
                       Account Details
-                    </a>
+                    </Link>
                   </li>
                   <li>
-                    <a href="account-security.html" className="dropdown-item">
+                    <Link href="/account/security" className="dropdown-item">
                       Security
-                    </a>
+                    </Link>
                   </li>
                   <li>
-                    <a
-                      href="account-notifications.html"
-                      className="dropdown-item"
-                    >
+                    <Link href="/account/notifications" className="dropdown-item">
                       Notifications
-                    </a>
+                    </Link>
                   </li>
                   <li>
-                    <a href="account-messages.html" className="dropdown-item">
+                    <Link href="/account/messages" className="dropdown-item">
                       Messages
-                    </a>
+                    </Link>
                   </li>
                   <li>
-                    <a
-                      href="account-saved-items.html"
-                      className="dropdown-item"
-                    >
+                    <Link href="/account/saved" className="dropdown-item">
                       Saved Items
-                    </a>
+                    </Link>
                   </li>
                   <li>
-                    <a
-                      href="account-collections.html"
-                      className="dropdown-item"
-                    >
+                    <Link href="/account/collections" className="dropdown-item">
                       My Collections
-                    </a>
+                    </Link>
                   </li>
                   <li>
-                    <a href="account-payment.html" className="dropdown-item">
+                    <Link href="/account/payment" className="dropdown-item">
                       Payment Details
-                    </a>
+                    </Link>
                   </li>
                   <li>
-                    <a href="account-signin.html" className="dropdown-item">
+                    <Link href="/account/signin" className="dropdown-item">
                       Sign In
-                    </a>
+                    </Link>
                   </li>
                   <li>
-                    <a href="account-signup.html" className="dropdown-item">
+                    <Link href="/account/signup" className="dropdown-item">
                       Sign Up
-                    </a>
+                    </Link>
                   </li>
                 </ul>
               </li>
               <li className="nav-item">
-                <a href="components/typography.html" className="nav-link">
+                <Link href="/gallery" className="nav-link">
                   Gallery
-                </a>
+                </Link>
               </li>
               <li className="nav-item">
-                <a href="docs/getting-started.html" className="nav-link">
+                <Link href="/contact" className="nav-link">
                   Contact Us
-                </a>
+                </Link>
               </li>
             </ul>
 
             {/* Upload Button inside offcanvas (mobile only) */}
-            <a
-              href="#"
-              className="btn w-100  d-lg-none"
-              target="_blank"
-              rel="noopener"
-               style={{ backgroundColor: "#F7A604", color: "black" }}
+            <Link
+              href="/smash"
+              className="btn w-100 d-lg-none"
+              style={{ backgroundColor: "#F7A604", color: "black" }}
             >
               <ImageUp />
               &nbsp;&nbsp;UPLOAD YOUR SMASH
-            </a>
+            </Link>
           </div>
         </div>
 
-        {/* Upload Button (Desktop, always right side) */}
-        <a
-          href="#"
+        {/* Upload Button (Desktop) */}
+        <Link
+          href="/smash"
           className="btn d-none d-lg-inline-flex ms-lg-3"
-          target="_blank"
-          rel="noopener"
           style={{ backgroundColor: "#F7A604", color: "black" }}
         >
           <ImageUp />
           &nbsp;&nbsp;UPLOAD YOUR SMASH
-        </a>
+        </Link>
       </div>
     </header>
   );
