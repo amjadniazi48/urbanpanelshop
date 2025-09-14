@@ -1,6 +1,6 @@
 import { ReactNode } from "react";
 import { Poppins } from "next/font/google";
-import dynamic from "next/dynamic";
+
 import BootstrapClient from "@/components/BootstrapClient";
 // Dynamically load Header & Footer client-side (to avoid Bootstrap hydration issues)
 import Header from "@/components/Header";

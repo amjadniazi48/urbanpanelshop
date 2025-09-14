@@ -17,8 +17,8 @@ export default function Home() {
       <Hero />
       <Smashupload />
       <Workflow />
-      {/* <Urbanservices />
-      <Testimonials /> */}
+      <Urbanservices />
+      <Testimonials />
       <Carcomparsion />
    
     </>
