@@ -3,8 +3,10 @@ import React from "react";
 import { ImageUp } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
-
+import { usePathname } from "next/navigation";
 const Header = () => {
+    const pathname = usePathname();
+    console.log(pathname)
   return (
  
     <header
@@ -58,12 +60,12 @@ const Header = () => {
           <div className="offcanvas-body">
             <ul className="navbar-nav mx-auto mb-2 mb-lg-0">
               <li className="nav-item">
-                <Link href="/" className="nav-link active">
+                <Link href="/"  className={`nav-link ${pathname === "/" ? "active" : ""}`} >
                   Home
                 </Link>
               </li>
               <li className="nav-item">
-                <Link href="/about" className="nav-link">
+                <Link href="/about"  className={`nav-link ${pathname === "/about" ? "active" : ""}`}>
                   About Us
                 </Link>
               </li>
@@ -124,7 +126,7 @@ const Header = () => {
                 </ul>
               </li>
               <li className="nav-item">
-                <Link href="/gallery" className="nav-link">
+                <Link href="/gallery"   className={`nav-link ${pathname === "/gallery" ? "active" : ""}`}>
                   Gallery
                 </Link>
               </li>
