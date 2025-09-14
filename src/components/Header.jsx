@@ -131,7 +131,7 @@ const Header = () => {
                 </Link>
               </li>
               <li className="nav-item">
-                <Link href="/contact" className="nav-link">
+                <Link href="/contact" className={`nav-link ${pathname === "/contact" ? "active" : ""}`}>
                   Contact Us
                 </Link>
               </li>
