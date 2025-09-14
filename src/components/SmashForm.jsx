@@ -330,10 +330,9 @@ export default function SmashForm() {
               )}
 
             <div className="mt-4" style={{ textAlign: "left" }}>
-              <h3 className="h5">Our photo guidelines</h3>
+              <h3 className="h5">Our photo upload guidelines</h3>
               <p className="text-muted">
-                To get you an accurate quote, we need up to 3 clear photos of
-                your vehicle. Please follow the guidelines below:
+               To provide you with an accurate quote, please share up to 3 clear photos of your vehicle by following the guidelines below:
               </p>
               <div className="card-group">
                 <div className="card">
@@ -341,7 +340,7 @@ export default function SmashForm() {
                   <div className="card-body">
                  
                     <p className="card-text">
-                    Full Vehicle in photo showing damages.
+                    Capture the entire vehicle in the photo, including all visible damages.
                     </p>
                    
                   </div>
