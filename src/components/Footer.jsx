@@ -115,7 +115,7 @@ export default function Footer() {
             target="_blank"
             rel="noreferrer noopener"
           >
-            Urban Club
+            UrbanPanel Shop
           </a>
         </p>
       </div>

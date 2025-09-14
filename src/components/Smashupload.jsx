@@ -1,6 +1,6 @@
 import React from "react";
 import { CarFront, ImageUp } from "lucide-react";
-
+import Link from "next/link";
 const Smashupload = () => {
   return (
     <section
@@ -34,8 +34,8 @@ const Smashupload = () => {
               Simply send your smash details, and we’ll do all the heavy lifting.
             </p>
             
-            <a
-              href="#"
+            <Link
+              href="/smash"
               target="_blank"
               rel="noopener"
               className="btn btn-lg d-inline-flex align-items-center justify-content-center rounded btn-outline-warning"
@@ -48,7 +48,7 @@ const Smashupload = () => {
             >
               <ImageUp size={28} strokeWidth={2.2} />
               <span className="ms-2">UPLOAD YOUR SMASH</span>
-            </a>
+            </Link>
           </div>
           
           {/* RIGHT COLUMN - Image */}

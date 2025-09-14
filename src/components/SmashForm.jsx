@@ -350,7 +350,7 @@ export default function SmashForm() {
                   <div className="card-body">
                   
                     <p className="card-text">
-                      Close up photo of the damaged area.
+                    Please provide a close-up photo of the damaged section.
                     </p>
                   
                   </div>
@@ -360,7 +360,7 @@ export default function SmashForm() {
                   <div className="card-body">
                   
                     <p className="card-text">
-                   Close up photo of the damaged area.
+                    Upload a detailed picture focusing on the damaged area.
                     </p>
                    
                   </div>
