@@ -3,13 +3,13 @@ import SmashForm from "@/components/SmashForm";
 export default function SmashPage() {
   return (
     <section
-      className="container   mb-5 shadow-sm"
+      className="container py-2  mb-5 shadow-sm"
       style={{
         backgroundImage: "grey",
         backgroundSize: "cover",
         backgroundPosition: "center",
         borderRadius: "1rem",
-        marginTop: "5rem",
+        marginTop: "6rem",
       }}
     >
       <div className="container mx-auto py-2 mb-5 ">
@@ -17,7 +17,7 @@ export default function SmashPage() {
            <div className=" text-center">
             <img
                     src="assets/img/siteicons/cameracar.png"
-                    width="72px"
+                    width="55px"
                     alt="car smashed"
                     className="text-center"
                   />
