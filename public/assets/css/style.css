@@ -1,0 +1,243 @@
+html,body   {           
+font-family: "Poppins" !important;
+}
+.text-gradient-primary {
+    background: linear-gradient(90deg, #FFD54F, #F7A604 40%, #c47c00);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+:root, [data-bs-theme=light] {
+    --si-blue: #0d6efd;
+    --si-indigo: #6610f2;
+    --si-purple: #6f42c1;
+    --si-pink: #d63384;
+    --si-red: #dc3545;
+    --si-orange: #fd7e14;
+    --si-yellow: #ffc107;
+    --si-green: #198754;
+    --si-teal: #20c997;
+    --si-cyan: #0dcaf0;
+    --si-black: #000;
+    --si-white: #fff;
+    --si-gray: #9397ad;
+    --si-gray-dark: #33354d;
+    --si-gray-100: #f3f6ff;
+    --si-gray-200: #eff2fc;
+    --si-gray-300: #e2e5f1;
+    --si-gray-400: #d4d7e5;
+    --si-gray-500: #b4b7c9;
+    --si-gray-600: #9397ad;
+    --si-gray-700: #565973;
+    --si-gray-800: #33354d;
+    --si-gray-900: #0b0f19;
+    --si-primary: #F7A604;
+    --si-secondary: #eff2fc;
+    --si-success: #22c55e;
+    --si-info: #4c82f7;
+    --si-warning: #ffba08;
+    --si-danger: #ef4444;
+    --si-light: #fff;
+    --si-dark: #0b0f19;
+    --si-primary-rgb: 99, 102, 241;
+    --si-secondary-rgb: 239, 242, 252;
+    --si-success-rgb: 34, 197, 94;
+    --si-info-rgb: 76, 130, 247;
+    --si-warning-rgb: 255, 186, 8;
+    --si-danger-rgb: 239, 68, 68;
+    --si-light-rgb: 255, 255, 255;
+    --si-dark-rgb: 11, 15, 25;
+    --si-primary-text-emphasis: #3438ed;
+    --si-secondary-text-emphasis: #565973;
+    --si-success-text-emphasis: #1a9a49;
+    --si-info-text-emphasis: #1b60f5;
+    --si-warning-text-emphasis: #d49900;
+    --si-danger-text-emphasis: #eb1515;
+    --si-light-text-emphasis: #565973;
+    --si-dark-text-emphasis: #0b0f19;
+    --si-primary-bg-subtle: #eff0fe;
+    --si-secondary-bg-subtle: #f3f6ff;
+    --si-success-bg-subtle: #e9f9ef;
+Show all properties (68 more)
+}
+
+.nav {
+    --si-nav-link-padding-x: 1rem;
+    --si-nav-link-padding-y: 0.535rem;
+    --si-nav-link-font-weight: 600;
+    --si-nav-link-color: #33354d; /* keep default links dark for readability */
+    --si-nav-link-active-color: #F7A604; /* gold on hover */
+    --si-nav-link-hover-color: #F7A604; /* gold on hover */
+    --si-nav-link-disabled-color: rgba(191, 168, 111, .75); /* muted gold for disabled links */
+    display: flex;
+    flex-wrap: wrap;
+    list-style: none;
+    margin-bottom: 0;
+    padding-left: 0;
+}
+
+.navbar-nav .nav-link.active, .navbar-nav .nav-link.show {
+    color: var(--si-navbar-active-color);
+}
+.nav-tabs {
+    --si-nav-tabs-link-bg: #f9d284; /* a very light shade of #F7A604 for background */
+    --si-nav-tabs-link-hover-bg: rgba(247, 166, 4, 0.12); /* hover background using primary color with opacity */
+    --si-nav-tabs-link-disabled-bg: #fff3d9; /* lighter disabled background */
+    --si-nav-tabs-link-color: #33354d; /* main text color, keep dark for readability */
+    --si-nav-tabs-link-hover-color: #F7A604; /* primary color on hover */
+    --si-nav-tabs-link-disabled-color: #bfa86f; /* muted version of primary for disabled */
+    --si-nav-tabs-link-active-bg: #F7A604;
+}
+.navbar {
+    --si-navbar-padding-x: 0;
+    --si-navbar-padding-y: 0.1rem;
+    --si-navbar-color: #33354d; Keep base text color dark for readability
+    /* --si-navbar-hover-color: white; Gold hover, keep dark for readability */
+    --si-navbar-hover-color: #F7A604; /* Gold hover */
+    --si-navbar-disabled-color: #bfa86f; /* Muted gold for disabled */
+    --si-navbar-active-color: #F7A604; /* Gold active state */
+    --si-navbar-brand-padding-y: 0.5rem;
+    --si-navbar-brand-margin-end: 1rem;
+    --si-navbar-brand-font-size: 1.375rem;
+    --si-navbar-brand-color: #0b0f19; /* Keep brand text dark by default */
+    --si-navbar-brand-hover-color: #F7A604; /* Brand turns gold on hover */
+    --si-navbar-nav-link-padding-x: 0.875rem;
+    --si-navbar-toggler-padding-y: 0.625rem;
+    --si-navbar-toggler-padding-x: 0.25rem;
+    --si-navbar-toggler-font-size: 1.125rem;
+    --si-navbar-toggler-icon-bg: initial;
+    --si-navbar-toggler-border-color: transparent;
+    --si-navbar-toggler-border-radius: 0;
+    --si-navbar-toggler-focus-width: 0;
+    --si-navbar-toggler-transition: box-shadow 0.15s;
+}
+:root {
+    --swiper-theme-color: #F7A604;
+}
+.swiper-pagination {
+    --si-carousel-pagination-bullet-width: 0.3125rem;
+    --si-carousel-pagination-bullet-height: 0.3125rem;
+    --si-carousel-pagination-bullet-spacer: 0.875rem;
+    --si-carousel-pagination-bullet-border-radius: 50rem;
+    --si-carousel-pagination-bullet-bg: #fce7a0; /* light gold for inactive dots */
+    --si-carousel-pagination-bullet-active-width: 1.5rem;
+    --si-carousel-pagination-bullet-active-bg: #F7A604 !important; /* bright gold for active dot */
+    --si-carousel-pagination-progressbar-height: 0.1875rem;
+    --si-carousel-pagination-progressbar-bg: #fff3d9; /* subtle gold tint for progress background */
+    --si-carousel-pagination-progressbar-fill-bg: #F7A604; /* gold fill for progress */
+    align-items: center;
+    bottom: 1.25rem;
+    display: flex;
+    justify-content: center;
+}
+.btn-next, .btn-prev {
+    --si-carousel-nav-btn-border-radius: 50%;
+    --si-carousel-nav-btn-bg: #fff; /* keep white for default background */
+    --si-carousel-nav-btn-color: #33354d; /* dark icon color by default */
+    --si-carousel-nav-btn-box-shadow: 
+        0 0.275rem 0.75rem -0.0625rem rgba(11, 15, 25, .06), 
+        0 0.125rem 0.4rem -0.0625rem rgba(11, 15, 25, .03);
+    --si-carousel-nav-btn-hover-bg: #F7A604; /* gold background on hover */
+    --si-carousel-nav-btn-hover-color: #fff; /* white icon on hover for contrast */
+    --si-carousel-nav-btn-hover-box-shadow: 
+        0 0.5rem 1.125rem -0.5rem rgba(247, 166, 4, .7); /* warm gold shadow on hover */
+    --si-carousel-nav-btn-disabled-color: rgba(191, 168, 111, .5); /* muted gold for disabled */
+    --si-carousel-nav-btn-font-size: 1rem;
+
+    border: 0;
+    border-radius: var(--si-carousel-nav-btn-border-radius);
+    color: var(--si-carousel-nav-btn-color) !important;
+    font-size: var(--si-carousel-nav-btn-font-size);
+    transition: color .2s ease-in-out, 
+                background-color .2s ease-in-out, 
+                border-color .2s ease-in-out, 
+                box-shadow .2s ease-in-out, 
+                opacity .2s ease-in-out;
+}
+
+/* page loading script*/
+.page-loading {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  transition: all 0.4s ease-in-out;
+  background-color: #0b0f19;
+  opacity: 0;
+  visibility: hidden;
+  z-index: 9999;
+}
+
+.page-loading.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+.page-loading-inner {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  transition: opacity 0.2s ease-in-out;
+  opacity: 0;
+}
+
+.page-loading.active > .page-loading-inner {
+  opacity: 1;
+}
+
+.page-loading-inner > span {
+  display: block;
+  font-size: 1.2rem;
+  font-weight: normal;
+  color: #ffffff;
+  opacity: 0.8;
+  margin-top: 1rem;
+}
+
+.page-spinner {
+  display: inline-block;
+  width: 2.75rem;
+  height: 2.75rem;
+  margin-bottom: 0.75rem;
+  vertical-align: text-bottom;
+  border: 0.15em solid rgba(255, 255, 255, 0.3);
+  border-right-color: #6366f1;
+  border-radius: 50%;
+  animation: spinner 0.75s linear infinite;
+}
+
+@keyframes spinner {
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/* Ensure body content is visible */
+body {
+  min-height: 100vh;
+}
+
+/* Make sure main content is visible when preloader is removed */
+.page-wrapper {
+  opacity: 1;
+  transition: opacity 0.3s ease-in-out;
+}
+.text-gradient-secondary {
+    background: linear-gradient(90deg, #1E3A8A, #2563EB 40%, #F97316);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+.accordion {
+    --si-accordion-color: var(--si-body-color);
+    --si-accordion-btn-font-weight: 600;
+    --si-accordion-btn-color: var(--si-heading-color);
+    --si-accordion-btn-icon-box-size: 2.25rem;
+    --si-accordion-btn-icon-box-border-radius: 50%;
+    --si-accordion-btn-icon-box-bg: #f2d293;
+    --si-accordion-btn-icon-box-active-bg: #F7A604;
+    --si-accordion-btn-icon-box-active-shadow: 0 -0.5rem 1.125rem -0.5rem rgba(99, 102, 241, .9);
+}
