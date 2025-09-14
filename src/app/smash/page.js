@@ -3,28 +3,28 @@ import SmashForm from "@/components/SmashForm";
 export default function SmashPage() {
   return (
     <section
-      className="container py-2  mb-5 shadow-sm"
+      className="container   mb-5 shadow-sm"
       style={{
         backgroundImage: "grey",
         backgroundSize: "cover",
         backgroundPosition: "center",
         borderRadius: "1rem",
-        marginTop: "6rem",
+        marginTop: "5rem",
       }}
     >
-      <div className="container mx-auto py-5 mb-5 ">
+      <div className="container mx-auto py-2 mb-5 ">
           <div className="d-flex justify-content-center mb-4">
-           <div className="p-6 text-center">
+           <div className=" text-center">
             <img
                     src="assets/img/siteicons/cameracar.png"
-                    width="100px"
+                    width="72px"
                     alt="car smashed"
                     className="text-center"
                   />
             
-            <h1 className="text-2xl font-bold text-center mb-6 text-warning">
+            <h3 className="text-2xl font-bold text-center mb-6 text-gradient-primary">
               Car Smash Report Form
-            </h1>
+            </h3>
             <SmashForm />
           </div>
         </div>
