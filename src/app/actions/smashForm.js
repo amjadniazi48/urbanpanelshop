@@ -85,6 +85,19 @@ function validateFormData(formData) {
 }
 
 export async function uploadSmashForm(prevState, formData) {
+  // Define initial form data structure
+  const initialFormData = {
+    name: "",
+    phone: "",
+    email: "",
+    suburb: "",
+    smashDetails: "",
+    carMake: "",
+    year: "",
+    registration: "",
+    fault: "0"
+  };
+
   // Simple rate limiting
   const ip = "user-ip"
   const now = Date.now()
@@ -97,7 +110,7 @@ export async function uploadSmashForm(prevState, formData) {
         message: "Too many requests. Please try again later.",
         fieldErrors: {},
         success: false,
-        formData: Object.fromEntries(formData)
+        formData: initialFormData
       }
     }
     timestamps.push(now)
@@ -115,7 +128,7 @@ export async function uploadSmashForm(prevState, formData) {
       message: "Server configuration error",
       fieldErrors: {},
       success: false,
-      formData: Object.fromEntries(formData)
+      formData: initialFormData
     }
   }
 
@@ -129,7 +142,7 @@ export async function uploadSmashForm(prevState, formData) {
     carMake: formData.get("carMake"),
     year: formData.get("year"),
     registration: formData.get("registration"),
-    fault: formData.get("fault"),
+    fault: formData.get("fault") || "0",
     photo1: formData.get("photo1"),
     photo2: formData.get("photo2"),
     photo3: formData.get("photo3"),
@@ -232,7 +245,7 @@ export async function uploadSmashForm(prevState, formData) {
       message: `Form submitted successfully ✅ with ${imageFiles.length} image(s)`,
       fieldErrors: {},
       success: true,
-      formData: initialState.formData
+      formData: initialFormData
     }
   } catch (err) {
     console.error("Error in uploadSmashForm:", err)
