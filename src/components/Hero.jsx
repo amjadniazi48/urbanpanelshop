@@ -5,14 +5,15 @@ import { Autoplay, Pagination, Navigation } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
+import Heroicons from "./ui/Heroicons";
 
 const Hero = () => {
   // Sample slider images - replace with your actual images
   const sliderImages = [
-   
     "assets/img/landing/software-agency-1/car-repair-1.jpeg",
     "assets/img/landing/software-agency-1/car-repair-2.jpeg",
     "assets/img/landing/software-agency-1/car-repair-3.jpeg",
+    "assets/img/landing/software-agency-1/car-repair-4.jpg",
   ];
 
   return (
@@ -45,61 +46,29 @@ const Hero = () => {
         <div className="container position-relative zindex-5 pt-4 pt-md-5 mt-auto mb-auto">
           <div className="row align-items-center">
             {/* Left Column */}
-            <div className="col-12 col-lg-5 text-center text-lg-start mb-5 mb-lg-0">
-              <h5 className="display-5 mb-md-4 pb-3 py-3">
-                Smash Repair and Towing with{" "}
-                <span className="text-gradient-primary">
-                  UrbanPanel Shop
-                </span>
-              </h5>
+            <div className="col-12 col-lg-7 text-center text-lg-start mb-5 mb-lg-0">
+              <h6 className="display-6 mb-md-4 pb-3 py-3">
+                <span className="text-gradient-primary">Urban Panel Shop - Primium</span>
+                &nbsp;  Smash Repair Services
+              </h6>
               <p
                 className="text-body mx-auto mx-lg-0 mb-md-5 mb-4 fs-5"
-                style={{ maxWidth: "500px" }}
+                style={{ maxWidth: "550px", textAlign: "justify" }}
               >
-                We are experts with providing the widest range of IT services
-                and solutions for growing your business.
+                At Urban Panel Shop, we restore cars to perfection, not just
+                repair them. From minor dents to full rebuilds, our experts
+                blend technology with craftsmanship. Every job delivers quality,
+                confidence, and pride in a like-new drive.
               </p>
-
-              {/* Logos Grid */}
-              <div className="row text-center g-4">
-                <div className="col-6 col-md-6">
-                  <img
-                    src="assets/img/siteicons/mechanic.png"
-                    width="55px"
-                    alt="Panel Repairs"
-                  />
-                  <p className="mt-2 text-body">Panel & Smash Repairs</p>
-                </div>
-                <div className="col-6 col-md-6">
-                  <img
-                    src="assets/img/siteicons/taxi.png"
-                    width="55px"
-                    alt="Pickup Delivery"
-                  />
-                  <p className="mt-2 text-body">Free Pickup & Delivery</p>
-                </div>
-                <div className="col-6 col-md-6">
-                  <img
-                    src="assets/img/siteicons/service.png"
-                    width="55px"
-                    alt="Quality Assurance"
-                  />
-                  <p className="mt-2 text-body">Quality Assurance</p>
-                </div>
-                <div className="col-6 col-md-6">
-                  <img
-                    src="assets/img/siteicons/car-rental.png"
-                    width="55px"
-                    alt="Backup Cars"
-                  />
-                  <p className="mt-2 text-body">Backup Cars</p>
-                </div>
-              </div>
+              <Heroicons />
             </div>
 
             {/* Right Column (Swiper Slider) */}
-            <div className="col-12 col-lg-7 d-flex justify-content-lg-end justify-content-center py-5">
-              <div className="position-relative d-inline-block rounded-3 w-100" style={{ maxWidth: "500px" }}>
+            <div className="col-12 col-lg-5 d-flex justify-content-lg-end justify-content-center py-5">
+              <div
+                className="position-relative d-inline-block rounded-3 w-100"
+                style={{ maxWidth: "490px" }}
+              >
                 <Swiper
                   spaceBetween={0}
                   centeredSlides={true}
@@ -121,7 +90,11 @@ const Hero = () => {
                           src={image}
                           alt={`Car Showcase ${index + 1}`}
                           className="img-fluid rounded-3"
-                          style={{ width: "100%", height: "560px", objectFit: "cover" }}
+                          style={{
+                            width: "100%",
+                            height: "570px",
+                            objectFit: "cover",
+                          }}
                         />
                         {/* Overlay only on image */}
                         <span className="position-absolute top-0 start-0 w-100 h-100 bg-dark opacity-40 rounded-3"></span>
