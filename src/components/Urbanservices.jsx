@@ -13,9 +13,9 @@ const Urbanservices = () => {
     <section className="bg-dark p-5" data-bs-theme="dark">
       {/* Heading */}
       <div className="d-flex align-items-center justify-content-center mb-4">
-        <h2 className="h1 text-warning text-center m-0">
+        <h6 className="display-6 text-warning text-center m-0">
           Expert Panel & Paint Services you can trust
-        </h2>
+        </h6>
       </div>
 
       {/* Subtitle */}

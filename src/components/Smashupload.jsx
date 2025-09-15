@@ -24,7 +24,7 @@ const Smashupload = () => {
                     className=""
                   />
             
-            <h2 className="h1 text-white mb-4">
+            <h2 className="display-7 text-white mb-4">
               Start your journey to a <br />
               <span className="text-warning">flawless finish,</span> <br />
               upload your <span className="text-warning">smash</span> now

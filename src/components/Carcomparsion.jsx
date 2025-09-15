@@ -24,9 +24,9 @@ export default function CarComparison() {
                   className="mb-2 d-block mx-auto mx-lg-0"
                   />
             <div className="pe-lg-4">
-              <h5 className="display-5 text-center text-lg-start mb-3 text-warning fw-bold">
+              <h6 className="display-6 text-center text-lg-start mb-3 text-warning fw-bold">
                 Recent Repairs
-              </h5>
+              </h6>
               <p className="lead text-white text-center text-lg-start mb-4">
                 Take a look at our latest panel beating and smash repair projects in Melbourne
               </p>

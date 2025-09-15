@@ -69,6 +69,12 @@ const Header = () => {
                   About Us
                 </Link>
               </li>
+               <li className="nav-item">
+                <Link href="/services"  className={`nav-link ${pathname === "/services" ? "active" : ""}`}>
+                  Our Services
+                </Link>
+              </li>
+              {/* 
               <li className="nav-item dropdown">
                 <button
                   className="nav-link dropdown-toggle"
@@ -125,6 +131,7 @@ const Header = () => {
                   </li>
                 </ul>
               </li>
+               */}
               <li className="nav-item">
                 <Link href="/gallery"   className={`nav-link ${pathname === "/gallery" ? "active" : ""}`}>
                   Gallery
