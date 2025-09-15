@@ -1,7 +1,20 @@
+"use client";
 import React from "react";
-import { ImageUp } from "lucide-react";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Autoplay, Pagination, Navigation } from "swiper/modules";
+import "swiper/css";
+import "swiper/css/pagination";
+import "swiper/css/navigation";
 
 const Hero = () => {
+  // Sample slider images - replace with your actual images
+  const sliderImages = [
+   
+    "assets/img/landing/software-agency-1/car-repair-1.jpeg",
+    "assets/img/landing/software-agency-1/car-repair-2.jpeg",
+    "assets/img/landing/software-agency-1/car-repair-3.jpeg",
+  ];
+
   return (
     <section
       className="jarallax bg-dark min-vh-100"
@@ -84,18 +97,38 @@ const Hero = () => {
               </div>
             </div>
 
-            {/* Right Column (Image) */}
-            {/* Right Column (Image with overlay) */}
-            {/* Right Column (Image with overlay) */}
+            {/* Right Column (Swiper Slider) */}
             <div className="col-12 col-lg-7 d-flex justify-content-lg-end justify-content-center py-5">
-              <div className="position-relative d-inline-block rounded-3">
-                <img
-                  src="assets/img/landing/software-agency-1/panelshop.jpg"
-                  alt="Car Showcase"
-                  className="img-fluid rounded-3"
-                />
-                {/* Overlay only on image */}
-                <span className="position-absolute top-0 start-0 w-100 h-100 bg-dark opacity-60 rounded-3"></span>
+              <div className="position-relative d-inline-block rounded-3 w-100" style={{ maxWidth: "500px" }}>
+                <Swiper
+                  spaceBetween={0}
+                  centeredSlides={true}
+                  autoplay={{
+                    delay: 5000,
+                    disableOnInteraction: false,
+                  }}
+                  pagination={{
+                    clickable: true,
+                  }}
+                  navigation={true}
+                  modules={[Autoplay, Pagination, Navigation]}
+                  className="mySwiper rounded-3"
+                >
+                  {sliderImages.map((image, index) => (
+                    <SwiperSlide key={index}>
+                      <div className="position-relative">
+                        <img
+                          src={image}
+                          alt={`Car Showcase ${index + 1}`}
+                          className="img-fluid rounded-3"
+                          style={{ width: "100%", height: "560px", objectFit: "cover" }}
+                        />
+                        {/* Overlay only on image */}
+                        <span className="position-absolute top-0 start-0 w-100 h-100 bg-dark opacity-40 rounded-3"></span>
+                      </div>
+                    </SwiperSlide>
+                  ))}
+                </Swiper>
               </div>
             </div>
           </div>
