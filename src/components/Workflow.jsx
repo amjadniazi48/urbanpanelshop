@@ -44,7 +44,7 @@ const Workflow = ({ data }) => {
               {data.Accordion.map((item, index) => {
                 const collapseId = `workflow-item-${item.id}`;
                 const hasImage = !!item.image?.url;
-                console.log("these are the images",item.image.url);
+                console.log("these are the images", item.image.url);
 
                 return (
                   <div
@@ -86,13 +86,10 @@ const Workflow = ({ data }) => {
                           <div className="row align-items-stretch gx-4">
                             {/* Left: Image */}
                             <div className="col-md-4 d-flex mb-3 mb-md-0">
-                              <div
-                                className="position-relative"
-                               
-                              >
+                              <div className="position-relative">
                                 <Image
-                                  src="https://res.cloudinary.com/dlcgduiez/image/upload/v1758442376/repairbegins_7532b65218.jpg"
-                                 width ={191}
+                                  src={item.image.url?.trim()} // remove hidden spaces/newlines
+                                  width={191}
                                   height={132}
                                   alt={item.image.alternativeText || item.title}
                                   className="rounded-4 shadow-lg"
