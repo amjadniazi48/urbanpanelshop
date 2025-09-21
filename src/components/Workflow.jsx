@@ -80,7 +80,7 @@ const Workflow = ({ data }) => {
                       <div className="accordion-body fs-sm pt-0">
                         {hasImage ? (
                           <div className="row align-items-stretch gx-1">
-                            {/* Left: Image */}
+                            {/* Left: Image...images are not show properly */}
                             <div className="col-md-3 d-flex mb-3 mb-md-0">
                               <Image
                                 src={item.image.url}
