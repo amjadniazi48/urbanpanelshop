@@ -5,6 +5,7 @@ import { Autoplay, Pagination, Navigation } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
+import Image from "next/image";
 
 const Hero = ({ data }) => {
   if (!data) return null;
@@ -110,15 +111,13 @@ const Hero = ({ data }) => {
                   {swiperBlock?.images?.map((image) => (
                     <SwiperSlide key={image.id}>
                       <div className="position-relative">
-                        <img
+                        <Image
                           src={image.url}
                           alt={image.alternativeText || image.name}
+                          fill
+                          objectFit="cover"
                           className="img-fluid rounded-3"
-                          style={{
-                            width: "100%",
-                            height: "570px",
-                            objectFit: "cover",
-                          }}
+                          unoptimized={true}
                         />
                         <span className="position-absolute top-0 start-0 w-100 h-100 bg-dark opacity-40 rounded-3"></span>
                       </div>
