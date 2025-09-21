@@ -87,11 +87,12 @@ const Workflow = ({ data }) => {
                             <div className="col-md-4 d-flex mb-3 mb-md-0">
                               <div
                                 className="position-relative"
-                                style={{ width: "100%", minHeight: "132px" }}
+                               
                               >
                                 <Image
                                   src={item.image.url}
-                                  fill
+                                 width ={191}
+                                  height={132}
                                   alt={item.image.alternativeText || item.title}
                                   className="rounded-4 shadow-lg"
                                   style={{
