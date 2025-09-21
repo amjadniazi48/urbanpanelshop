@@ -2,7 +2,23 @@
 import { ReactCompareSlider, ReactCompareSliderImage } from "react-compare-slider"
 import { SearchCheck } from "lucide-react"
 
-export default function CarComparison() {
+export default function CarComparison({ data }) {
+  const { 
+    heading,
+    subheading,
+    ctaText,
+    ctaUrl,
+    repair 
+  } = data;
+
+  const {
+    title,
+    description,
+    BeforeImage,
+    AfterImage,
+    repair_category
+  } = repair;
+
   return (
     <section
       className="container py-5 mt-5 mb-5 shadow-lg"
@@ -17,26 +33,24 @@ export default function CarComparison() {
         <div className="row align-items-center min-vh-50">
           {/* Text Section */}
           <div className="col-lg-6 col-md-12 mb-4 mb-lg-0">
-              <img
-                    src="assets/img/siteicons/car-comp.png"
-                    width="70px"
-                    alt="car repair"
-                  className="mb-2 d-block mx-auto mx-lg-0"
-                  />
+            <img
+              src="assets/img/siteicons/car-comp.png"
+              width="70px"
+              alt="car repair"
+              className="mb-2 d-block mx-auto mx-lg-0"
+            />
             <div className="pe-lg-4">
               <h6 className="display-6 text-center text-lg-start mb-3 text-warning fw-bold">
-                Recent Repairs
+                {heading}
               </h6>
               <p className="lead text-white text-center text-lg-start mb-4">
-                Take a look at our latest panel beating and smash repair projects in Melbourne
+                {subheading}
               </p>
               <div className="text-center text-lg-start">
                 <a
-                  href="#"
+                  href={ctaUrl}
                   className="btn btn-lg px-4 py-3 btn-outline-warning"
                   style={{
-                  
-                  
                     borderRadius: "0.5rem",
                     fontWeight: "600",
                     marginTop: "2rem",
@@ -45,7 +59,7 @@ export default function CarComparison() {
                   rel="noreferrer noopener"
                 >
                   <SearchCheck className="me-2" size={20} />
-                  EXPLORE ALL COMPARISONS
+                  {ctaText}
                 </a>
               </div>
             </div>
@@ -107,11 +121,11 @@ export default function CarComparison() {
                 itemOne={
                   <div className="position-relative h-100 w-100">
                     <ReactCompareSliderImage
-                      src="/assets/img/smashes/2.jpg"
-                      alt="Before repair image"
+                      src={AfterImage.url}
+                      alt={AfterImage.alternativeText || "Before repair image"}
                       style={{ objectFit: "cover" }}
                     />
-                    <span className="badge position-absolute top-50 start-0 translate-middle-y  rounded text-dark fs-sm fw-semibold lh-1 px-3 py-2 ms-3 ms-sm-4" style={{backgroundColor:"#F7A604"}}>
+                    <span className="badge position-absolute top-50 start-0 translate-middle-y rounded text-dark fs-sm fw-semibold lh-1 px-3 py-2 ms-3 ms-sm-4" style={{backgroundColor:"#F7A604"}}>
                       Before
                     </span>
                   </div>
@@ -119,8 +133,8 @@ export default function CarComparison() {
                 itemTwo={
                   <div className="position-relative h-100 w-100">
                     <ReactCompareSliderImage
-                      src="/assets/img/smashes/1.jpg"
-                      alt="After repair image"
+                      src={BeforeImage.url}
+                      alt={BeforeImage.alternativeText || "After repair image"}
                       style={{ objectFit: "cover" }}
                     />
                     <span className="badge position-absolute top-50 end-0 translate-middle-y rounded text-dark fs-sm fw-semibold lh-1 px-3 py-2 me-3 me-sm-4" style={{backgroundColor:"#F7A604"}}>

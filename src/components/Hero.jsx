@@ -5,16 +5,11 @@ import { Autoplay, Pagination, Navigation } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
-import Heroicons from "./ui/Heroicons";
 
-const Hero = () => {
-  // Sample slider images - replace with your actual images
-  const sliderImages = [
-    "assets/img/landing/software-agency-1/car-repair-1.jpeg",
-    "assets/img/landing/software-agency-1/car-repair-2.jpeg",
-    "assets/img/landing/software-agency-1/car-repair-3.jpeg",
-    "assets/img/landing/software-agency-1/car-repair-4.jpg",
-  ];
+const Hero = ({ data }) => {
+  if (!data) return null;
+
+  const { heading, summary, Icons, Swiper: swiperBlock } = data;
 
   return (
     <section
@@ -32,7 +27,7 @@ const Hero = () => {
         }}
       ></span>
 
-      {/* Background Image (Hero BG must remain) */}
+      {/* Background Image */}
       <div
         className="jarallax-img"
         style={{
@@ -47,20 +42,49 @@ const Hero = () => {
           <div className="row align-items-center">
             {/* Left Column */}
             <div className="col-12 col-lg-7 text-center text-lg-start mb-5 mb-lg-0">
-              <h6 className="display-6 mb-md-4 pb-3 py-3">
-                <span className="text-gradient-primary">Urban Panel Shop - Primium</span>
-                &nbsp;  Smash Repair Services
-              </h6>
-              <p
-                className="text-body mx-auto mx-lg-0 mb-md-5 mb-4 fs-5"
-                style={{ maxWidth: "550px", textAlign: "justify" }}
-              >
-                At Urban Panel Shop, we restore cars to perfection, not just
-                repair them. From minor dents to full rebuilds, our experts
-                blend technology with craftsmanship. Every job delivers quality,
-                confidence, and pride in a like-new drive.
-              </p>
-              <Heroicons />
+              {heading && (
+                <h6 className="display-6 mb-md-4 pb-3 py-3">
+                  {(() => {
+                    const splitIndex =
+                      heading.indexOf("Premium") + "Premium".length; // include Premium
+                    const firstPart = heading.slice(0, splitIndex).trim(); // up to Premium
+                    const secondPart = heading.slice(splitIndex).trim(); // rest of heading
+                    return (
+                      <>
+                        <span className="text-warning">{firstPart}</span>{" "}
+                        {secondPart && (
+                          <span className="text-white">{secondPart}</span>
+                        )}
+                      </>
+                    );
+                  })()}
+                </h6>
+              )}
+
+              {summary && (
+                <p
+                  className="text-body mx-auto mx-lg-0 mb-md-5 mb-4 fs-5"
+                  style={{ maxWidth: "550px", textAlign: "justify" }}
+                >
+                  {summary}
+                </p>
+              )}
+
+              {/* ✅ Dynamic Heroicons */}
+              {Icons && Icons.length > 0 && (
+                <div className="row text-center g-3">
+                  {Icons.map((icon) => (
+                    <div key={icon.id} className="col-6 col-md-3">
+                      <img
+                        src={icon.iconImage?.url}
+                        width="40"
+                        alt={icon.iconImage?.alternativeText || icon.title}
+                      />
+                      <p className="mt-2 text-body small">{icon.title}</p>
+                    </div>
+                  ))}
+                </div>
+              )}
             </div>
 
             {/* Right Column (Swiper Slider) */}
@@ -83,12 +107,12 @@ const Hero = () => {
                   modules={[Autoplay, Pagination, Navigation]}
                   className="mySwiper rounded-3"
                 >
-                  {sliderImages.map((image, index) => (
-                    <SwiperSlide key={index}>
+                  {swiperBlock?.images?.map((image) => (
+                    <SwiperSlide key={image.id}>
                       <div className="position-relative">
                         <img
-                          src={image}
-                          alt={`Car Showcase ${index + 1}`}
+                          src={image.url}
+                          alt={image.alternativeText || image.name}
                           className="img-fluid rounded-3"
                           style={{
                             width: "100%",
@@ -96,7 +120,6 @@ const Hero = () => {
                             objectFit: "cover",
                           }}
                         />
-                        {/* Overlay only on image */}
                         <span className="position-absolute top-0 start-0 w-100 h-100 bg-dark opacity-40 rounded-3"></span>
                       </div>
                     </SwiperSlide>
