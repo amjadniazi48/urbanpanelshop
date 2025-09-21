@@ -82,7 +82,7 @@ const Workflow = ({ data }) => {
                           <div className="row align-items-stretch gx-1">
                             {/* Left: Image...images are not show properly */}
                             <div className="col-md-3 d-flex mb-3 mb-md-0">
-                              <Image
+                              <img
                                 src={item.image.url}
                                 width={200}
                                 height={132}
