@@ -113,8 +113,10 @@ const Hero = ({ data }) => {
                       <div className="position-relative">
                         <Image
                           src={image.url}
+                          width={530}
+                          height={630}
                           alt={image.alternativeText || image.name}
-                          fill
+                         
                           objectFit="cover"
                           className="img-fluid rounded-3"
                           unoptimized={true}
