@@ -44,6 +44,7 @@ const Workflow = ({ data }) => {
               {data.Accordion.map((item, index) => {
                 const collapseId = `workflow-item-${item.id}`;
                 const hasImage = !!item.image?.url;
+                console.log("these are the images",item.image.url);
 
                 return (
                   <div
@@ -90,7 +91,7 @@ const Workflow = ({ data }) => {
                                
                               >
                                 <Image
-                                  src={item.image.url}
+                                  src="https://res.cloudinary.com/dlcgduiez/image/upload/v1758442376/repairbegins_7532b65218.jpg"
                                  width ={191}
                                   height={132}
                                   alt={item.image.alternativeText || item.title}
