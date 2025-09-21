@@ -85,6 +85,7 @@ const Urbanservices = ({ data }) => {
                       width={600}
                       height={400}
                       className="w-100 h-100 object-cover"
+                      unoptimized={true}
                     />
                   </div>
                 )}
