@@ -97,6 +97,7 @@ const Workflow = ({ data }) => {
                                     objectFit: "cover",
                                     objectPosition: "center",
                                   }}
+                                  unoptimized={true}
                                 />
                               </div>
                             </div>
