@@ -62,7 +62,10 @@ const Workflow = ({ data }) => {
                         aria-expanded={index === 0}
                         aria-controls={collapseId}
                       >
-                        <span className="badge bg-warning text-dark me-2 rounded-circle" style={{fontSize: "1.2rem"}}>
+                        <span
+                          className="badge bg-warning text-dark me-2 rounded-circle"
+                          style={{ fontSize: "1.2rem" }}
+                        >
                           {index + 1}
                         </span>
                         {item.title}
@@ -79,22 +82,34 @@ const Workflow = ({ data }) => {
                     >
                       <div className="accordion-body fs-sm pt-0">
                         {hasImage ? (
-                          <div className="row align-items-stretch gx-1">
-                            {/* Left: Image...images are not show properly */}
-                            <div className="col-md-3 d-flex mb-3 mb-md-0">
-                              <img
-                                src={item.image.url}
-                                width={200}
-                                height={132}
-                                alt={item.image.alternativeText || item.title}
-                                className="rounded-4 shadow-lg img-fluid"
-                              />
+                          <div className="row align-items-stretch gx-4">
+                            {/* Left: Image */}
+                            <div className="col-md-4 d-flex mb-3 mb-md-0">
+                              <div
+                                className="position-relative"
+                                style={{ width: "100%", minHeight: "132px" }}
+                              >
+                                <Image
+                                  src={item.image.url}
+                                  fill
+                                  alt={item.image.alternativeText || item.title}
+                                  className="rounded-4 shadow-lg"
+                                  style={{
+                                    objectFit: "cover",
+                                    objectPosition: "center",
+                                  }}
+                                />
+                              </div>
                             </div>
 
                             {/* Right: Text */}
-                            <div className="col-md-8 d-flex flex-column" style={{textJustify: "justify"}}>
-                             
-                              <p className="fs-lg text-muted">{item.summary}</p>
+                            <div className="col-md-8 d-flex flex-column">
+                              <p
+                                className="fs-lg text-muted"
+                                style={{ textAlign: "justify" }}
+                              >
+                                {item.summary}
+                              </p>
                               {item.ctaText && (
                                 <a
                                   href={item.ctaUrl || "#"}
