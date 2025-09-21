@@ -57,15 +57,20 @@ const Testimonials = ({ data }) => {
                         height={60}
                         className="rounded-circle"
                         alt={item.image.alternativeText || item.name}
+                        unoptimized={true}
                       />
                     ) : (
                       <div
                         className="rounded-circle  d-flex align-items-center justify-content-center"
-                        style={{ width: "60px", height: "60px"  , backgroundColor: "#ec417a"}}
+                        style={{
+                          width: "60px",
+                          height: "60px",
+                          backgroundColor: "#ec417a",
+                        }}
                       >
-                       <span className="text-white fs-4 fw-semibold ">
-  {item.name ? item.name.charAt(0).toUpperCase() : "U"}
-</span>
+                        <span className="text-white fs-4 fw-semibold ">
+                          {item.name ? item.name.charAt(0).toUpperCase() : "U"}
+                        </span>
                       </div>
                     )}
                     <div className="ps-3">
