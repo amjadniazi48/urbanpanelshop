@@ -85,7 +85,7 @@ const Workflow = ({ data }) => {
                         {hasImage ? (
                           <div className="row align-items-stretch gx-4">
                             {/* Left: Image */}
-                            <div className="col-md-4 d-flex mb-3 mb-md-0">
+                            <div className="col-md-3 d-flex mb-3 mb-md-0">
                               <div className="position-relative">
                                 <Image
                                   src={item.image.url?.trim()} // remove hidden spaces/newlines

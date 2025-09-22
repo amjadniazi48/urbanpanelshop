@@ -113,7 +113,7 @@ const Hero = ({ data }) => {
                       <div className="position-relative">
                         <Image
                           src={image.url}
-                          width={530}
+                          width={550}
                           height={630}
                           alt={image.alternativeText || image.name}
                          
