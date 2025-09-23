@@ -1,140 +1,186 @@
-import React from "react";
+"use client";
+import React, { useRef, useEffect, useState } from "react";
 import Image from "next/image";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Mousewheel, Pagination, EffectCreative } from "swiper/modules";
+
+import "swiper/css";
+import "swiper/css/pagination";
+import "swiper/css/effect-creative";
+import "./verticalStack.css";
 
 const Workflow = ({ data }) => {
+  const swiperRef = useRef(null);
+  const containerRef = useRef(null);
+  const [activeIndex, setActiveIndex] = useState(0);
+
+  useEffect(() => {
+    const swiper = swiperRef.current?.swiper;
+    if (!swiper) return;
+
+    const handleScroll = (e) => {
+      const scrollTop = containerRef.current.scrollTop;
+      const slideHeight = window.innerHeight;
+      const newIndex = Math.round(scrollTop / slideHeight);
+
+      if (
+        newIndex !== activeIndex &&
+        newIndex >= 0 &&
+        newIndex < data.Accordion.length
+      ) {
+        swiper.slideTo(newIndex);
+        setActiveIndex(newIndex);
+      }
+    };
+
+    const handleWheel = (e) => {
+      const swiper = swiperRef.current?.swiper;
+      if (!swiper) return;
+
+      if (
+        (e.deltaY > 0 && swiper.isEnd) ||
+        (e.deltaY < 0 && swiper.isBeginning)
+      ) {
+        return;
+      }
+
+      e.preventDefault();
+    };
+
+    const container = containerRef.current;
+    if (container) {
+      container.addEventListener("scroll", handleScroll);
+      container.addEventListener("wheel", handleWheel, { passive: false });
+    }
+
+    return () => {
+      if (container) {
+        container.removeEventListener("scroll", handleScroll);
+        container.removeEventListener("wheel", handleWheel);
+      }
+    };
+  }, [activeIndex, data?.Accordion?.length]);
+
+  useEffect(() => {
+    const swiper = swiperRef.current?.swiper;
+    if (!swiper) return;
+
+    const handleSlideChange = () => {
+      setActiveIndex(swiper.activeIndex);
+      if (containerRef.current) {
+        containerRef.current.scrollTop =
+          swiper.activeIndex * window.innerHeight;
+      }
+    };
+
+    swiper.on("slideChange", handleSlideChange);
+    return () => {
+      swiper.off("slideChange", handleSlideChange);
+    };
+  }, []);
+
   if (!data?.Accordion) return null;
 
   return (
-    <section className="container pt-1 pt-lg-3 mt-5 mb-lg-5">
-      <div
-        className="position-relative bg-secondary rounded-3 overflow-hidden px-3 px-sm-4 px-md-0 py-5"
-        style={{ backgroundColor: "#F1F1F1" }}
-      >
-        {/* Background Patterns */}
-        <div
-          className="position-absolute top-0 start-0 w-100 h-100 d-none d-lg-block"
-          data-rellax-percentage="0.5"
-          data-rellax-speed="1.75"
-        >
-          {["pattern-1.svg", "pattern-2.svg", "pattern-3.svg"].map(
-            (pattern, i) => (
-              <img
-                key={i}
-                src={`assets/img/landing/online-courses/${pattern}`}
-                className={`position-absolute ${
-                  i === 0
-                    ? "top-0 start-100 translate-middle ms-n4"
-                    : i === 1
-                    ? "top-50 start-0 mt-n5 ms-n5"
-                    : "top-100 start-100 translate-middle ms-n5 mt-n5"
-                }`}
-                alt={`Pattern ${i + 1}`}
-              />
-            )
-          )}
-        </div>
-
-        <div className="row justify-content-center position-relative zindex-2 py-lg-4">
-          <div className="col-xl-10 col-lg-11 py-2">
-            <h2 className="h1 text-dark text-center mt-n2 mt-lg-0 mb-4 mb-lg-5">
-              Repair Workflow
-            </h2>
-
-            <div className="accordion" id="workflowAccordion">
-              {data.Accordion.map((item, index) => {
-                const collapseId = `workflow-item-${item.id}`;
-                const hasImage = !!item.image?.url;
-                console.log("these are the images", item.image.url);
-
-                return (
-                  <div
-                    className="accordion-item border-0 rounded-3 shadow-sm mb-3"
-                    key={item.id}
-                  >
-                    {/* Header */}
-                    <h3 className="accordion-header">
-                      <button
-                        className={`accordion-button shadow-none rounded-3 ${
-                          index !== 0 ? "collapsed" : ""
-                        }`}
-                        type="button"
-                        data-bs-toggle="collapse"
-                        data-bs-target={`#${collapseId}`}
-                        aria-expanded={index === 0}
-                        aria-controls={collapseId}
-                      >
-                        <span
-                          className="badge bg-warning text-dark me-2 rounded-circle"
-                          style={{ fontSize: "1.2rem" }}
-                        >
-                          {index + 1}
-                        </span>
-                        {item.title}
-                      </button>
-                    </h3>
-
-                    {/* Body */}
-                    <div
-                      id={collapseId}
-                      className={`accordion-collapse collapse ${
-                        index === 0 ? "show" : ""
-                      }`}
-                      data-bs-parent="#workflowAccordion"
-                    >
-                      <div className="accordion-body fs-sm pt-0">
-                        {hasImage ? (
-                          <div className="row align-items-stretch gx-4">
-                            {/* Left: Image */}
-                            <div className="col-md-3 d-flex mb-3 mb-md-0">
-                              <div className="position-relative">
-                                <Image
-                                  src={item.image.url?.trim()} // remove hidden spaces/newlines
-                                  width={191}
-                                  height={132}
-                                  alt={item.image.alternativeText || item.title}
-                                  className="rounded-4 shadow-lg"
-                                  style={{
-                                    objectFit: "cover",
-                                    objectPosition: "center",
-                                  }}
-                                  unoptimized={true}
-                                />
-                              </div>
-                            </div>
-
-                            {/* Right: Text */}
-                            <div className="col-md-8 d-flex flex-column">
-                              <p
-                                className="fs-lg text-muted"
-                                style={{ textAlign: "justify" }}
-                              >
-                                {item.summary}
-                              </p>
-                              {item.ctaText && (
-                                <a
-                                  href={item.ctaUrl || "#"}
-                                  className="btn btn-warning mt-3 align-self-start"
-                                >
-                                  {item.ctaText}
-                                </a>
-                              )}
-                            </div>
-                          </div>
-                        ) : (
-                          <div className="text-center">
-                            <p className="fs-lg text-muted">{item.summary}</p>
-                          </div>
-                        )}
-                      </div>
-                    </div>
-                  </div>
-                );
-              })}
-            </div>
-          </div>
-        </div>
+    <>
+      <div className="mt-5">
+        <h2 className="text-center">
+          Our Workflow - A simple{" "}
+          <span className="badge rounded-circle" style={{ backgroundColor: "#E2571F" }}>
+            4
+          </span>{" "}
+          step process
+        </h2>
       </div>
-    </section>
+      <section className="vertical-stack-container" ref={containerRef}>
+        <div className="custom-pagination">
+          {data.Accordion.map((_, idx) => (
+            <button
+              key={idx}
+              className={`pagination-badge ${
+                idx === activeIndex ? "active" : ""
+              }`}
+              onClick={() => {
+                swiperRef.current?.swiper.slideTo(idx);
+                setActiveIndex(idx);
+              }}
+              style={{
+                backgroundColor:
+                  idx === activeIndex ? "#E2571F" : "rgba(226, 87, 31, 0.3)",
+              }}
+            >
+              {idx + 1}
+            </button>
+          ))}
+        </div>
+
+        <Swiper
+          ref={swiperRef}
+          direction="vertical"
+          slidesPerView={1}
+          speed={800}
+          freeMode={true}
+          spaceBetween={0}
+          mousewheel={{
+            enabled: true,
+            releaseOnEdges: true,
+            sensitivity: 1,
+          }}
+          pagination={false}
+          effect="creative"
+          creativeEffect={{
+            prev: {
+              shadow: true,
+              translate: [0, "-2%", -1],
+            },
+            next: {
+              translate: [0, "100%", 0],
+            },
+          }}
+          modules={[Mousewheel, Pagination, EffectCreative]}
+          className="stack-swiper myswiper"
+        >
+          {data.Accordion.map((item, index) => (
+            <SwiperSlide key={item.id}>
+              {/* Added slide-content-wrapper here */}
+              <div className="slide-content-wrapper">
+                <div
+                  className="slide-content"
+                  style={{ backgroundColor: "#0B0F19" }}
+                >
+                  <div className="text-section">
+                    <h3 className="text-white">{item.title}</h3>
+                    <p>{item.summary}</p>
+                    {item.ctaText && (
+                      <a
+                        href={item.ctaUrl || "#"}
+                        className="btn btn-warning mt-3 inline-block"
+                      >
+                        {item.ctaText}
+                      </a>
+                    )}
+                  </div>
+
+                  {item.image?.url && (
+                    <div className="image-section">
+                      <Image
+                        src={item.image.url?.trim()}
+                        width={600}
+                        height={400}
+                        alt={item.image.alternativeText || item.title}
+                        className="rounded-4 shadow-lg"
+                        style={{ objectFit: "cover", objectPosition: "center" }}
+                        unoptimized={true}
+                      />
+                    </div>
+                  )}
+                </div>
+              </div>
+            </SwiperSlide>
+          ))}
+        </Swiper>
+      </section>
+    </>
   );
 };
 
