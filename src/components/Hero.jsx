@@ -39,7 +39,7 @@ const Hero = ({ data }) => {
 
       {/* Main Content */}
       <div className="min-vh-100 d-flex flex-column py-5">
-        <div className="container position-relative zindex-5 pt-4 pt-md-5 mt-auto mb-auto">
+        <div className="container-fluid position-relative zindex-5 pt-4 pt-md-5 mt-auto mb-auto">
           <div className="row align-items-center">
             {/* Left Column */}
             <div className="col-12 col-lg-7 text-center text-lg-start mb-5 mb-lg-0">
@@ -90,10 +90,7 @@ const Hero = ({ data }) => {
 
             {/* Right Column (Swiper Slider) */}
             <div className="col-12 col-lg-5 d-flex justify-content-lg-end justify-content-center py-5">
-              <div
-                className="position-relative d-inline-block rounded-3 w-100"
-                style={{ maxWidth: "490px" }}
-              >
+              <div className="position-relative d-inline-block rounded-3 w-100">
                 <Swiper
                   spaceBetween={0}
                   centeredSlides={true}
@@ -113,10 +110,9 @@ const Hero = ({ data }) => {
                       <div className="position-relative">
                         <Image
                           src={image.url}
-                          width={550}
+                          width={600}
                           height={630}
                           alt={image.alternativeText || image.name}
-                         
                           objectFit="cover"
                           className="img-fluid rounded-3"
                           unoptimized={true}

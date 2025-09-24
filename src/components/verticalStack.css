@@ -3,6 +3,7 @@
   width: 100%;
   position: relative;
   overflow: auto;
+  scroll-snap-type: y mandatory;
 }
 
 .stack-swiper {
@@ -16,6 +17,7 @@
   align-items: center;
   height: 100vh;
   position: relative;
+  scroll-snap-align: start;
 }
 
 .myswiper .slide-content {
@@ -35,51 +37,25 @@
   height: 80vh;
 }
 
-/* Single Custom Pagination - Fixed within component */
-.custom-pagination {
-  position: absolute;
-  right: 30px;
-  top: 50%;
-  transform: translateY(-50%);
-  z-index: 1000;
+/* Image section */
+.image-section {
   display: flex;
-  flex-direction: column;
-  gap: 1rem;
-}
-
-.pagination-badge {
-  width: 50px;
-  height: 50px;
-  border-radius: 50%;
-  border: 3px solid #E2571F;
-  color: white;
-  font-weight: bold;
-  font-size: 1.2rem;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
   justify-content: center;
-  transition: all 0.3s ease;
-  backdrop-filter: blur(10px);
-}
-
-.pagination-badge:hover {
-  transform: scale(1.1);
-  border-color: #ff7f00;
-}
-
-.pagination-badge.active {
-  background-color: #E2571F !important;
-  transform: scale(1.2);
-  box-shadow: 0 0 20px rgba(226, 87, 31, 0.5);
+  align-items: center;
+  width: 100%;
 }
 
 .image-section img {
-  /* width: 100%; */
+  width: 100%;
+  height: auto;
+  max-width: 600px;
   border-radius: 8px;
   box-shadow: 0 5px 20px rgba(0, 0, 0, 0.5);
+  object-fit: cover;
+  object-position: center;
 }
 
+/* Text section */
 .text-section h3 {
   font-size: 2.5rem;
   margin-bottom: 1rem;
@@ -118,41 +94,43 @@
   transform: translateY(-2px);
 }
 
-/* Mobile Responsiveness */
-@media (max-width: 1024px) {
-  .custom-pagination {
-    right: 20px;
-  }
+/* Custom Pagination */
+.custom-pagination {
+  position: absolute;
+  right: 30px;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
 }
 
-@media (max-width: 768px) {
-  .slide-content {
-    grid-template-columns: 1fr;
-    gap: 1.5rem;
-    padding: 2rem;
-    height: auto;
-    min-height: 85vh;
-  }
-  
-  .text-section h3 {
-    font-size: 2rem;
-  }
-  
-  .custom-pagination {
-    right: 10px;
-    top: auto;
-    bottom: 20px;
-    flex-direction: row;
-    justify-content: center;
-    transform: none;
-    gap: 0.5rem;
-  }
-  
-  .pagination-badge {
-    width: 40px;
-    height: 40px;
-    font-size: 1rem;
-  }
+.pagination-badge {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  border: 3px solid #E2571F;
+  color: white;
+  font-weight: bold;
+  font-size: 1.2rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(10px);
+}
+
+.pagination-badge:hover {
+  transform: scale(1.1);
+  border-color: #ff7f00;
+}
+
+.pagination-badge.active {
+  background-color: #E2571F !important;
+  transform: scale(1.2);
+  box-shadow: 0 0 20px rgba(226, 87, 31, 0.5);
 }
 
 /* Scrollbar Styling */
@@ -174,19 +152,59 @@
   background: #ff7f00;
 }
 
-/* Allow natural scrolling when at edges */
-.vertical-stack-container {
-  scroll-snap-type: y mandatory;
-}
-
-.swiper-slide {
-  scroll-snap-align: start;
-}
+/* Section Heading */
 .section-heading {
   font-size: 2.5rem;
   font-weight: 700;
   margin-bottom: 2rem;
   width: 100%;
   text-align: center;
-  grid-column: 1 / -1; /* Makes it span across both columns */
+  grid-column: 1 / -1;
+}
+
+/* Tablet adjustments */
+@media (max-width: 1024px) {
+  .custom-pagination {
+    right: 20px;
+  }
+}
+
+/* Mobile adjustments */
+@media (max-width: 768px) {
+  .myswiper .slide-content {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+    padding: 1.5rem;
+    height: auto;
+    min-height: 85vh; /* still keeps full section feel */
+  }
+
+  .text-section h3 {
+    font-size: 1.8rem;
+  }
+
+  .image-section {
+    width: 100%;
+  }
+
+  .image-section img {
+    max-width: 100%;
+    border-radius: 12px;
+  }
+
+  .custom-pagination {
+    right: 10px;
+    top: auto;
+    bottom: 20px;
+    flex-direction: row;
+    justify-content: center;
+    transform: none;
+    gap: 0.5rem;
+  }
+
+  .pagination-badge {
+    width: 40px;
+    height: 40px;
+    font-size: 1rem;
+  }
 }

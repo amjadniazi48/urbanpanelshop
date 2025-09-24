@@ -86,10 +86,13 @@ const Workflow = ({ data }) => {
       <div className="mt-5">
         <h2 className="text-center">
           Our Workflow - A simple{" "}
-          <span className="badge rounded-circle" style={{ backgroundColor: "#E2571F" }}>
+          <span
+            className="badge rounded-circle"
+            style={{ backgroundColor: "#E2571F" }}
+          >
             4
           </span>{" "}
-          step process
+          - Step Process
         </h2>
       </div>
       <section className="vertical-stack-container" ref={containerRef}>
@@ -144,10 +147,7 @@ const Workflow = ({ data }) => {
             <SwiperSlide key={item.id}>
               {/* Added slide-content-wrapper here */}
               <div className="slide-content-wrapper">
-                <div
-                  className="slide-content"
-                  style={{ backgroundColor: "#0B0F19" }}
-                >
+                <div className="slide-content">
                   <div className="text-section">
                     <h3 className="text-white">{item.title}</h3>
                     <p>{item.summary}</p>
@@ -168,7 +168,7 @@ const Workflow = ({ data }) => {
                         width={600}
                         height={400}
                         alt={item.image.alternativeText || item.title}
-                        className="rounded-4 shadow-lg"
+                        className="responsive-image rounded-4 shadow-lg"
                         style={{ objectFit: "cover", objectPosition: "center" }}
                         unoptimized={true}
                       />
