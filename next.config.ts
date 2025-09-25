@@ -6,7 +6,7 @@ const nextConfig = {
           {
             protocol: 'https',
             hostname: 'res.cloudinary.com',
-            pathname: '**', // Allows any pathname under the domain
+            pathname: '/dlcgduiez/**', // Allows any pathname under the domain
           },
           {
             protocol: 'https',
