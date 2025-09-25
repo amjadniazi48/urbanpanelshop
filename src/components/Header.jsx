@@ -12,7 +12,7 @@ export default function Header({ headerdata, menu }) {
 
   return (
     <header
-      className="header navbar navbar-expand-lg navbar-light position-absolute navbar-sticky shadow-sm"
+      className="header navbar navbar-expand-lg navbar-light sticky-top shadow-sm"
       style={{ backgroundColor: "#F7F7F7" }}
     >
       <div className="container px-3">
