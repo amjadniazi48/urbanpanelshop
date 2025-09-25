@@ -169,7 +169,8 @@ const Workflow = ({ data }) => {
                         height={400}
                         alt={item.image.alternativeText || item.title}
                         className="responsive-image rounded-4 shadow-lg"
-                        style={{ objectFit: "cover", objectPosition: "center" }}
+                        objectFit="cover"
+                        objectPosition="center"
                       
                       />
                     </div>
