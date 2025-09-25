@@ -171,7 +171,7 @@ const Workflow = ({ data }) => {
                         className="responsive-image rounded-4 shadow-lg"
                         objectFit="cover"
                         objectPosition="center"
-                      
+                        unoptimized={true}
                       />
                     </div>
                   )}
