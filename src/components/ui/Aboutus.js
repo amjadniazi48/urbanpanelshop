@@ -30,33 +30,14 @@ const Aboutus = ({ data }) => {
             {/* Text */}
             <h1 className="pb-2 pb-md-3 text-white">{hero?.title}</h1>
             <p
-              className="fs-xl pb-4 mb-1 mb-md-2 mb-lg-3 text-white"
-              style={{ maxWidth: "526px" }}
+              className="fs-xl pb-4 mb-1 mb-md-2 mb-lg-3 text-white "
+             
             >
               {hero?.summary}
             </p>
 
             {/* Example stats */}
-            <div className="row row-cols-3 pt-4 pt-md-5 mt-2 mt-xl-4">
-              <div className="col">
-                <h3 className="h2 mb-2 text-white">2,480</h3>
-                <p className="mb-0 text-white">
-                  <strong>Remote</strong> Sales Experts
-                </p>
-              </div>
-              <div className="col">
-                <h3 className="h2 mb-2 text-white">760</h3>
-                <p className="mb-0 text-white">
-                  <strong>New Clients</strong> per Month
-                </p>
-              </div>
-              <div className="col text-white">
-                <h3 className="h2 mb-2 text-white">1,200</h3>
-                <p className="mb-0">
-                  <strong>Requests</strong> per Week
-                </p>
-              </div>
-            </div>
+       
           </div>
 
           {/* Images */}
