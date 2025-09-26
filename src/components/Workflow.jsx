@@ -10,6 +10,7 @@ import "swiper/css/effect-creative";
 import "./verticalStack.css";
 
 const Workflow = ({ data }) => {
+  console.log("this is the data for workflow", data);
   const swiperRef = useRef(null);
   const containerRef = useRef(null);
   const [activeIndex, setActiveIndex] = useState(0);

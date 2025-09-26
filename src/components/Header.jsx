@@ -88,12 +88,14 @@ export default function Header({ headerdata, menu }) {
                       <ul className="dropdown-menu">
                         {section.dropdown.map((item) => (
                           <li key={item.id}>
-                            <Link
-                              href={item.titleUrl || "#"}
-                              className="dropdown-item"
-                            >
-                              {item.title}
-                            </Link>
+                          <Link
+  href={item.titleUrl || "#"}
+  className="dropdown-item text-wrap text-break"
+  style={{ whiteSpace: "normal", maxWidth: "250px" }}
+>
+  {item.title}
+</Link>
+
                           </li>
                         ))}
                       </ul>
