@@ -168,6 +168,8 @@ const Workflow = ({ data }) => {
                         width={600}
                         height={400}
                         alt={item.image.alternativeText || item.title}
+                        className="rounded-3"
+                        unoptimized={true}
                       />
                     </div>
                   )}
