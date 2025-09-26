@@ -163,7 +163,7 @@ const Workflow = ({ data }) => {
                   {item.image?.url && (
                     <div className="image-section">
                       <Image
-                        src={item.image.url?.trim()}
+                        src={item.image.url}
                         width={600}
                         height={400}
                         alt={item.image.alternativeText || item.title}
