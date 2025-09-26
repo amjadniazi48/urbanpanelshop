@@ -1,13 +1,9 @@
-// next.config.js
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   images: {
+   // For Next.js 15.3.0+
     remotePatterns: [
-      {
-        protocol: "https",
-        hostname: "res.cloudinary.com",
-        pathname: "/dlcgduiez/**", // adjust if your Cloudinary folder name differs
-      },
+      new URL('https://res.cloudinary.com/**')
     ],
   },
 };

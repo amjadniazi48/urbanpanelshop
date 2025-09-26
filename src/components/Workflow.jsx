@@ -121,8 +121,7 @@ const Workflow = ({ data }) => {
           ref={swiperRef}
           direction="vertical"
           slidesPerView={1}
-          speed={800}
-          freeMode={true}
+          speed={1000}
           spaceBetween={0}
           mousewheel={{
             enabled: true,
@@ -171,7 +170,7 @@ const Workflow = ({ data }) => {
                         className="responsive-image rounded-4 shadow-lg"
                         objectFit="cover"
                         objectPosition="center"
-                        unoptimized={true}
+                       
                       />
                     </div>
                   )}

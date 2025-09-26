@@ -23,7 +23,7 @@
 .myswiper .slide-content {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 2rem;
+  gap: 1rem;
   align-items: center;
   padding: 3rem;
   background: #111;
@@ -34,7 +34,7 @@
   box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
   position: relative;
   width: 90%;
-  height: 80vh;
+  height: 70vh;
 }
 
 /* Image section */
