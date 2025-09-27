@@ -15,15 +15,15 @@ import "yet-another-react-lightbox/plugins/thumbnails.css";
 import Image from "next/image";
 
 const Aboutus = ({ data }) => {
-  if (!data?.Hero) return null;
-
-  const hero = data.Hero;
-  const bgImage = hero?.backgroundImage?.url;
-
+  // ✅ All hooks MUST be declared before any early returns
   const [photos, setPhotos] = useState([]);
   const [galleryOpen, setGalleryOpen] = useState(false);
   const [videoOpen, setVideoOpen] = useState(false);
   const [index, setIndex] = useState(0);
+
+  // ✅ Extract hero data after hooks but before early return
+  const hero = data?.Hero;
+  const bgImage = hero?.backgroundImage?.url;
 
   // Load Cloudinary images with real dimensions
   useEffect(() => {
@@ -50,6 +50,9 @@ const Aboutus = ({ data }) => {
       loadImages();
     }
   }, [hero?.images]);
+
+  // ✅ Early return AFTER all hooks are declared
+  if (!hero) return null;
 
   return (
     <>
