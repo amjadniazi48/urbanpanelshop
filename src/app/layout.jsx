@@ -18,7 +18,7 @@ const poppins = Poppins({
       headers: {
         Authorization: `Bearer ${process.env.STRAPI_JWT}`,
       },
-      next: { revalidate: 60 }, // ISR → static + refresh every 60s
+      next: { revalidate: 30 }, // ISR → static + refresh every 60s
     });
 
     if (!res.ok) {

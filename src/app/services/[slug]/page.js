@@ -60,7 +60,7 @@ const ServicesDetails = ({ params: paramsPromise }) => {
   if (!service) return <div>No record found</div>;
 
   return (
-    <section className="container bordered-3 mb-5" style={{ marginTop: "80px" }}>
+    <section className="container bordered-3 mb-5" style={{ marginTop: "30px" }}>
       <div
         className="row mb-2"
         style={{

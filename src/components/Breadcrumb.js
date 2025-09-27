@@ -20,7 +20,7 @@ const Breadcrumb = () => {
       <ul className="breadcrumb" >
         {/* Show "Home" only if not on the homepage */}
         <li>
-          <Link href="/" className="text-white" style={{ color: "darkred",fontWeight:"500", fontFamily:"ProximaNova,sans-serif" }}>HOME</Link>
+          <Link href="/" className="" style={{ color: "#007BFF",fontWeight:"500", fontFamily:"ProximaNova,sans-serif" }}>HOME</Link>
         </li>
 
         {paths.map((path, index) => {
@@ -30,7 +30,7 @@ const Breadcrumb = () => {
          
             <li key={index}>
               <span className="separator">/</span>
-              <Link href={url} className="text-white text-uppdercase" style={{ color: "white",fontWeight:"500" }}>
+              <Link href={url} className="text-uppdercase" style={{ color: "#007BFF",fontWeight:"500" }}>
                 {formattedText.toUpperCase()}
               </Link>
             </li>

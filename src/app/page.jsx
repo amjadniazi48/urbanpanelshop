@@ -22,13 +22,10 @@ export default async function Home() {
     const authToken = process.env.STRAPI_JWT;
 
     const data = await fetchData(url.href, authToken, {
-      next: {
-        tags: ["landing-page-data"],
-        revalidate: 30,
-      },
+      cache: "no-store", // ✅ disables cache completely
     });
 
-    console.log("Data fetched in loader after revalidation:", data);
+    // console.log("Data fetched in loader after revalidation:", data);
     return data;
   }
 
@@ -43,9 +40,9 @@ export default async function Home() {
         return <Workflow data={block} />; // ✅ pass the block directly
       case "blocks.services":
         return <Urbanservices data={block} />; // ✅ pass the block directly
-       case "blocks.reviews":
+      case "blocks.reviews":
         return <Testimonials data={block} />; // ✅ pass the block directly
-         case "blocks.recent-repairs":
+      case "blocks.recent-repairs":
         return <Carcomparsion data={block} />; // ✅ pass the block directly
       default:
         return null;

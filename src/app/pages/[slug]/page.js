@@ -1,78 +1,44 @@
-// import Hero from "../components/Hero";
-
-// // import Testimonials from "@/components/Testimonials";
-
-// // import Carcomparsion from "@/components/Carcomparsion";
-// // import Urbanservices from "@/components/Urbanservices";
-// // import Smashupload from "@/components/Smashupload";
-import Aboutus from "@/components/ui/Aboutus";
-// import Workflow from "@/components/Workflow";
-
-//data from lib
 import { getStrapiURL } from "@/lib/utils";
 import { fetchData } from "@/lib/fetch";
+import Aboutus from "@/components/ui/Aboutus";
+import Contact from "@/components/Contact";
+export default async function Page({ params }) {
+  const { slug } = params; // "contact", "about", etc.
 
-export default async function Home() {
-  // Loader function to fetch data
   async function loader() {
-    const path = `/api/pages`;
+    const path = `/api/pages?filters[slug][$eq]=${slug}&populate=blocks`;
     const baseUrl = getStrapiURL();
     const url = new URL(path, baseUrl);
-    console.log("Full API URL", url.href); // Debugging the complete URL
     const authToken = process.env.STRAPI_JWT;
 
     const data = await fetchData(url.href, authToken, {
-      next: {
-        tags: ["landing-page-data"],
-        revalidate: 30,
-      },
+      next: { revalidate: 30 },
     });
 
-    console.log("Data fetched in loader after revalidation:", data);
     return data;
   }
 
-  // BlockRenderer function with switch-case to render components dynamically
   function BlockRenderer(block) {
     switch (block.__component) {
-    //   case "blocks.swiper-hero":
-    //     return <Hero data={block} />; // ✅ pass the block directly
-       case "blocks.hero-section":
-        return <Aboutus data={block} />; // ✅ pass the block directly
-    //   case "blocks.workflow":
-    //     return <Workflow data={block} />; // ✅ pass the block directly
-    //   case "blocks.services":
-    //     return <Urbanservices data={block} />; // ✅ pass the block directly
-    //    case "blocks.reviews":
-    //     return <Testimonials data={block} />; // ✅ pass the block directly
-    //   case "blocks.recent-repairs":
-    //   return <Carcomparsion data={block} />; // ✅ pass the block directly
+      case "blocks.hero-section":
+        return <Aboutus data={block} />;
+      case "blocks.contact":
+        return <Contact data={block} />;
       default:
         return null;
     }
   }
 
-  // Fetching data from the loader
   const data = await loader();
-  const homeData = data?.data || []; // ✅ array of blocks
-  console.log("Extracted home blocks:", homeData);
+  const pageData = data?.data?.[0]; // only one page
 
-  if (homeData.length === 0) {
-    console.log("No home data found");
-    return <div>No content available</div>;
-  }
+  if (!pageData) return <div>Page not found</div>;
 
- return (
-  <div>
-    {homeData.map((page, pIndex) => (
-      <div key={page.id || `page-${pIndex}`}>
-        {page.blocks?.map((block, bIndex) => (
-          <div key={block.id || `block-${bIndex}`}>
-            {BlockRenderer(block)}
-          </div>
-        ))}
-      </div>
-    ))}
-  </div>
-);
+  return (
+    <div>
+      {pageData.blocks?.map((block) => (
+        <div key={block.id}>{BlockRenderer(block)}</div>
+      ))}
+    </div>
+  );
 }
