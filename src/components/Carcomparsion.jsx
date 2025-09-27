@@ -23,9 +23,11 @@ export default function CarComparison({ data }) {
     <section
       className="container py-5 mt-5 mb-5 shadow-lg"
       style={{
-        backgroundImage: "url(assets/img/landing/saas-3/cta-bg.jpg)",
+        // ✅ Fixed: Use absolute path starting with /
+        backgroundImage: "url(/assets/img/landing/saas-3/cta-bg.jpg)",
         backgroundSize: "cover",
         backgroundPosition: "center",
+        backgroundRepeat: "no-repeat", // ✅ Added to prevent repeat
         borderRadius: "1rem",
       }}
     >
@@ -34,7 +36,8 @@ export default function CarComparison({ data }) {
           {/* Text Section */}
           <div className="col-lg-6 col-md-12 mb-4 mb-lg-0">
             <img
-              src="assets/img/siteicons/car-comp.png"
+              // ✅ Fixed: Use absolute path for image as well
+              src="/assets/img/siteicons/car-comp.png"
               width="70px"
               alt="car repair"
               className="mb-2 d-block mx-auto mx-lg-0"
