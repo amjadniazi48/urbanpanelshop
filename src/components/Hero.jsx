@@ -39,7 +39,7 @@ const Hero = ({ data }) => {
 
       {/* Main Content */}
       <div className="min-vh-100 d-flex flex-column py-2">
-        <div className="container-fluid position-relative zindex-5 pt-1 pt-md-5 mt-auto mb-auto">
+        <div className="container-fluid position-relative zindex-5 pt-1 pt-2 mt-auto mb-auto">
           <div className="row align-items-center">
             {/* Left Column */}
             <div className="col-12 col-lg-7 text-center text-lg-start mb-5 mb-lg-0">
