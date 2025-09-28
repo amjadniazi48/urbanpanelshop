@@ -74,7 +74,7 @@ const ServicesDetails = ({ params: paramsPromise }) => {
          <PageHeading heading={service.title} icon="" show={true}/>
         </div>
 
-        <ReactMarkdown>{service.description}</ReactMarkdown>
+        <p style={{textAlign:"justify"}}><ReactMarkdown>{service.description}</ReactMarkdown></p>
       </div>
 
       {photos.length > 0 && (
