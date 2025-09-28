@@ -336,7 +336,7 @@ export default function SmashForm() {
               </p>
               <div className="card-group">
                 <div className="card">
-                  <img src="assets/img/smashes/1.jpg" className="card-img-top" alt="..." />
+                  <img src="assets/img/smashes/1.jpeg" className="card-img-top" alt="..." />
                   <div className="card-body">
                  
                     <p className="card-text">
@@ -356,7 +356,7 @@ export default function SmashForm() {
                   </div>
                 </div>
                 <div className="card">
-                  <img src="assets/img/smashes/2.jpg" className="card-img-top" alt="..." />
+                  <img src="assets/img/smashes/3.jpeg" className="card-img-top" alt="..." />
                   <div className="card-body">
                   
                     <p className="card-text">
