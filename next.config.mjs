@@ -1,29 +1,32 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  reactStrictMode: true, // Good practice for development [^3]
+  reactStrictMode: true,
+
   images: {
-    // Remove the deprecated 'domains' property
     remotePatterns: [
       {
         protocol: 'https',
         hostname: 'res.cloudinary.com',
-        pathname: '/**', // Allows any pathname under the domain
+        pathname: '/**',
       },
       {
         protocol: 'https',
-        hostname: 'img.youtube.com', // Fixed: moved from domains to remotePatterns
-        pathname: '/**', // More flexible than just '/vi/**'
+        hostname: 'img.youtube.com',
+        pathname: '/**',
       },
       {
         protocol: 'https',
-        hostname: 'i.ytimg.com', // YouTube thumbnail domain
+        hostname: 'i.ytimg.com',
         pathname: '/vi/**',
       },
     ],
   },
 
-    
-  };
-  
-  export default nextConfig;
-  
+  experimental: {
+    serverActions: {
+      bodySizeLimit: '10mb', // 👈 increase this limit (1mb is default)
+    },
+  },
+};
+
+export default nextConfig;
