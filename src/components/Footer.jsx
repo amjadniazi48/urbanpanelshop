@@ -36,7 +36,7 @@ export default function Footer( {footerData}) {
                   <ul className="nav flex-column mb-lg-3">
                     {links.map((link) => (
                       <li key={link.id} className="nav-item">
-                        <Link href={link.url || "#"} className="nav-link d-inline-block px-0 pt-1 pb-2 text-white">
+                        <Link href={`/pages${link.titleUrl || "#"}`} className="nav-link d-inline-block px-0 pt-1 pb-2 text-white">
                           {link.title}
                         </Link>
                       </li>

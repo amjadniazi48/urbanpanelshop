@@ -2,6 +2,7 @@ import { getStrapiURL } from "@/lib/utils";
 import { fetchData } from "@/lib/fetch";
 import Aboutus from "@/components/ui/Aboutus";
 import Contact from "@/components/Contact";
+import Textbox from "@/components/Textbox";
 export default async function Page({ params }) {
   const { slug } = params; // "contact", "about", etc.
 
@@ -24,6 +25,8 @@ export default async function Page({ params }) {
         return <Aboutus data={block} />;
       case "blocks.contact":
         return <Contact data={block} />;
+       case "blocks.textbox":
+        return <Textbox data={block} />;
       default:
         return null;
     }
