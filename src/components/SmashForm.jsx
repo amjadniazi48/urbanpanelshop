@@ -33,21 +33,27 @@ export default function SmashForm() {
   const [formValues, setFormValues] = useState(
     state.formData || initialState.formData
   );
+const [showPopup, setShowPopup] = useState(false);
 
-  useEffect(() => {
-    if (state.success) {
-      // Reset form on success
-      document.getElementById("smash-form").reset();
-      setImageCount(0);
-      setImagePreviews([null, null, null]);
-      setIsAtFault("0");
-      setFormValues(initialState.formData);
-    } else if (state.formData) {
-      // Update form values from server action response
-      setFormValues(state.formData);
-      setIsAtFault(state.formData.fault || "0");
-    }
-  }, [state]);
+useEffect(() => {
+  if (state.success) {
+    // Reset form on success
+    document.getElementById("smash-form").reset();
+    setImageCount(0);
+    setImagePreviews([null, null, null]);
+    setIsAtFault("0");
+    setFormValues(initialState.formData);
+
+    // ✅ open custom popup
+    setShowPopup(true);
+  } else if (state.formData) {
+    setFormValues(state.formData);
+    setIsAtFault(state.formData.fault || "0");
+  }
+}, [state]);
+
+
+
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -115,7 +121,12 @@ export default function SmashForm() {
           {state.message}
         </div>
       )}
-
+     {/* Success Message */}
+        {state.message && state.success && (
+          <div className="alert alert-success mt-4" role="alert">
+            {state.message}
+          </div>
+        )}
       <form
         id="smash-form"
         action={formAction}
@@ -668,13 +679,35 @@ export default function SmashForm() {
           </button>
         </div>
 
-        {/* Success Message */}
-        {state.message && state.success && (
-          <div className="alert alert-success mt-4" role="alert">
-            {state.message}
-          </div>
-        )}
+      
       </form>
-    </>
-  );
+
+      {/* Success Lightbox */}
+{showPopup && (
+  <div
+    className="modal d-block"
+    tabIndex="-1"
+    style={{
+      backgroundColor: "rgba(0, 0, 0, 0.5)",
+    }}
+  >
+    <div className="modal-dialog modal-dialog-centered">
+      <div className="modal-content text-center p-4">
+        <div style={{ fontSize: "3rem", color: "#28a745" }}>✔️</div>
+        <h4 className="mt-3 text-success">
+          {state.message || "Form submitted successfully!"}
+        </h4>
+        <button
+          className="btn btn-success mt-4"
+          onClick={() => setShowPopup(false)}
+        >
+          OK
+        </button>
+      </div>
+    </div>
+  </div>
+)}
+
+  </>
+);
 }
