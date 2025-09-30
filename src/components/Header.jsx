@@ -6,9 +6,20 @@ import { usePathname } from "next/navigation";
 
 export default function Header({ headerdata, menu }) {
   const pathname = usePathname();
-  console.log("this is the pathname", pathname);
   const logo = headerdata?.logo?.[0];
   const sections = menu?.sections || [];
+
+  // Function to close the offcanvas menu
+  const closeOffcanvas = () => {
+    if (typeof window !== "undefined" && window.bootstrap) {
+      const offcanvasEl = document.getElementById("navbarNav");
+      if (offcanvasEl) {
+        // ✅ force instance creation if not present
+        const offcanvas = window.bootstrap.Offcanvas.getOrCreateInstance(offcanvasEl);
+        offcanvas.hide();
+      }
+    }
+  };
 
   return (
     <header
@@ -17,7 +28,7 @@ export default function Header({ headerdata, menu }) {
     >
       <div className="container px-3">
         {/* Logo */}
-        <Link href="/" className="navbar-brand pe-3">
+        <Link href="/" className="navbar-brand pe-3" onClick={closeOffcanvas}>
           {logo ? (
             <img
               src={logo.url}
@@ -47,7 +58,6 @@ export default function Header({ headerdata, menu }) {
           className="offcanvas offcanvas-end flex-grow-1"
           tabIndex={-1}
           aria-labelledby="navbarNavLabel"
-          suppressHydrationWarning
         >
           <div className="offcanvas-header border-bottom d-lg-none">
             <h5 className="offcanvas-title" id="navbarNavLabel">
@@ -65,7 +75,6 @@ export default function Header({ headerdata, menu }) {
             <ul className="navbar-nav mx-auto mb-2 mb-lg-0">
               {sections.map((section) => {
                 if (section.dropdown && section.dropdown.length > 0) {
-                  // Dropdown menu case
                   return (
                     <li key={section.id} className="nav-item dropdown">
                       <div className="d-flex align-items-center">
@@ -74,6 +83,7 @@ export default function Header({ headerdata, menu }) {
                           className={`nav-link ${
                             pathname === section.headingUrl ? "active" : ""
                           }`}
+                          onClick={closeOffcanvas}
                         >
                           {section.heading}
                         </Link>
@@ -88,14 +98,17 @@ export default function Header({ headerdata, menu }) {
                       <ul className="dropdown-menu">
                         {section.dropdown.map((item) => (
                           <li key={item.id}>
-                          <Link
-  href={item.titleUrl || "#"}
-  className="dropdown-item text-wrap text-break"
-  style={{ whiteSpace: "normal", maxWidth: "250px" }}
->
-  {item.title}
-</Link>
-
+                            <Link
+                              href={item.titleUrl || "#"}
+                              className="dropdown-item text-wrap text-break"
+                              style={{
+                                whiteSpace: "normal",
+                                maxWidth: "250px",
+                              }}
+                              onClick={closeOffcanvas}
+                            >
+                              {item.title}
+                            </Link>
                           </li>
                         ))}
                       </ul>
@@ -103,7 +116,6 @@ export default function Header({ headerdata, menu }) {
                   );
                 }
 
-                // Normal menu link
                 return (
                   <li key={section.id} className="nav-item">
                     <Link
@@ -111,6 +123,7 @@ export default function Header({ headerdata, menu }) {
                       className={`nav-link ${
                         pathname === section.headingUrl ? "active" : ""
                       }`}
+                      onClick={closeOffcanvas}
                     >
                       {section.heading}
                     </Link>
@@ -119,11 +132,12 @@ export default function Header({ headerdata, menu }) {
               })}
             </ul>
 
-            {/* Upload Button inside offcanvas (mobile only) */}
+            {/* Upload Button (Mobile only) */}
             <Link
               href={headerdata?.ctaUrl || "/smash"}
               className="btn w-100 d-lg-none"
               style={{ backgroundColor: "#F7A604", color: "black" }}
+              onClick={closeOffcanvas}
             >
               <ImageUp />
               &nbsp;&nbsp;{headerdata?.ctaText || "UPLOAD YOUR SMASH"}
