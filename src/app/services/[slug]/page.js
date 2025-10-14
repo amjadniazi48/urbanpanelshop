@@ -45,6 +45,7 @@ const ServicesDetails = ({ params: paramsPromise }) => {
           })) || [];
 
         setPhotos(photoData);
+        console.log("this  is photos data",photos);
       } catch (err) {
         setError(err.message);
       } finally {

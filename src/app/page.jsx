@@ -44,6 +44,7 @@ export default async function Home() {
         return <Testimonials data={block} />; // ✅ pass the block directly
       case "blocks.recent-repairs":
         return <Carcomparsion data={block} />; // ✅ pass the block directly
+     
       default:
         return null;
     }
