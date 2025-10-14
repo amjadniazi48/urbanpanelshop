@@ -23,6 +23,7 @@ console.log("mapdata",data);
               style={{ minHeight: "300px" }}
               dangerouslySetInnerHTML={{ __html: data?.map }}
             />
+         
           </div>
         </div>
 

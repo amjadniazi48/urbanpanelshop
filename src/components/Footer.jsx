@@ -1,8 +1,8 @@
 "use client";
 import Link from "next/link";
-
+import { LucidePhone } from "lucide-react";
 export default function Footer( {footerData}) {
-  console.log("this is the footer", footerData);
+ // console.log("this is the footer", footerData);
   //const logo = headerdata?.logo?.[0];
   const links = footerData?.Menulinks || [];
   const socials = footerData?.Sociallinks || [];
@@ -18,6 +18,7 @@ export default function Footer( {footerData}) {
              
             </div>
             <p className="fs-sm pb-lg-3 mb-4 text-white">{footerData?.description}</p>
+               <Link href="tel:+61 03 8351 9771" style={{textDecoration:"none"}}><LucidePhone />&nbsp; +61 03 8351 9771</Link>
           </div>
 
           <div className="col-xl-6 col-lg-7 col-md-5 offset-xl-2 offset-md-1 pt-4 pt-md-1 pt-lg-0">
