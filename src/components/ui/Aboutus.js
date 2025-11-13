@@ -143,7 +143,7 @@ const Aboutus = ({ data }) => {
               {/* Video Thumbnail */}
               <div className="w-100" style={{ aspectRatio: "16/9" }}>
                 <Image
-                  src="https://capable-cat-c408f012a1.media.strapiapp.com/urbanpanel_265fffa07f.jpg"
+                  src="https://res.cloudinary.com/dlcgduiez/image/upload/v1763048912/urbanpanel_kkfe9l.jpg"
                   alt="Video thumbnail"
                   fill
                   className="object-cover rounded-3"
