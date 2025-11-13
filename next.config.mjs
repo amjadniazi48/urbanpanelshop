@@ -19,6 +19,11 @@ const nextConfig = {
         hostname: 'i.ytimg.com',
         pathname: '/vi/**',
       },
+        {
+        protocol: 'https',
+        hostname: 'https://capable-cat-c408f012a1.strapiapp.com',
+        pathname: '/**',
+      },
     ],
   },
 
