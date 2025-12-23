@@ -1,3 +1,4 @@
+export const dynamic = "force-dynamic";
 
 import { Poppins } from "next/font/google";
 import Preloader from "@/components/Preloader";
