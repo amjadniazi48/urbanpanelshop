@@ -5,7 +5,7 @@ import Contact from "@/components/Contact";
 import Textbox from "@/components/Textbox";
 import Map from "@/components/ui/Map";
 export default async function Page({ params }) {
-  const { slug } = params; // "contact", "about", etc.
+  const { slug } = await params; // "contact", "about", etc.
 
   async function loader() {
     const path = `/api/pages?filters[slug][$eq]=${slug}&populate=blocks`;
