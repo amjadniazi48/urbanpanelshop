@@ -14,7 +14,7 @@ const Urbanservices = ({ data }) => {
   const { heading, subheading, services } = data;
 
   return (
-    <section className="bg-dark p-5" data-bs-theme="dark">
+    <section className=" p-5" data-bs-theme="dark" style={{backgroundColor:"#151822"}}>
       {/* ✅ Heading */}
       <div className="d-flex align-items-center justify-content-center mb-4">
         <h6 className="display-6 text-warning text-center m-0">{heading}</h6>
@@ -22,7 +22,7 @@ const Urbanservices = ({ data }) => {
 
       {/* ✅ Subtitle */}
       <p
-        className="mb-4 mx-auto pb-3 fs-lg text-center text-white"
+        className="mb-4 mx-auto pb-3 fs-lg text-center text-muted"
         style={{ maxWidth: "636px" }}
       >
         {subheading}
@@ -68,7 +68,7 @@ const Urbanservices = ({ data }) => {
                       {item.title}
                     </h3>
                     <div className="card-portfolio-meta d-flex align-items-center justify-content-between">
-                      <span className="text-white fs-xs text-truncate opacity-70 pe-3">
+                      <span className="text-muted fs-xs text-truncate opacity-70 pe-3">
                         {item.summary}
                       </span>
                       <i className="bx bx-right-arrow-circle fs-3 text-gradient-primary"></i>

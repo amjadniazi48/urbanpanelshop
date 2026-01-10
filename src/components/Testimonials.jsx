@@ -14,14 +14,14 @@ const Testimonials = ({ data }) => {
   if (!data?.reviews) return null;
 
   return (
-    <section className="py-5" style={{ backgroundColor: "#f1f1f1" }}>
+    <section className="py-5" >
       <div className="container py-2 py-md-4 py-lg-5">
-        <h2 className="h1 text-center pb-3 pb-lg-0 mb-4 mb-lg-5">
+        <h2 className="h1 text-center pb-3 pb-lg-0 mb-4 mb-lg-5 text-white">
           What Our Attendees Say
         </h2>
 
         <div
-          className="position-relative px-sm-5 mx-auto"
+          className="position-relative px-sm-5 mx-auto "
           style={{ maxWidth: "976px" }}
         >
           <Swiper
@@ -37,7 +37,7 @@ const Testimonials = ({ data }) => {
           >
             {data.reviews.map((item) => (
               <SwiperSlide key={item.id}>
-                <figure className="card h-100 position-relative border-0 shadow-sm pt-4 p-0 p-xxl-4 my-0 mt-4">
+                <figure className="card h-100 position-relative border-0 shadow-sm pt-4 p-0 p-xxl-4 my-0 mt-4" style={{backgroundColor:"#151822"}}>
                   <span
                     className="btn btn-icon btn-lg pe-none position-absolute top-0 start-0 translate-middle-y ms-4 ms-xxl-5"
                     style={{ backgroundColor: "#f7a604", color: "white" }}
@@ -74,7 +74,7 @@ const Testimonials = ({ data }) => {
                       </div>
                     )}
                     <div className="ps-3">
-                      <h6 className="fw-semibold lh-base mb-0">{item.name}</h6>
+                      <h6 className="fw-semibold lh-base mb-0 text-white">{item.name}</h6>
                       <span className="fs-sm text-muted">{item.jobtitle}</span>
                     </div>
                   </figcaption>

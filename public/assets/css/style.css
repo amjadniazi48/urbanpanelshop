@@ -6,7 +6,8 @@ font-family: "Poppins" !important;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
 }
-:root, [data-bs-theme=light] {
+:root, [data-bs-theme=dark] {
+    --si-body-bg: #0b0f19;
     --si-blue: #0d6efd;
     --si-indigo: #6610f2;
     --si-purple: #6f42c1;
@@ -57,6 +58,7 @@ font-family: "Poppins" !important;
     --si-primary-bg-subtle: #eff0fe;
     --si-secondary-bg-subtle: #f3f6ff;
     --si-success-bg-subtle: #e9f9ef;
+    --si-border-color: hsla(0, 0%, 100%, .14);
 Show all properties (68 more)
 }
 
@@ -240,4 +242,161 @@ body {
     --si-accordion-btn-icon-box-bg: #f2d293;
     --si-accordion-btn-icon-box-active-bg: #F7A604;
     --si-accordion-btn-icon-box-active-shadow: 0 -0.5rem 1.125rem -0.5rem rgba(99, 102, 241, .9);
+}
+  .steps {
+          --si-steps-padding-y: 1.5rem;
+          --si-steps-padding-x: 1.5rem;
+          --si-steps-number-size: 7.625rem;
+          --si-steps-number-inner-size: 5.625rem;
+          --si-steps-number-size-sm: 5rem;
+          --si-steps-number-inner-size-sm: 3.5rem;
+          --si-steps-number-border-radius: 50%;
+          --si-steps-number-bg: #181b24;
+          --si-steps-number-inner-bg: hsla(0, 0%, 100%, 0.04);
+          --si-steps-number-inner-box-shadow: 0 0.275rem 0.75rem -0.0625rem
+              rgba(11, 15, 25, 0.06),
+            0 0.125rem 0.4rem -0.0625rem rgba(11, 15, 25, 0.03);
+          --si-steps-connect-width: 1px;
+          --si-steps-connect-color: rgba(255, 255, 255, 0.14);
+          display: flex;
+          flex-direction: column;
+        }
+
+        /* Individual step */
+        .step {
+          position: relative;
+          display: flex;
+          flex-direction: column;
+          padding: var(--si-steps-padding-y) var(--si-steps-padding-x);
+        }
+
+        /* Step number container */
+        .step-number {
+          position: relative;
+          z-index: 5;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          flex-shrink: 0;
+          width: var(--si-steps-number-size-sm);
+          height: var(--si-steps-number-size-sm);
+          margin: 0 auto 1rem;
+          border-radius: var(--si-steps-number-border-radius);
+          background-color: var(--si-steps-number-bg);
+        }
+
+        /* Step number inner circle */
+        .step-number-inner {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          width: var(--si-steps-number-inner-size-sm);
+          height: var(--si-steps-number-inner-size-sm);
+          border-radius: var(--si-steps-number-border-radius);
+          background-color: var(--si-steps-number-inner-bg);
+          box-shadow: var(--si-steps-number-inner-box-shadow);
+        }
+
+        /* Step body text */
+        .step-body {
+          text-align: center;
+        }
+
+        /* Horizontal layout on medium screens and up */
+        @media (min-width: 768px) {
+          .steps-horizontal-md {
+            flex-direction: row;
+            align-items: flex-start;
+          }
+
+          .steps-horizontal-md .step {
+            flex: 1;
+            text-align: center;
+            position: relative;
+          }
+
+          /* Connector line between steps */
+          .steps-horizontal-md .step::after {
+            content: "";
+            position: absolute;
+            top: calc(var(--si-steps-number-size) / 2);
+            left: 50%;
+            width: 100%;
+            height: var(--si-steps-connect-width);
+            background-color: var(--si-steps-connect-color);
+            z-index: 1;
+          }
+
+          /* Remove line after last step */
+          .steps-horizontal-md .step:last-child::after {
+            display: none;
+          }
+
+          /* Larger circles on desktop */
+          .step-number {
+            width: var(--si-steps-number-size);
+            height: var(--si-steps-number-size);
+            margin-bottom: 1.5rem;
+          }
+
+          .step-number-inner {
+            width: var(--si-steps-number-inner-size);
+            height: var(--si-steps-number-inner-size);
+          }
+        }
+
+        /* Mobile: Vertical layout with left-aligned connector */
+        @media (max-width: 767px) {
+          .step {
+            flex-direction: row;
+            text-align: left;
+            padding-left: 0;
+          }
+
+          .step-number {
+            margin: 0 1rem 0 0;
+          }
+
+          .step-body {
+            text-align: left;
+            flex: 1;
+          }
+
+          /* Vertical connector line on mobile */
+          .step::before {
+            content: "";
+            position: absolute;
+            left: calc(var(--si-steps-number-size-sm) / 2);
+            top: calc(var(--si-steps-number-size-sm) + var(--si-steps-padding-y));
+            width: var(--si-steps-connect-width);
+            height: calc(100% - var(--si-steps-number-size-sm));
+            background-color: var(--si-steps-connect-color);
+            z-index: 1;
+          }
+
+          /* Remove line after last step on mobile */
+          .step:last-child::before {
+            display: none;
+          }
+
+/* Header base styles - transparent by default */
+.header.navbar {
+  background-color: transparent !important;
+  transition: all 0.3s ease !important;
+}
+
+/* When scrolled/stuck - SOLID background and fixed position */
+.header.navbar-stuck {
+  background-color: #0b0f19 !important;  /* Fully solid dark background */
+  backdrop-filter: blur(10px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.35);
+}
+
+/* Override navbar-dark background */
+.navbar-dark.header {
+  background-color: transparent !important;
+}
+
+.navbar-dark.header.navbar-stuck {
+  background-color: #0b0f19 !important;  /* Fully solid, no transparency */
 }

@@ -1,12 +1,4 @@
-import Hero from "../components/Hero";
-
-import Testimonials from "@/components/Testimonials";
-
-import Carcomparsion from "@/components/Carcomparsion";
-import Urbanservices from "@/components/Urbanservices";
-import Smashupload from "@/components/Smashupload";
-
-import Workflow from "@/components/Workflow";
+import HomeClient from "./HomeClient";
 
 //data from lib
 import { getStrapiURL } from "@/lib/utils";
@@ -25,29 +17,7 @@ export default async function Home() {
       cache: "no-store", // ✅ disables cache completely
     });
 
-    // console.log("Data fetched in loader after revalidation:", data);
     return data;
-  }
-
-  // BlockRenderer function with switch-case to render components dynamically
-  function BlockRenderer(block) {
-    switch (block.__component) {
-      case "blocks.swiper-hero":
-        return <Hero data={block} />; // ✅ pass the block directly
-      case "blocks.hero-section":
-        return <Smashupload data={block} />; // ✅ pass the block directly
-      case "blocks.workflow":
-        return <Workflow data={block} />; // ✅ pass the block directly
-      case "blocks.services":
-        return <Urbanservices data={block} />; // ✅ pass the block directly
-      case "blocks.reviews":
-        return <Testimonials data={block} />; // ✅ pass the block directly
-      case "blocks.recent-repairs":
-        return <Carcomparsion data={block} />; // ✅ pass the block directly
-     
-      default:
-        return null;
-    }
   }
 
   // Fetching data from the loader
@@ -60,11 +30,6 @@ export default async function Home() {
     return <div>No content available</div>;
   }
 
-  return (
-    <div>
-      {homeData.map((block, index) => (
-        <div key={block.id || `block-${index}`}>{BlockRenderer(block)}</div>
-      ))}
-    </div>
-  );
+  // ✅ Pass the homeData to the client component
+  return <HomeClient homeData={homeData} />;
 }
