@@ -5,7 +5,7 @@ export default function SmashPage() {
     <section
       className="container py-2  mb-5 shadow-sm"
       style={{
-        backgroundColor: "#grey",
+  
       
         backgroundSize: "cover",
         backgroundPosition: "center",

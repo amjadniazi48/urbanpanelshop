@@ -9,11 +9,11 @@ const Contact = ({ data }) => {
     <section className="container py-2 py-lg-4 py-xl-5 mb-3 mt-3 "
       style={{
           textAlign: "justify",
-          border: "1px solid #C6F0C2",
-          backgroundColor: "#EAFBE7",
+        
+      
         }}
     >
-      <div className="row py-5">
+      <div className="row py-5 mt-5" style={{backgroundColor:"#151822"}}>
         {/* Map */}
         <div className="col-lg-6 mb-5 mb-lg-0">
           <div className="d-flex flex-column h-100 shadow-sm rounded-3 overflow-hidden">

@@ -136,11 +136,11 @@ useEffect(() => {
         {/* Section 1: Upload Images */}
         <div
           className="card mb-5 pt-2"
-          style={{ backgroundColor: "#FAFAFA", textAlign: "left" }}
+          style={{ textAlign: "left",backgroundColor:"#151822" }}
         >
           <div className="card-body">
             <h2 className="h4 mb-3">
-              <span className="badge bg-warning text-dark">1</span>
+              <span className="badge bg-warning text-muted">1</span>
               &nbsp;&nbsp;Upload up to 3 clear photos of your smash
             </h2>
             <p className="text-muted mb-3">Upload image file*</p>
@@ -385,7 +385,7 @@ useEffect(() => {
         <div
           className="card"
           style={{
-            backgroundColor: "#FAFAFA",
+          backgroundColor:"#151822" ,
             paddingBottom: "5rem",
             marginBottom: "3rem",
             textAlign: "left",
@@ -523,7 +523,7 @@ useEffect(() => {
         {/* Section 3: Vehicle Details */}
         <div
           className="card mb-4"
-          style={{ backgroundColor: "#FAFAFA", paddingBottom: "5rem" }}
+          style={{paddingBottom: "5rem",backgroundColor:"#151822"  }}
         >
           <div className="card-body" style={{ textAlign: "left" }}>
             <h2 className="h4 mb-3 pt-2">

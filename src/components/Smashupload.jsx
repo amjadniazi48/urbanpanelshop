@@ -18,15 +18,9 @@ const Smashupload = ({ data }) => {
 
   return (
     <section
-      className="container py-2 mt-5 mb-2 shadow-lg"
-      style={{
-        backgroundImage: `url(${backgroundImage?.url })`,
-        backgroundSize: "cover",
-        backgroundPosition: "center",
-        borderRadius: "1rem",
-      }}
+      className="container py-2 mt-5 mb-2" 
     >
-      <div className="container py-5">
+      <div className="container py-5" >
         <div className="row align-items-center">
           {/* LEFT COLUMN - Text and Button */}
           <div className="col-md-6 text-center text-md-start mb-4 mb-md-0">
