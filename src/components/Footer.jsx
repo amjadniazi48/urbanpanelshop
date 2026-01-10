@@ -8,7 +8,8 @@ export default function Footer( {footerData}) {
   const socials = footerData?.Sociallinks || [];
 
   return (
-    <footer className="footer bg-dark pt-5 pb-4 pb-lg-5 mt-2 mt-md-0">
+    <footer className="footer pt-5 pb-4 pb-lg-5 mt-2 mt-md-0"  style={{backgroundColor:"#151822"}}>
+            
       <div className="container pt-lg-4">
         <div className="row pb-5">
           <div className="col-lg-4 col-md-6">
