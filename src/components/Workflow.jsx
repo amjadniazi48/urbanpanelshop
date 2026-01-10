@@ -20,6 +20,7 @@ const Workflow = ({ data }) => {
                     height={64}
                     className="img-fluid"
                     style={{ maxWidth: "64px", height: "auto" }}
+                      unoptimized={true}
                   />
                 )}
               </div>
