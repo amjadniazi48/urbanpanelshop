@@ -21,7 +21,7 @@ const nextConfig = {
       },
         {
         protocol: 'https',
-        hostname: 'https://capable-cat-c408f012a1.strapiapp.com',
+        hostname: 'capable-cat-c408f012a1.strapiapp.com',
         pathname: '/**',
       },
     ],
