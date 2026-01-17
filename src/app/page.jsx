@@ -1,35 +1,37 @@
 import HomeClient from "./HomeClient";
-
-//data from lib
+import FAQSchema from "@/components/seo/FAQSchema";
 import { getStrapiURL } from "@/lib/utils";
 import { fetchData } from "@/lib/fetch";
 
 export default async function Home() {
-  // Loader function to fetch data
   async function loader() {
     const path = `/api/landing-page`;
     const baseUrl = getStrapiURL();
     const url = new URL(path, baseUrl);
-    console.log("Full API URL", url.href); // Debugging the complete URL
     const authToken = process.env.STRAPI_JWT;
 
-    const data = await fetchData(url.href, authToken, {
-      cache: "no-store", // ✅ disables cache completely
+    return await fetchData(url.href, authToken, {
+      cache: "no-store",
     });
-
-    return data;
   }
 
-  // Fetching data from the loader
   const data = await loader();
-  const homeData = data?.data?.SwiperHero || []; // ✅ array of blocks
-  console.log("Extracted home blocks:", homeData);
+  const homeData = data?.data?.SwiperHero || [];
 
-  if (homeData.length === 0) {
-    console.log("No home data found");
-    return <div>No content available</div>;
-  }
+  // ✅ Extract FAQ blocks for SEO
+  const faqBlocks = homeData.filter(
+    (block) => block.__component === "blocks.faq-section"
+  );
 
-  // ✅ Pass the homeData to the client component
-  return <HomeClient homeData={homeData} />;
+  return (
+    <>
+      {/* ✅ JSON-LD injected on SERVER */}
+      {faqBlocks.map((block) => (
+        <FAQSchema key={block.id} faqs={block.faqs} />
+      ))}
+
+      {/* UI */}
+      <HomeClient homeData={homeData} />
+    </>
+  );
 }

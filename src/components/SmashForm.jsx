@@ -136,11 +136,11 @@ useEffect(() => {
         {/* Section 1: Upload Images */}
         <div
           className="card mb-5 pt-2"
-          style={{ textAlign: "left",backgroundColor:"#151822" }}
+          style={{ backgroundColor: "#FAFAFA", textAlign: "left" }}
         >
           <div className="card-body">
             <h2 className="h4 mb-3">
-              <span className="badge bg-warning text-muted">1</span>
+              <span className="badge bg-warning text-dark">1</span>
               &nbsp;&nbsp;Upload up to 3 clear photos of your smash
             </h2>
             <p className="text-muted mb-3">Upload image file*</p>
@@ -157,7 +157,7 @@ useEffect(() => {
                           checked={!!imagePreviews[0]}
                           readOnly
                         />
-                        <span className="ms-2 text-muted">
+                        <span className="ms-2">
                           Photo 1 (max file size 10MB)
                         </span>
                       </div>
@@ -385,7 +385,7 @@ useEffect(() => {
         <div
           className="card"
           style={{
-          backgroundColor:"#151822" ,
+            backgroundColor: "#FAFAFA",
             paddingBottom: "5rem",
             marginBottom: "3rem",
             textAlign: "left",
@@ -400,7 +400,7 @@ useEffect(() => {
 
             <div className="row g-3">
               <div className="col-md-6">
-                <label htmlFor="name" className="form-label fw-bold text-muted">
+                <label htmlFor="name" className="form-label fw-bold">
                   Name*
                 </label>
                 <input
@@ -423,7 +423,7 @@ useEffect(() => {
               </div>
 
               <div className="col-md-6">
-                <label htmlFor="email" className="form-label fw-bold text-muted">
+                <label htmlFor="email" className="form-label fw-bold">
                   Email*
                 </label>
                 <input
@@ -446,7 +446,7 @@ useEffect(() => {
               </div>
 
               <div className="col-12">
-                <label htmlFor="smashDetails" className="form-label fw-bold text-muted">
+                <label htmlFor="smashDetails" className="form-label fw-bold">
                   Tell us about your smash*
                 </label>
                 <textarea
@@ -472,7 +472,7 @@ useEffect(() => {
               </div>
 
               <div className="col-md-6">
-                <label htmlFor="phone" className="form-label fw-bold text-muted">
+                <label htmlFor="phone" className="form-label fw-bold">
                   Phone*
                 </label>
                 <input
@@ -495,7 +495,7 @@ useEffect(() => {
               </div>
 
               <div className="col-md-6">
-                <label htmlFor="suburb" className="form-label fw-bold text-muted">
+                <label htmlFor="suburb" className="form-label fw-bold">
                   Suburb*
                 </label>
                 <input
@@ -523,7 +523,7 @@ useEffect(() => {
         {/* Section 3: Vehicle Details */}
         <div
           className="card mb-4"
-          style={{paddingBottom: "5rem",backgroundColor:"#151822"  }}
+          style={{ backgroundColor: "#FAFAFA", paddingBottom: "5rem" }}
         >
           <div className="card-body" style={{ textAlign: "left" }}>
             <h2 className="h4 mb-3 pt-2">
@@ -534,7 +534,7 @@ useEffect(() => {
 
             <div className="row g-3">
               <div className="col-md-6">
-                <label htmlFor="carMake" className="form-label fw-bold text-muted">
+                <label htmlFor="carMake" className="form-label fw-bold">
                   Car make/model*
                 </label>
                 <input
@@ -557,7 +557,7 @@ useEffect(() => {
               </div>
 
               <div className="col-md-6">
-                <label htmlFor="registration" className="form-label fw-bold text-muted">
+                <label htmlFor="registration" className="form-label fw-bold">
                   Registration*
                 </label>
                 <input
@@ -580,7 +580,7 @@ useEffect(() => {
               </div>
 
               <div className="col-md-6">
-                <label htmlFor="year" className="form-label fw-bold text-muted">
+                <label htmlFor="year" className="form-label fw-bold">
                   Year*
                 </label>
                 <input
@@ -605,7 +605,7 @@ useEffect(() => {
               </div>
 
               <div className="col-md-6">
-                <label className="form-label fw-bold d-block text-muted">
+                <label className="form-label fw-bold d-block">
                   Were you at fault?*
                 </label>
                 <div className="btn-group" role="group">

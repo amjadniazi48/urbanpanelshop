@@ -3,14 +3,15 @@
 import { useEffect } from "react";
 import AOS from "aos";
 import "aos/dist/aos.css";
-
+import FaqAccordion from "@/components/FAQAccordion";
 import Hero from "../components/Hero";
 import Testimonials from "@/components/Testimonials";
 import Carcomparsion from "@/components/Carcomparsion";
 import Urbanservices from "@/components/Urbanservices";
 import Smashupload from "@/components/Smashupload";
 import Workflow from "@/components/Workflow";
-
+import About from "../components/About";
+import WhyChoose from "@/components/WhyChoose";
 export default function HomeClient({ homeData }) {
   useEffect(() => {
     // Initialize AOS (Animate On Scroll)
@@ -34,7 +35,7 @@ export default function HomeClient({ homeData }) {
       "zoom-in",
       "fade-right",
     ];
-    
+
     // Assign animation based on index (cycle through animations)
     const animation = animations[index % animations.length];
     const delay = index * 100;
@@ -73,13 +74,31 @@ export default function HomeClient({ homeData }) {
       case "blocks.reviews":
         return (
           <div {...animationProps}>
-            <Testimonials data={block} />
+            <Testimonials />
+          </div>
+        );
+      case "blocks.problem-fixation":
+        return (
+          <div {...animationProps}>
+            <WhyChoose data={block} />
           </div>
         );
       case "blocks.recent-repairs":
         return (
           <div {...animationProps}>
             <Carcomparsion data={block} />
+          </div>
+        );
+      case "blocks.about-us":
+        return (
+          <div {...animationProps}>
+            <About data={block} />
+          </div>
+        );
+      case "blocks.faqs":
+        return (
+          <div {...animationProps}>
+            <FaqAccordion data={block} />
           </div>
         );
       default:

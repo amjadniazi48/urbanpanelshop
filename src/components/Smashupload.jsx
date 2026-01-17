@@ -17,17 +17,10 @@ const Smashupload = ({ data }) => {
   } = data.Hero;
 
   return (
-    <section
-      className="container py-2 mt-5 mb-2 shadow-lg"
-      style={{
-        backgroundImage: `url(${backgroundImage?.url })`,
-        backgroundSize: "cover",
-        backgroundPosition: "center",
-        borderRadius: "1rem",
-      }}
-    >
+     <section class="bg-secondary pb-md-2 pb-lg-5" style={{backgroundColor:"#EFFDF9", border:"1px solid #A7F3D0"}}>
       <div className="container py-5">
-        <div className="row align-items-center">
+        <div className="row align-items-center" >
+        
           {/* LEFT COLUMN - Text and Button */}
           <div className="col-md-6 text-center text-md-start mb-4 mb-md-0">
             <img
