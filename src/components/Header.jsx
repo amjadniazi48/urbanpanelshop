@@ -34,11 +34,11 @@ export default function Header({ headerdata, menu }) {
     <>
       {/* Top Contact Bar - Black Background */}
       <div
-        className="bg-black text-white py-2"
+        className="top-contact-bar bg-black text-white py-2"
         style={{
           position: "sticky",
           top: 0,
-          zIndex: 1050,
+          zIndex: 1055,
           width: "100%",
         }}
       >
@@ -100,10 +100,10 @@ export default function Header({ headerdata, menu }) {
                     <path d="M3.654 1.328a.678.678 0 0 0-1.015-.063L1.605 2.3c-.483.484-.661 1.169-.45 1.77a17.6 17.6 0 0 0 4.168 6.608 17.6 17.6 0 0 0 6.608 4.168c.601.211 1.286.033 1.77-.45l1.034-1.034a.678.678 0 0 0-.063-1.015l-2.307-1.794a.68.68 0 0 0-.58-.122l-2.19.547a1.75 1.75 0 0 1-1.657-.459L5.482 8.062a1.75 1.75 0 0 1-.46-1.657l.548-2.19a.68.68 0 0 0-.122-.58zM1.884.511a1.745 1.745 0 0 1 2.612.163L6.29 2.98c.329.423.445.974.315 1.494l-.547 2.19a.68.68 0 0 0 .178.643l2.457 2.457a.68.68 0 0 0 .644.178l2.189-.547a1.75 1.75 0 0 1 1.494.315l2.306 1.794c.829.645.905 1.87.163 2.611l-1.034 1.034c-.74.74-1.846 1.065-2.877.702a18.6 18.6 0 0 1-7.01-4.42 18.6 18.6 0 0 1-4.42-7.009c-.362-1.03-.037-2.137.703-2.877z" />
                   </svg>
                   <a
-                    href="tel:+1234567890"
+                    href="tel:+61038351977"
                     className="text-white text-decoration-none small"
                   >
-                    (123) 456-7890
+                    +61 03 8351 9771
                   </a>
                 </div>
 
@@ -151,7 +151,7 @@ export default function Header({ headerdata, menu }) {
                 alt={logo.alternativeText || logo.name}
               />
             ) : (
-              <span>UrbanPanel Shop</span>
+              <span>Urban Panel Shop</span>
             )}
           </Link>
 
@@ -278,9 +278,33 @@ export default function Header({ headerdata, menu }) {
         </div>
       </header>
 
-      <style jsx>{`
+      <style jsx global>{`
         .social-icon:hover {
           color: #ffc107 !important;
+        }
+        
+        /* Smooth transition for background color */
+        .header {
+          transition: background-color 0.3s ease;
+        }
+        
+        /* Fix for mobile - ensure offcanvas doesn't cover top bar */
+        @media (max-width: 991.98px) {
+          .offcanvas-backdrop {
+            top: 40px !important;
+            z-index: 1040 !important;
+          }
+          
+          .offcanvas.offcanvas-end {
+            top: 40px !important;
+            height: calc(100vh - 40px) !important;
+            z-index: 1045 !important;
+          }
+        }
+        
+        /* Ensure top bar stays above offcanvas */
+        .top-contact-bar {
+          z-index: 1055 !important;
         }
       `}</style>
     </>
