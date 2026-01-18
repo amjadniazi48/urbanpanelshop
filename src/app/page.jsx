@@ -20,9 +20,9 @@ export default async function Home() {
 
   // ✅ Extract FAQ blocks for SEO
   const faqBlocks = homeData.filter(
-    (block) => block.__component === "blocks.faq-section"
+    (block) => block.__component === "blocks.faqs"
   );
-
+  //console.log("ALL BLOCKS:", homeData);
   return (
     <>
       {/* ✅ JSON-LD injected on SERVER */}

@@ -1,4 +1,5 @@
 export default function FAQSchema({ faqs }) {
+ // console.log("amjad faqs",faqs);
   if (!faqs || faqs.length === 0) return null;
 
   const schema = {
