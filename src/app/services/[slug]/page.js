@@ -163,7 +163,7 @@ const ServicesDetails = ({ params: paramsPromise }) => {
               Contact us today to discuss your project and get a free quote
             </p>
             <div className="cta-buttons">
-              <a href="/contact" className="btn-primary-cta">
+              <a href="/smash" className="btn-primary-cta">
                 Contact Us
               </a>
               <a href="/smash" className="btn-secondary-cta">
