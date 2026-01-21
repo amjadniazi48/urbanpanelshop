@@ -5,13 +5,14 @@ import AOS from "aos";
 import "aos/dist/aos.css";
 import FaqAccordion from "@/components/FAQAccordion";
 import Hero from "../components/Hero";
-import Testimonials from "@/components/Testimonials";
+// import Testimonials from "@/components/Testimonials";
 import Carcomparsion from "@/components/Carcomparsion";
 import Urbanservices from "@/components/Urbanservices";
 import Smashupload from "@/components/Smashupload";
 import Workflow from "@/components/Workflow";
 import About from "../components/About";
 import WhyChoose from "@/components/WhyChoose";
+import Reviews from "@/components/Reviews";
 export default function HomeClient({ homeData }) {
   useEffect(() => {
     // Initialize AOS (Animate On Scroll)
@@ -74,7 +75,7 @@ export default function HomeClient({ homeData }) {
       case "blocks.reviews":
         return (
           <div {...animationProps}>
-            <Testimonials />
+            <Reviews />
           </div>
         );
       case "blocks.problem-fixation":
