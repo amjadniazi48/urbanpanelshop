@@ -12,7 +12,7 @@ export default function Testimonials() {
     const script = document.createElement("script");
     script.id = "trustindex-script";
     script.src =
-      "https://cdn.trustindex.io/loader.js?90c8a2c62ea5175b2406e57f9f8";
+      "https://cdn.trustindex.io/loader.js?ChIJ5Z2AYFhP1moRb8NDWek6TSQ";
     script.async = true;
     script.defer = true;
 
