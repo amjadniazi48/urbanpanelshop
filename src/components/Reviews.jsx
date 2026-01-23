@@ -1,22 +1,36 @@
 "use client";
 
-import Script from "next/script";
+import { useEffect } from "react";
 
 export default function Reviews() {
-  return (
-    <>
-      {/* Widget container */}
-      <div
-        id="featurable-a6cebbfe-bfa9-4c51-aba6-f94b8b668e3d"
-        data-featurable-async
-      ></div>
+  useEffect(() => {
+    // Clear old widget if exists
+    const container = document.getElementById(
+      "featurable-a6cebbfe-bfa9-4c51-aba6-f94b8b668e3d"
+    );
+    if (container) {
+      container.innerHTML = "";
+    }
 
-      {/* Featurable script */}
-      <Script
-        src="https://featurable.com/assets/v2/carousel_default.min.js"
-        strategy="afterInteractive"
-        charSet="UTF-8"
-      />
-    </>
+    // Remove existing script if already loaded
+    const oldScript = document.getElementById("featurable-script");
+    if (oldScript) {
+      oldScript.remove();
+    }
+
+    // Inject script again
+    const script = document.createElement("script");
+    script.src =
+      "https://featurable.com/assets/v2/carousel_default.min.js";
+    script.async = true;
+    script.id = "featurable-script";
+    document.body.appendChild(script);
+  }, []);
+
+  return (
+    <div
+      id="featurable-a6cebbfe-bfa9-4c51-aba6-f94b8b668e3d"
+      data-featurable-async
+    ></div>
   );
 }
