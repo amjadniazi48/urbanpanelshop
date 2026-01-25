@@ -200,7 +200,7 @@ const Aboutus = ({ data }) => {
           <div className="cta-card">
             <h2 className="cta-title">Ready to Get Started?</h2>
             <p className="cta-description">
-              Contact us today to discuss your project and get a free quote
+              Contact us today to get a quick quote for smash repairs
             </p>
             <div className="cta-buttons">
               <a href="/smash" className="btn-primary-cta">
