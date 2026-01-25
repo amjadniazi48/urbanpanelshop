@@ -94,6 +94,25 @@ const Contact = ({ data }) => {
           </div>
         </div>
       </section>
+      {/* CTA Section */}
+      <section className="service-detail-cta bg-gradient-primary p-5">
+        <div className="container">
+          <div className="cta-card">
+            <h2 className="cta-title">Ready to Get Started?</h2>
+            <p className="cta-description">
+              Contact us today to discuss your project and get a free quote
+            </p>
+            <div className="cta-buttons">
+              <a href="/smash" className="btn-primary-cta">
+                Contact Us
+              </a>
+              <a href="/smash" className="btn-secondary-cta">
+                Upload Your Smash
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
     </>
   );
 };
