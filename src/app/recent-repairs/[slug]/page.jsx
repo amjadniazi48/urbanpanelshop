@@ -25,7 +25,7 @@ const RepairDetailPage = ({ params: paramsPromise }) => {
 
         const result = await response.json();
         
-        
+       // console.log("result", result);
         // Get the first item from the data array
         const repairData = result?.data?.[0] || null;
         setData(repairData);
@@ -37,7 +37,7 @@ const RepairDetailPage = ({ params: paramsPromise }) => {
     };
 
     fetchRepairData();
-    console.log("repair data", data);
+  //  console.log("repair data", data);
   }, [paramsPromise]);
 
   if (loading) {

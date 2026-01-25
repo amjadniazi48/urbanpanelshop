@@ -2,7 +2,9 @@ import { NextResponse } from "next/server";
 import qs from "qs";
 
 export async function GET(req, { params }) {
-  const { slug } =  params;
+  // Await params in Next.js 15
+  const resolvedParams = await params;
+  const { slug } = resolvedParams;
 
   const query = qs.stringify({
     filters: { slug: { $eq: slug } },
@@ -17,7 +19,7 @@ export async function GET(req, { params }) {
       headers: {
         Authorization: `Bearer ${process.env.STRAPI_JWT}`,
       },
-      cache: "no-store", // always fresh
+      cache: "no-store",
     });
 
     if (!res.ok) {
