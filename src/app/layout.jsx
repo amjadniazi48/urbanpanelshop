@@ -1,5 +1,11 @@
 export const dynamic = "force-dynamic";
 
+export const metadata = {
+  icons: {
+    icon: "/favicon.ico",
+  },
+};
+
 import { Poppins } from "next/font/google";
 import Preloader from "@/components/Preloader";
 import BootstrapClient from "@/components/BootstrapClient";
@@ -50,7 +56,7 @@ export default async function RootLayout({ children }) {
     (item) => item.__component === "layout.footer"
   );
 
-  // ✅ SEO block
+  // SEO block
   const seo = globalData.find(
     (item) => item.__component === "shared.seo"
   );
@@ -59,7 +65,7 @@ export default async function RootLayout({ children }) {
   const ogImageUrl = seo?.openGraph?.ogImage?.url;
 
   return (
-    <html lang="en" className={poppins.variable}>
+    <html lang="en" className={poppins.variable} suppressHydrationWarning>
       <head>
         {/* ================= BASIC SEO ================= */}
         <title>{seo?.metaTitle}</title>
@@ -108,7 +114,7 @@ export default async function RootLayout({ children }) {
           <meta property="og:image" content={ogImageUrl} />
         )}
 
-        {/* ================= META IMAGE (Google / Social fallback) ================= */}
+        {/* ================= META IMAGE ================= */}
         {metaImageUrl && (
           <meta name="image" content={metaImageUrl} />
         )}
