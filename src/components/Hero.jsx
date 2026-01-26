@@ -3,7 +3,7 @@
 import React from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, Pagination, Navigation, EffectFade } from "swiper/modules";
-
+import Link from "next/link";
 import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
@@ -20,11 +20,11 @@ const Hero = ({ data }) => {
   const bgImage = data.backgroundImage?.[0];
   const slides = data.Swiper || [];
 
-  console.log("Background Image:", bgImage);
-  console.log("Slides:", slides);
+//  console.log("Background Image:", bgImage);
+ // console.log("Slides:", slides);
 
   if (slides.length === 0) {
-    console.warn("No slides found in Swiper data");
+   // console.warn("No slides found in Swiper data");
     return null;
   }
 
@@ -270,8 +270,8 @@ const Hero = ({ data }) => {
 
                       {/* Enhanced CTA Button */}
                       <div style={{ animation: "fadeInUp 0.8s ease-out 0.6s backwards" }}>
-                        <a
-                          href="#"
+                        <Link
+                          href="/smash"
                           className="btn btn-lg"
                           style={{
                             backgroundColor: "#ffa500",
@@ -301,7 +301,7 @@ const Hero = ({ data }) => {
                           }}
                         >
                           Upload Your Smash
-                        </a>
+                        </Link>
                       </div>
                     </div>
                   </SwiperSlide>

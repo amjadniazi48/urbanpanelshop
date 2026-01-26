@@ -1,7 +1,7 @@
 "use client"
 import { ReactCompareSlider, ReactCompareSliderImage } from "react-compare-slider"
 import { SearchCheck } from "lucide-react"
-
+import Link from "next/link"
 export default function CarComparison({ data }) {
   const { 
     heading,
@@ -108,7 +108,7 @@ export default function CarComparison({ data }) {
               </p>
 
               <div className="text-center text-lg-start">
-                <a
+                <Link
                   href={ctaUrl}
                   className="btn btn-lg"
                   style={{
@@ -126,7 +126,7 @@ export default function CarComparison({ data }) {
                     transition: "all 0.4s cubic-bezier(0.4, 0, 0.2, 1)",
                     letterSpacing: "0.5px",
                   }}
-                  target="_blank"
+                  target="_self"
                   rel="noreferrer noopener"
                   onMouseEnter={(e) => {
                     e.currentTarget.style.backgroundColor = "#ff9500";
@@ -141,7 +141,7 @@ export default function CarComparison({ data }) {
                 >
                   <SearchCheck style={{ marginRight: "0.5rem" }} size={20} />
                   {ctaText}
-                </a>
+                </Link>
               </div>
             </div>
           </div>
