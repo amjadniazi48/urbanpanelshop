@@ -500,7 +500,7 @@ const RepairDetailPage = ({ params: paramsPromise }) => {
 
               {/* CTA Button */}
               <Link
-                href="/contact-us"
+                href="/smash"
                 className="btn w-100"
                 style={{
                   backgroundColor: "#ffa500",
