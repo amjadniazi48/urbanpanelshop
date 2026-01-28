@@ -58,7 +58,7 @@ const Services = async () => {
     return (
       <>
         {/* Hero Section */}
-        <section className="elegant-services-hero bg-gradient-primary">
+        <section className="elegant-services-hero "  style={{ background: "linear-gradient(135deg, rgb(26, 26, 46) 0%, rgb(45, 45, 68) 100%);" }}>
           <div className="elegant-hero-overlay"></div>
           <div className="container">
             <div className="elegant-hero-content">
