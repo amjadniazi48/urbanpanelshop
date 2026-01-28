@@ -8,7 +8,7 @@ const Contact = ({ data }) => {
   return (
     <>
       {/* Hero Section */}
-      <section className="elegant-services-hero bg-gradient-primary">
+      <section className="elegant-services-hero" style={{ background: "linear-gradient(135deg, rgb(26, 26, 46) 0%, rgb(45, 45, 68) 100%);" }}>
         <div className="elegant-hero-overlay"></div>
         <div className="container">
           <div className="elegant-hero-content p-3">
@@ -32,7 +32,7 @@ const Contact = ({ data }) => {
           </div>
         </div>
       </section>
-      <section className="elegant-services-container">
+      <section className="container elegant-services-container">
         <div className="row mt-5 mb-5 ">
           {/* Map */}
           <div className="col-lg-6 mb-5 mb-lg-0">
