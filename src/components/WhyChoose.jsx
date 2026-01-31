@@ -1,5 +1,5 @@
 import React from "react";
-
+import Image from "next/image";
 const WhyChoose = ({ data }) => {
   const { title, summary, mainImage, Features } = data;
 
@@ -57,11 +57,11 @@ const WhyChoose = ({ data }) => {
                       boxShadow: '0 4px 12px rgba(102, 187, 106, 0.4)'
                     }}
                   >
-                    <img
+                    <Image
                       src={solution.image[0]?.url || "assets/img/default-icon.svg"}
                       alt={solution.image[0]?.alternativeText || solution.title}
-                      width="32"
-                      height="32"
+                      width={32}
+                      height={32}
                       style={{ filter: 'brightness(0) invert(1)' }}
                     />
                   </div>
@@ -92,9 +92,11 @@ const WhyChoose = ({ data }) => {
                 }}
               />
               <div className="position-relative" style={{ zIndex: 1 }}>
-                <img
+                <Image
                   src={mainImage?.url || "assets/img/default-image.svg"}
                   alt={mainImage?.alternativeText || "Why Choose Us"}
+                  width={mainImage.width}
+                  height={mainImage.height}
                   className="img-fluid rounded-4 shadow-lg"
                   style={{
                     boxShadow: '0 20px 60px rgba(0,0,0,0.15)',
