@@ -20,13 +20,12 @@ const Hero = ({ data }) => {
   const bgImage = data.backgroundImage?.[0];
   const slides = data.Swiper || [];
 
-//  console.log("Background Image:", bgImage);
- // console.log("Slides:", slides);
-
   if (slides.length === 0) {
-   // console.warn("No slides found in Swiper data");
     return null;
   }
+
+  // Check if we should show navigation (more than 1 slide)
+  const showNavigation = slides.length > 1;
 
   return (
     <section
@@ -89,78 +88,82 @@ const Hero = ({ data }) => {
         }}
       />
 
-      {/* Navigation Buttons - Redesigned */}
-      <button
-        id="hero-prev"
-        className="btn btn-icon position-absolute top-50 start-0 translate-middle-y d-none d-md-flex"
-        style={{
-          backgroundColor: "rgba(255, 255, 255, 0.08)",
-          backdropFilter: "blur(12px)",
-          border: "1px solid rgba(255, 255, 255, 0.15)",
-          color: "white",
-          width: "56px",
-          height: "56px",
-          borderRadius: "50%",
-          marginLeft: "2rem",
-          zIndex: 20,
-          cursor: "pointer",
-          transition: "all 0.4s cubic-bezier(0.4, 0, 0.2, 1)",
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-          boxShadow: "0 8px 24px rgba(0, 0, 0, 0.2)",
-        }}
-        onMouseEnter={(e) => {
-          e.currentTarget.style.backgroundColor = "#ffa500";
-          e.currentTarget.style.borderColor = "#ffa500";
-          e.currentTarget.style.transform = "translateY(-50%) scale(1.1)";
-          e.currentTarget.style.boxShadow = "0 12px 32px rgba(255, 165, 0, 0.4)";
-        }}
-        onMouseLeave={(e) => {
-          e.currentTarget.style.backgroundColor = "rgba(255, 255, 255, 0.08)";
-          e.currentTarget.style.borderColor = "rgba(255, 255, 255, 0.15)";
-          e.currentTarget.style.transform = "translateY(-50%) scale(1)";
-          e.currentTarget.style.boxShadow = "0 8px 24px rgba(0, 0, 0, 0.2)";
-        }}
-      >
-        <i className="bx bx-chevron-left" style={{ fontSize: "28px" }}></i>
-      </button>
+      {/* Navigation Buttons - Only show if more than 1 slide */}
+      {showNavigation && (
+        <>
+          <button
+            id="hero-prev"
+            className="btn btn-icon position-absolute top-50 start-0 translate-middle-y d-none d-md-flex"
+            style={{
+              backgroundColor: "rgba(255, 255, 255, 0.08)",
+              backdropFilter: "blur(12px)",
+              border: "1px solid rgba(255, 255, 255, 0.15)",
+              color: "white",
+              width: "56px",
+              height: "56px",
+              borderRadius: "50%",
+              marginLeft: "2rem",
+              zIndex: 20,
+              cursor: "pointer",
+              transition: "all 0.4s cubic-bezier(0.4, 0, 0.2, 1)",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              boxShadow: "0 8px 24px rgba(0, 0, 0, 0.2)",
+            }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.backgroundColor = "#ffa500";
+              e.currentTarget.style.borderColor = "#ffa500";
+              e.currentTarget.style.transform = "translateY(-50%) scale(1.1)";
+              e.currentTarget.style.boxShadow = "0 12px 32px rgba(255, 165, 0, 0.4)";
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.backgroundColor = "rgba(255, 255, 255, 0.08)";
+              e.currentTarget.style.borderColor = "rgba(255, 255, 255, 0.15)";
+              e.currentTarget.style.transform = "translateY(-50%) scale(1)";
+              e.currentTarget.style.boxShadow = "0 8px 24px rgba(0, 0, 0, 0.2)";
+            }}
+          >
+            <i className="bx bx-chevron-left" style={{ fontSize: "28px" }}></i>
+          </button>
 
-      <button
-        id="hero-next"
-        className="btn btn-icon position-absolute top-50 end-0 translate-middle-y d-none d-md-flex"
-        style={{
-          backgroundColor: "rgba(255, 255, 255, 0.08)",
-          backdropFilter: "blur(12px)",
-          border: "1px solid rgba(255, 255, 255, 0.15)",
-          color: "white",
-          width: "56px",
-          height: "56px",
-          borderRadius: "50%",
-          marginRight: "2rem",
-          zIndex: 20,
-          cursor: "pointer",
-          transition: "all 0.4s cubic-bezier(0.4, 0, 0.2, 1)",
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-          boxShadow: "0 8px 24px rgba(0, 0, 0, 0.2)",
-        }}
-        onMouseEnter={(e) => {
-          e.currentTarget.style.backgroundColor = "#ffa500";
-          e.currentTarget.style.borderColor = "#ffa500";
-          e.currentTarget.style.transform = "translateY(-50%) scale(1.1)";
-          e.currentTarget.style.boxShadow = "0 12px 32px rgba(255, 165, 0, 0.4)";
-        }}
-        onMouseLeave={(e) => {
-          e.currentTarget.style.backgroundColor = "rgba(255, 255, 255, 0.08)";
-          e.currentTarget.style.borderColor = "rgba(255, 255, 255, 0.15)";
-          e.currentTarget.style.transform = "translateY(-50%) scale(1)";
-          e.currentTarget.style.boxShadow = "0 8px 24px rgba(0, 0, 0, 0.2)";
-        }}
-      >
-        <i className="bx bx-chevron-right" style={{ fontSize: "28px" }}></i>
-      </button>
+          <button
+            id="hero-next"
+            className="btn btn-icon position-absolute top-50 end-0 translate-middle-y d-none d-md-flex"
+            style={{
+              backgroundColor: "rgba(255, 255, 255, 0.08)",
+              backdropFilter: "blur(12px)",
+              border: "1px solid rgba(255, 255, 255, 0.15)",
+              color: "white",
+              width: "56px",
+              height: "56px",
+              borderRadius: "50%",
+              marginRight: "2rem",
+              zIndex: 20,
+              cursor: "pointer",
+              transition: "all 0.4s cubic-bezier(0.4, 0, 0.2, 1)",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              boxShadow: "0 8px 24px rgba(0, 0, 0, 0.2)",
+            }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.backgroundColor = "#ffa500";
+              e.currentTarget.style.borderColor = "#ffa500";
+              e.currentTarget.style.transform = "translateY(-50%) scale(1.1)";
+              e.currentTarget.style.boxShadow = "0 12px 32px rgba(255, 165, 0, 0.4)";
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.backgroundColor = "rgba(255, 255, 255, 0.08)";
+              e.currentTarget.style.borderColor = "rgba(255, 255, 255, 0.15)";
+              e.currentTarget.style.transform = "translateY(-50%) scale(1)";
+              e.currentTarget.style.boxShadow = "0 8px 24px rgba(0, 0, 0, 0.2)";
+            }}
+          >
+            <i className="bx bx-chevron-right" style={{ fontSize: "28px" }}></i>
+          </button>
+        </>
+      )}
 
       {/* Swiper Container */}
       <div className="position-relative" style={{ zIndex: 10 }}>
@@ -174,21 +177,33 @@ const Hero = ({ data }) => {
                   crossFade: true,
                 }}
                 speed={1000}
-                autoplay={{
-                  delay: 6000,
-                  disableOnInteraction: false,
-                }}
-                pagination={{
-                  clickable: true,
-                  el: ".custom-pagination",
-                  bulletClass: "swiper-pagination-bullet-custom",
-                  bulletActiveClass: "swiper-pagination-bullet-active-custom",
-                }}
-                navigation={{
-                  prevEl: "#hero-prev",
-                  nextEl: "#hero-next",
-                }}
-                loop={slides.length > 1}
+                autoplay={
+                  showNavigation
+                    ? {
+                        delay: 6000,
+                        disableOnInteraction: false,
+                      }
+                    : false
+                }
+                pagination={
+                  showNavigation
+                    ? {
+                        clickable: true,
+                        el: ".custom-pagination",
+                        bulletClass: "swiper-pagination-bullet-custom",
+                        bulletActiveClass: "swiper-pagination-bullet-active-custom",
+                      }
+                    : false
+                }
+                navigation={
+                  showNavigation
+                    ? {
+                        prevEl: "#hero-prev",
+                        nextEl: "#hero-next",
+                      }
+                    : false
+                }
+                loop={showNavigation}
                 style={{
                   minHeight: "650px",
                   display: "flex",
@@ -308,11 +323,13 @@ const Hero = ({ data }) => {
                 ))}
               </Swiper>
 
-              {/* Custom Pagination Dots */}
-              <div
-                className="custom-pagination d-flex justify-content-center gap-2 mt-4"
-                style={{ paddingBottom: "2rem" }}
-              />
+              {/* Custom Pagination Dots - Only show if more than 1 slide */}
+              {showNavigation && (
+                <div
+                  className="custom-pagination d-flex justify-content-center gap-2 mt-4"
+                  style={{ paddingBottom: "2rem" }}
+                />
+              )}
             </div>
           </div>
         </div>
