@@ -2,6 +2,7 @@
 import { ReactCompareSlider, ReactCompareSliderImage } from "react-compare-slider"
 import { SearchCheck } from "lucide-react"
 import Link from "next/link"
+import Image from "next/image"
 export default function CarComparison({ data }) {
   const { 
     heading,
@@ -76,9 +77,10 @@ export default function CarComparison({ data }) {
                     border: "2px solid rgba(255, 165, 0, 0.3)",
                   }}
                 >
-                  <img
+                  <Image
                     src="/assets/img/siteicons/car-comp.png"
-                    width="42px"
+                    width={42}
+                    height={42}
                     alt="car repair"
                   />
                 </div>
