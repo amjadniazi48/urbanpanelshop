@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import { ImageUp } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-
+import Image from "next/image";
 export default function Header({ headerdata, menu }) {
   const pathname = usePathname();
   const logo = headerdata?.logo?.[0];
@@ -145,10 +145,12 @@ export default function Header({ headerdata, menu }) {
           {/* Logo */}
           <Link href="/" className="navbar-brand pe-3" onClick={closeOffcanvas}>
             {logo ? (
-              <img
+              <Image
                 src={logo.url}
-                width="130"
+                width={130}
+                height={42}
                 alt={logo.alternativeText || logo.name}
+                unoptimized={true}
               />
             ) : (
               <span>Urban Panel Shop</span>
