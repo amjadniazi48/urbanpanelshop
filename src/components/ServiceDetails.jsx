@@ -134,7 +134,7 @@ const ServicesDetails = ({ serviceData }) => {
         /* Hero Section */
         .service-detail-hero {
           background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
-          padding: 140px 0 80px;
+          padding: 50px 0 80px;
           position: relative;
           overflow: hidden;
         }
