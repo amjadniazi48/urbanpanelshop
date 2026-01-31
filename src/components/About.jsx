@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-
+import Image from "next/image";
 const About = ({ data }) => {
   console.log("About component data:", data);
 
@@ -215,9 +215,11 @@ const About = ({ data }) => {
                   border: "1px solid #e8eaed",
                 }}
               >
-                <img
+                <Image
                   src={image.url}
                   alt={image.alternativeText || heading || "About Us"}
+                  width={image.width}
+                  height={image.height}
                   style={{
                     width: "100%",
                     height: "auto",
@@ -227,6 +229,7 @@ const About = ({ data }) => {
                       ? `${image.width} / ${image.height}` 
                       : "4 / 3",
                   }}
+                  unoptimized={true}
                 />
               </div>
             )}
