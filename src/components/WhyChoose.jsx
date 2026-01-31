@@ -62,6 +62,7 @@ const WhyChoose = ({ data }) => {
                       alt={solution.image[0]?.alternativeText || solution.title}
                       width={32}
                       height={32}
+                      unoptimized={true}
                       style={{ filter: 'brightness(0) invert(1)' }}
                     />
                   </div>
@@ -97,6 +98,7 @@ const WhyChoose = ({ data }) => {
                   alt={mainImage?.alternativeText || "Why Choose Us"}
                   width={mainImage.width}
                   height={mainImage.height}
+                  unoptimized={true}
                   className="img-fluid rounded-4 shadow-lg"
                   style={{
                     boxShadow: '0 20px 60px rgba(0,0,0,0.15)',
