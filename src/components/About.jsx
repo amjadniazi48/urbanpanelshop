@@ -129,14 +129,16 @@ const About = ({ data }) => {
                                 padding: "8px",
                               }}
                             >
-                              <img
+                              <Image
                                 src={icon.iconImage.url}
                                 alt={icon.iconImage.alternativeText || icon.title}
+                                width={icon.iconImage.width}
+                                height={icon.iconImage.height}
                                 style={{
-                                  width: "100%",
-                                  height: "100%",
+                                 
                                   objectFit: "contain",
                                 }}
+                                unoptimized={true}
                               />
                             </div>
                           )}
@@ -221,13 +223,10 @@ const About = ({ data }) => {
                   width={image.width}
                   height={image.height}
                   style={{
-                    width: "100%",
-                    height: "auto",
+                  
                     display: "block",
                     objectFit: "cover",
-                    aspectRatio: image.width && image.height 
-                      ? `${image.width} / ${image.height}` 
-                      : "4 / 3",
+                  
                   }}
                   unoptimized={true}
                 />
