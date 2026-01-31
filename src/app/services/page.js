@@ -2,19 +2,92 @@ import React from "react";
 import { getStrapiURL } from "@/lib/utils";
 import { fetchData } from "@/lib/fetch";
 import "./services.css"; // Create this CSS file separately
+import Link from "next/link";
+
+// ✅ Loader function for services data (moved outside component)
+async function loader() {
+  const path = `/api/pages`;
+  const baseUrl = getStrapiURL();
+  const url = new URL(path, baseUrl);
+  const authToken = process.env.STRAPI_JWT;
+  const data = await fetchData(url.href, authToken, {
+    cache: "no-store",
+  });
+  return data;
+}
+
+// ✅ Generate metadata for SEO
+export async function generateMetadata() {
+  const data = await loader();
+  
+  // Find the services page from the data
+  const servicesPage = data?.data?.find(page => page.slug === "services");
+  
+  if (!servicesPage) {
+    return {
+      title: "Our Services",
+      description: "Explore our comprehensive range of professional services designed to meet your needs.",
+    };
+  }
+
+  // Find the SEO block from the page blocks
+  const seoBlock = servicesPage.blocks?.find(block => block.__component === "shared.seo");
+  
+  if (!seoBlock) {
+    return {
+      title: "Our Services",
+      description: "Explore our comprehensive range of professional services designed to meet your needs.",
+    };
+  }
+
+  // If SEO data exists, use it
+  return {
+    title: seoBlock.metaTitle || "Our Services",
+    description: seoBlock.metaDescription || "Explore our comprehensive range of professional services.",
+    keywords: seoBlock.keywords,
+    robots: seoBlock.metaRobots,
+    ...(seoBlock.canonicalURL && {
+      alternates: {
+        canonical: seoBlock.canonicalURL,
+      },
+    }),
+    openGraph: {
+      title: seoBlock.openGraph?.ogTitle || seoBlock.metaTitle || "Our Services",
+      description: seoBlock.openGraph?.ogDescription || seoBlock.metaDescription,
+      type: 'website',
+      ...(seoBlock.openGraph?.ogImage && {
+        images: [
+          {
+            url: seoBlock.openGraph.ogImage.url,
+            alt: seoBlock.openGraph.ogImage.alternativeText || "Our Services",
+            width: seoBlock.openGraph.ogImage.width,
+            height: seoBlock.openGraph.ogImage.height,
+          }
+        ],
+      }),
+    },
+    ...(seoBlock.metaImage && !seoBlock.openGraph?.ogImage && {
+      openGraph: {
+        images: [
+          {
+            url: seoBlock.metaImage.url,
+            alt: seoBlock.metaImage.alternativeText || "Our Services",
+            width: seoBlock.metaImage.width,
+            height: seoBlock.metaImage.height,
+          }
+        ],
+      },
+    }),
+    // Add structured data if available
+    ...(seoBlock.structuredData && {
+      other: {
+        'application/ld+json': JSON.stringify(seoBlock.structuredData),
+      },
+    }),
+  };
+}
 
 const Services = async () => {
-  // Loader function
-  async function loader() {
-    const path = `/api/pages`;
-    const baseUrl = getStrapiURL();
-    const url = new URL(path, baseUrl);
-    const authToken = process.env.STRAPI_JWT;
-    const data = await fetchData(url.href, authToken, {
-      cache: "no-store",
-    });
-    return data;
-  }
 
   try {
     const servicesRes = await loader();
@@ -58,7 +131,7 @@ const Services = async () => {
     return (
       <>
         {/* Hero Section */}
-        <section className="elegant-services-hero "  style={{ background: "linear-gradient(135deg, rgb(26, 26, 46) 0%, rgb(45, 45, 68) 100%)" }}>
+        <section className="elegant-services-hero" style={{ background: "linear-gradient(135deg, rgb(26, 26, 46) 0%, rgb(45, 45, 68) 100%)" }}>
           <div className="elegant-hero-overlay"></div>
           <div className="container">
             <div className="elegant-hero-content">
@@ -68,7 +141,7 @@ const Services = async () => {
                   width="48"
                   height="48"
                   fill="white"
-                  class="bi bi-car-front"
+                  className="bi bi-car-front"
                   viewBox="0 0 16 16"
                 >
                   <path d="M4 9a1 1 0 1 1-2 0 1 1 0 0 1 2 0m10 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0M6 8a1 1 0 0 0 0 2h4a1 1 0 1 0 0-2zM4.862 4.276 3.906 6.19a.51.51 0 0 0 .497.731c.91-.073 2.35-.17 3.597-.17s2.688.097 3.597.17a.51.51 0 0 0 .497-.731l-.956-1.913A.5.5 0 0 0 10.691 4H5.309a.5.5 0 0 0-.447.276" />
@@ -94,7 +167,7 @@ const Services = async () => {
                   className="col-lg-6 col-md-6"
                   style={{ animationDelay: `${index * 0.1}s` }}
                 >
-                  <a
+                  <Link
                     href={`/services/${service.slug}`}
                     className="text-decoration-none"
                   >
@@ -131,7 +204,7 @@ const Services = async () => {
 
                       <div className="elegant-service-card-bg"></div>
                     </div>
-                  </a>
+                  </Link>
                 </div>
               ))}
             </div>
