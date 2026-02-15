@@ -63,17 +63,14 @@ function ServicesDetailsSidebar({serviceData}) {
         <ul className="hours-list">
           <li>
             <span className="day">Monday - Friday</span>
-            <strong className="time">8:00 AM - 5:00 PM</strong>
+            <strong className="time">9:00 AM - 6:00 PM</strong>
           </li>
-      
           <li className="closed">
             <span className="day">Sunday-Saturday</span>
             <strong className="time">Closed</strong>
           </li>
         </ul>
-      </div>
-
-   
+      </div>   
     </div>
   )
 }
