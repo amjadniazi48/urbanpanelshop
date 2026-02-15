@@ -89,7 +89,7 @@ const ServicesDetails = ({ serviceData }) => {
                 {/* Description Content */}
                  <div className="markdown-content">
       <ReactMarkdown rehypePlugins={[rehypeRaw]}>
-        {children}
+        {serviceData.description}
       </ReactMarkdown>
       </div>
               </div>
