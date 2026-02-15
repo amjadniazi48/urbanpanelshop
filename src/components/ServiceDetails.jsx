@@ -15,7 +15,7 @@ import ReactMarkdown from "react-markdown";
 import FaqAccordion from "@/components/FAQAccordion";
 import ServicesDetailsSidebar from "@/components/ServicesDetailsSidebar";
 import "./ServiceDetails.css";
-import rehypeRaw from 'rehype-raw';
+import rehypeRaw from "rehype-raw";
 const ServicesDetails = ({ serviceData }) => {
   const [open, setOpen] = useState(false);
 
@@ -29,12 +29,13 @@ const ServicesDetails = ({ serviceData }) => {
   }
 
   // Prepare photos for the gallery
-  const photos = serviceData?.images?.map((img) => ({
-    src: img?.url,
-    width: img?.width || 600,
-    height: img?.height || 400,
-    alt: img?.alternativeText || "Service Image",
-  })) || [];
+  const photos =
+    serviceData?.images?.map((img) => ({
+      src: img?.url,
+      width: img?.width || 600,
+      height: img?.height || 400,
+      alt: img?.alternativeText || "Service Image",
+    })) || [];
 
   return (
     <>
@@ -70,14 +71,21 @@ const ServicesDetails = ({ serviceData }) => {
                 <div className="service-detail-header">
                   <div className="service-detail-icon-wrapper">
                     {serviceData?.serviceIcon?.url ? (
-                      <img 
-                        src={serviceData.serviceIcon.url} 
+                      <img
+                        src={serviceData.serviceIcon.url}
                         alt={serviceData.title}
                         className="service-detail-icon"
                       />
                     ) : (
-                      <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                        <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/>
+                      <svg
+                        width="40"
+                        height="40"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        strokeWidth="2"
+                      >
+                        <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z" />
                       </svg>
                     )}
                   </div>
@@ -87,11 +95,11 @@ const ServicesDetails = ({ serviceData }) => {
                 </div>
 
                 {/* Description Content */}
-                 <div className="markdown-content">
-      <ReactMarkdown rehypePlugins={[rehypeRaw]}>
-        {serviceData.description}
-      </ReactMarkdown>
-      </div>
+                <div className="markdown-content">
+                  <ReactMarkdown rehypePlugins={[rehypeRaw]}>
+                    {serviceData.description}
+                  </ReactMarkdown>
+                </div>
               </div>
 
               {/* Gallery Section - Inside Main Content */}
@@ -99,9 +107,10 @@ const ServicesDetails = ({ serviceData }) => {
                 <div className="service-gallery-section">
                   <h2 className="gallery-title">Our Work Gallery</h2>
                   <p className="gallery-subtitle">
-                    Browse through our completed projects and see the quality of our work
+                    Browse through our completed projects and see the quality of
+                    our work
                   </p>
-                  
+
                   <div className="gallery-wrapper">
                     <RowsPhotoAlbum
                       photos={photos}
