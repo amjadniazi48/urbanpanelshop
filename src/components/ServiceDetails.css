@@ -12,9 +12,16 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background-image: 
-    radial-gradient(circle at 20% 50%, rgba(255, 255, 255, 0.08) 0%, transparent 50%),
-    radial-gradient(circle at 80% 80%, rgba(255, 255, 255, 0.08) 0%, transparent 50%);
+  background-image: radial-gradient(
+      circle at 20% 50%,
+      rgba(255, 255, 255, 0.08) 0%,
+      transparent 50%
+    ),
+    radial-gradient(
+      circle at 80% 80%,
+      rgba(255, 255, 255, 0.08) 0%,
+      transparent 50%
+    );
 }
 
 .service-detail-breadcrumb {
@@ -34,7 +41,7 @@
 }
 
 .service-detail-breadcrumb a:hover {
-  color: #F7A604;
+  color: #f7a604;
 }
 
 .breadcrumb-separator {
@@ -99,7 +106,7 @@
 }
 
 .sidebar-heading i {
-  color: #F7A604;
+  color: #f7a604;
   font-size: 1.3rem;
 }
 
@@ -130,12 +137,12 @@
 }
 
 .service-item a:hover {
-  color: #F7A604;
+  color: #f7a604;
   padding-left: 0.5rem;
 }
 
 .service-item.active a {
-  color: #F7A604;
+  color: #f7a604;
   font-weight: 600;
 }
 
@@ -157,7 +164,8 @@
 }
 
 .service-item.active .service-icon img {
-  filter: brightness(0) saturate(100%) invert(59%) sepia(89%) saturate(1573%) hue-rotate(2deg) brightness(101%) contrast(102%);
+  filter: brightness(0) saturate(100%) invert(59%) sepia(89%) saturate(1573%)
+    hue-rotate(2deg) brightness(101%) contrast(102%);
 }
 
 .service-icon i {
@@ -166,7 +174,7 @@
 }
 
 .service-item.active .service-icon i {
-  color: #F7A604;
+  color: #f7a604;
 }
 
 .service-name {
@@ -177,7 +185,7 @@
 .arrow {
   opacity: 0;
   transition: all 0.3s ease;
-  color: #F7A604;
+  color: #f7a604;
 }
 
 .service-item a:hover .arrow {
@@ -186,7 +194,7 @@
 
 /* Contact Card */
 .contact-card {
-  background: linear-gradient(135deg, #F7A604 0%, #ff9500 100%);
+  background: linear-gradient(135deg, #f7a604 0%, #ff9500 100%);
   text-align: center;
   color: white;
 }
@@ -257,7 +265,7 @@
 
 .contact-btn:hover {
   background: white;
-  color: #F7A604;
+  color: #f7a604;
 }
 
 /* Hours Card */
@@ -272,7 +280,7 @@
 }
 
 .hours-heading i {
-  color: #F7A604;
+  color: #f7a604;
   font-size: 1.3rem;
 }
 
@@ -321,7 +329,7 @@
 }
 
 .download-heading i {
-  color: #F7A604;
+  color: #f7a604;
   font-size: 1.3rem;
 }
 
@@ -337,7 +345,7 @@
 }
 
 .download-link:hover {
-  background: #F7A604;
+  background: #f7a604;
   transform: translateY(-2px);
   box-shadow: 0 4px 12px rgba(247, 166, 4, 0.3);
 }
@@ -378,7 +386,7 @@
 
 .download-icon {
   font-size: 1.5rem;
-  color: #F7A604;
+  color: #f7a604;
 }
 
 .download-link:hover .download-icon {
@@ -419,7 +427,7 @@
 .service-detail-icon-wrapper {
   width: 80px;
   height: 80px;
-  background: linear-gradient(135deg, #F7A604 0%, #ff9500 100%);
+  background: linear-gradient(135deg, #f7a604 0%, #ff9500 100%);
   border-radius: 16px;
   display: flex;
   align-items: center;
@@ -489,7 +497,7 @@
 }
 
 .service-detail-description strong {
-  color: #F7A604;
+  color: #f7a604;
   font-weight: 600;
 }
 
@@ -566,7 +574,7 @@
 }
 
 .btn-primary-cta {
-  background: #F7A604;
+  background: #f7a604;
   color: black;
   padding: 15px 40px;
   border-radius: 12px;
@@ -699,68 +707,68 @@
   }
 }
 .markdown-content details {
-          margin: 1rem 0;
-          border: 1px solid #e0e0e0;
-          border-radius: 8px;
-          padding: 1rem;
-          overflow: hidden;
-          background: white;
-        }
+  margin: 1rem 0;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  padding: 1rem;
+  overflow: hidden;
+  background: white;
+}
 
-        .markdown-content details summary {
-          padding: 1rem 1.5rem;
-          background: #f8f9fa;
-          cursor: pointer;
-          font-weight: 600;
-          font-size: 1.1rem;
-          display: flex;
-          align-items: center;
-          transition: all 0.3s ease;
-          list-style: none;
-        }
+.markdown-content details summary {
+  padding: 1rem 1.5rem;
+  background: #f8f9fa;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 1.1rem;
+  display: flex;
+  align-items: center;
+  transition: all 0.3s ease;
+  list-style: none;
+}
 
-        .markdown-content details summary::-webkit-details-marker {
-          display: none;
-        }
+.markdown-content details summary::-webkit-details-marker {
+  display: none;
+}
 
-        .markdown-content details summary::before {
-          content: "▶";
-          margin-right: 0.75rem;
-          transition: transform 0.3s ease;
-          color: #F7A604;
-          font-size: 0.9rem;
-        }
+.markdown-content details summary::before {
+  content: "▶";
+  margin-right: 0.75rem;
+  transition: transform 0.3s ease;
+  color: #f7a604;
+  font-size: 0.9rem;
+}
 
-        .markdown-content details[open] summary::before {
-          transform: rotate(90deg);
-        }
+.markdown-content details[open] summary::before {
+  transform: rotate(90deg);
+}
 
-        .markdown-content details summary:hover {
-          background: #e9ecef;
-        }
+.markdown-content details summary:hover {
+  background: #e9ecef;
+}
 
-        .markdown-content details[open] summary {
-          background: #F7A604;
-          color: white;
-        }
+.markdown-content details[open] summary {
+  background: #f7a604;
+  color: white;
+}
 
-        .markdown-content details[open] summary::before {
-          color: white;
-        }
+.markdown-content details[open] summary::before {
+  color: white;
+}
 
-        .markdown-content details > div,
-        .markdown-content details > p {
-          padding: 1.5rem;
-          color: #444;
-          line-height: 1.8;
-        }
+.markdown-content details > div,
+.markdown-content details > p {
+  padding: 1.5rem;
+  color: #444;
+  line-height: 1.8;
+}
 
-        .markdown-content details ul,
-        .markdown-content details ol {
-          margin: 1rem 0;
-          padding-left: 2rem;
-        }
+.markdown-content details ul,
+.markdown-content details ol {
+  margin: 1rem 0;
+  padding-left: 2rem;
+}
 
-        .markdown-content details li {
-          margin-bottom: 0.5rem;
-        }
+.markdown-content details li {
+  margin-bottom: 0.5rem;
+}
