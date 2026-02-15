@@ -15,7 +15,7 @@ import ReactMarkdown from "react-markdown";
 import FaqAccordion from "@/components/FAQAccordion";
 import ServicesDetailsSidebar from "@/components/ServicesDetailsSidebar";
 import "./ServiceDetails.css";
-
+import rehypeRaw from 'rehype-raw';
 const ServicesDetails = ({ serviceData }) => {
   const [open, setOpen] = useState(false);
 
@@ -87,9 +87,11 @@ const ServicesDetails = ({ serviceData }) => {
                 </div>
 
                 {/* Description Content */}
-                <div className="service-detail-description">
-                  <ReactMarkdown>{serviceData.description}</ReactMarkdown>
-                </div>
+                 <div className="markdown-content">
+      <ReactMarkdown rehypePlugins={[rehypeRaw]}>
+        {children}
+      </ReactMarkdown>
+      </div>
               </div>
 
               {/* Gallery Section - Inside Main Content */}

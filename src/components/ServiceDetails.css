@@ -698,3 +698,68 @@
     width: 100%;
   }
 }
+.markdown-content details {
+          margin: 1rem 0;
+          border: 1px solid #e0e0e0;
+          border-radius: 8px;
+          overflow: hidden;
+          background: white;
+        }
+
+        .markdown-content details summary {
+          padding: 1rem 1.5rem;
+          background: #f8f9fa;
+          cursor: pointer;
+          font-weight: 600;
+          font-size: 1.1rem;
+          display: flex;
+          align-items: center;
+          transition: all 0.3s ease;
+          list-style: none;
+        }
+
+        .markdown-content details summary::-webkit-details-marker {
+          display: none;
+        }
+
+        .markdown-content details summary::before {
+          content: "▶";
+          margin-right: 0.75rem;
+          transition: transform 0.3s ease;
+          color: #F7A604;
+          font-size: 0.9rem;
+        }
+
+        .markdown-content details[open] summary::before {
+          transform: rotate(90deg);
+        }
+
+        .markdown-content details summary:hover {
+          background: #e9ecef;
+        }
+
+        .markdown-content details[open] summary {
+          background: #F7A604;
+          color: white;
+        }
+
+        .markdown-content details[open] summary::before {
+          color: white;
+        }
+
+        .markdown-content details > div,
+        .markdown-content details > p {
+          padding: 1.5rem;
+          color: #444;
+          line-height: 1.8;
+        }
+
+        .markdown-content details ul,
+        .markdown-content details ol {
+          margin: 1rem 0;
+          padding-left: 2rem;
+        }
+
+        .markdown-content details li {
+          margin-bottom: 0.5rem;
+        }
