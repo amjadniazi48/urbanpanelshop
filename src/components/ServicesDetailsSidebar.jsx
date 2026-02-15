@@ -73,21 +73,7 @@ function ServicesDetailsSidebar({serviceData}) {
         </ul>
       </div>
 
-      {/* Download Brochure */}
-      <div className="sidebar-section download-card">
-        <h4 className="download-heading">
-          <i className="bx bx-download"></i>
-          Download
-        </h4>
-        <a href="#" className="download-link">
-          <i className="bx bxs-file-pdf"></i>
-          <div className="download-info">
-            <span className="download-name">Service Brochure</span>
-            <span className="download-size">PDF, 2.5 MB</span>
-          </div>
-          <i className="bx bx-download download-icon"></i>
-        </a>
-      </div>
+   
     </div>
   )
 }
