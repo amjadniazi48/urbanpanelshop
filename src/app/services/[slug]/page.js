@@ -155,6 +155,20 @@ async function loader(slug) {
             }
           }
         },
+        Features: {
+          populate: {
+            mainImage: {
+              fields: ["url", "alternativeText", "name", "width", "height"],
+            },
+            Features: {
+              populate: {
+                image: {
+                  fields: ["url", "alternativeText", "name", "width", "height"],
+                },
+              },
+            },
+          },
+        },
         faqs: {
           fields: ["question", "answer"]
         },
@@ -181,7 +195,7 @@ async function loader(slug) {
     }
 
     const data = await res.json();
-    console.log("full data", data);
+    console.log("full data with features", data);
     return data;
   } catch (err) {
     console.error("Fetch error:", err);
