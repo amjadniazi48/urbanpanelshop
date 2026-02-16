@@ -27,10 +27,6 @@ const ServiceFeatures = ({ featuresData }) => {
           </div>
         ))}
       </div>
-
-      <style jsx>{`
-       
-      `}</style>
     </section>
   );
 };
