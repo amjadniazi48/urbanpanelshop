@@ -138,6 +138,9 @@ async function loader(slug) {
         images: {
           fields: ["url", "alternativeText", "name", "width", "height"]
         },
+         bannerImage: {
+          fields: ["url", "alternativeText", "name", "width", "height"]
+        },
         serviceIcon: {
           fields: ["url", "alternativeText"]
         },

@@ -39,20 +39,43 @@ const ServicesDetails = ({ serviceData }) => {
 
   return (
     <>
-      {/* Hero Section */}
-      <section className="service-detail-hero bg-gradient-primary">
-        <div className="service-detail-hero-overlay"></div>
-        <div className="container">
-          <div className="service-detail-breadcrumb">
-            <a href="/">Home</a>
-            <span className="breadcrumb-separator">/</span>
-            <a href="/services">Services</a>
-            <span className="breadcrumb-separator">/</span>
-            <span className="breadcrumb-current">{serviceData.title}</span>
-          </div>
-          <h1 className="service-detail-title">{serviceData.title}</h1>
-        </div>
-      </section>
+
+{/* Hero Section */}
+<section 
+  className="service-detail-hero"
+  style={{
+    backgroundImage: serviceData?.bannerImage?.url 
+      ? `url(${serviceData.bannerImage.url})` 
+      : 'none',
+    backgroundSize: 'cover',
+    backgroundPosition: 'center',
+    backgroundRepeat: 'no-repeat',
+  }}
+>
+  <div className="service-detail-hero-overlay"></div>
+  <div className="container">
+    <div className="service-detail-breadcrumb">
+      <a href="/">Home</a>
+      <span className="breadcrumb-separator">/</span>
+      <a href="/services">Services</a>
+      <span className="breadcrumb-separator">/</span>
+      <span className="breadcrumb-current">{serviceData.title}</span>
+    </div>
+    <h1 className="service-detail-title">{serviceData.title}</h1>
+    {serviceData?.summary && (
+      <p className="service-detail-summary" style={{textAlign:"justify"}}>
+        {serviceData.summary}
+      </p>
+    )}
+    {/* ADD THIS SECTION ⬇️ */}
+    <div className="hero-cta-wrapper">
+      <a href="/smash" className="hero-cta-button">
+        Get Free Quote
+      </a>
+    </div>
+    {/* ⬆️ END OF NEW SECTION */}
+  </div>
+</section>
 
       {/* Content Section with Sidebar and Main Content */}
       <section className="service-detail-content">
@@ -86,7 +109,9 @@ const ServicesDetails = ({ serviceData }) => {
                     <h2>{serviceData.title}</h2>
                   </div>
                 </div>
+
                 {/* Description Content */}
+                      {/* Description Content */}
                 <div className="markdown-content">
                   <ReactMarkdown rehypePlugins={[rehypeRaw]}>{serviceData.description}</ReactMarkdown>
                 </div>
