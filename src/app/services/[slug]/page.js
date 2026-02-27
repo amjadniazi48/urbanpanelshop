@@ -135,13 +135,13 @@ async function loader(slug) {
         } 
       },
       populate: {
-        images: {
+         images: {
           fields: ["url", "alternativeText", "name", "width", "height"]
         },
          bannerImage: {
           fields: ["url", "alternativeText", "name", "width", "height"]
         },
-        serviceIcon: {
+         serviceIcon: {
           fields: ["url", "alternativeText"]
         },
         Seo: {
@@ -174,6 +174,13 @@ async function loader(slug) {
         },
         faqs: {
           fields: ["question", "answer"]
+        },
+          Advertisement: {
+            populate: {
+              backgroundImage: {
+                fields: ["url", "alternativeText", "name", "width", "height"],
+              }, 
+           }, 
         },
       },
       locale: "en"

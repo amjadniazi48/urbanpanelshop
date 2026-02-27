@@ -16,7 +16,8 @@ import FaqAccordion from "@/components/FAQAccordion";
 import ServicesDetailsSidebar from "@/components/ServicesDetailsSidebar";
 import ServiceFeatures from "@/components/ServiceFeatures";
 import "./ServiceDetails.css";
-import rehypeRaw from 'rehype-raw';
+import rehypeRaw from "rehype-raw";
+import Link from "next/link";
 const ServicesDetails = ({ serviceData }) => {
   const [open, setOpen] = useState(false);
 
@@ -30,52 +31,55 @@ const ServicesDetails = ({ serviceData }) => {
   }
 
   // Prepare photos for the gallery
-  const photos = serviceData?.images?.map((img) => ({
-    src: img?.url,
-    width: img?.width || 600,
-    height: img?.height || 400,
-    alt: img?.alternativeText || "Service Image",
-  })) || [];
+  const photos =
+    serviceData?.images?.map((img) => ({
+      src: img?.url,
+      width: img?.width || 600,
+      height: img?.height || 400,
+      alt: img?.alternativeText || "Service Image",
+    })) || [];
 
   return (
     <>
-
-{/* Hero Section */}
-<section 
-  className="service-detail-hero"
-  style={{
-    backgroundImage: serviceData?.bannerImage?.url 
-      ? `url(${serviceData.bannerImage.url})` 
-      : 'none',
-    backgroundSize: 'cover',
-    backgroundPosition: 'center',
-    backgroundRepeat: 'no-repeat',
-  }}
->
-  <div className="service-detail-hero-overlay"></div>
-  <div className="container">
-    <div className="service-detail-breadcrumb">
-      <a href="/">Home</a>
-      <span className="breadcrumb-separator">/</span>
-      <a href="/services">Services</a>
-      <span className="breadcrumb-separator">/</span>
-      <span className="breadcrumb-current">{serviceData.title}</span>
-    </div>
-    <h1 className="service-detail-title">{serviceData.title}</h1>
-    {serviceData?.summary && (
-      <p className="service-detail-summary" style={{textAlign:"justify"}}>
-        {serviceData.summary}
-      </p>
-    )}
-    {/* ADD THIS SECTION ⬇️ */}
-    <div className="hero-cta-wrapper">
-      <a href="/smash" className="hero-cta-button">
-        Get Free Quote
-      </a>
-    </div>
-    {/* ⬆️ END OF NEW SECTION */}
-  </div>
-</section>
+      {/* Hero Section */}
+      <section
+        className="service-detail-hero"
+        style={{
+          backgroundImage: serviceData?.bannerImage?.url
+            ? `url(${serviceData.bannerImage.url})`
+            : "none",
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+          backgroundRepeat: "no-repeat",
+        }}
+      >
+        <div className="service-detail-hero-overlay"></div>
+        <div className="container">
+          <div className="service-detail-breadcrumb">
+            <a href="/">Home</a>
+            <span className="breadcrumb-separator">/</span>
+            <a href="/services">Services</a>
+            <span className="breadcrumb-separator">/</span>
+            <span className="breadcrumb-current">{serviceData.title}</span>
+          </div>
+          <h1 className="service-detail-title">{serviceData.title}</h1>
+          {serviceData?.summary && (
+            <p
+              className="service-detail-summary"
+              style={{ textAlign: "justify" }}
+            >
+              {serviceData.summary}
+            </p>
+          )}
+          {/* ADD THIS SECTION ⬇️ */}
+          <div className="hero-cta-wrapper">
+            <a href="/smash" className="hero-cta-button">
+              Get Free Quote
+            </a>
+          </div>
+          {/* ⬆️ END OF NEW SECTION */}
+        </div>
+      </section>
 
       {/* Content Section with Sidebar and Main Content */}
       <section className="service-detail-content">
@@ -94,14 +98,21 @@ const ServicesDetails = ({ serviceData }) => {
                 <div className="service-detail-header">
                   <div className="service-detail-icon-wrapper">
                     {serviceData?.serviceIcon?.url ? (
-                      <img 
-                        src={serviceData.serviceIcon.url} 
+                      <img
+                        src={serviceData.serviceIcon.url}
                         alt={serviceData.title}
                         className="service-detail-icon"
                       />
                     ) : (
-                      <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                        <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/>
+                      <svg
+                        width="40"
+                        height="40"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        strokeWidth="2"
+                      >
+                        <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z" />
                       </svg>
                     )}
                   </div>
@@ -111,9 +122,11 @@ const ServicesDetails = ({ serviceData }) => {
                 </div>
 
                 {/* Description Content */}
-                      {/* Description Content */}
+                {/* Description Content */}
                 <div className="markdown-content">
-                  <ReactMarkdown rehypePlugins={[rehypeRaw]}>{serviceData.description}</ReactMarkdown>
+                  <ReactMarkdown rehypePlugins={[rehypeRaw]}>
+                    {serviceData.description}
+                  </ReactMarkdown>
                 </div>
               </div>
 
@@ -121,15 +134,184 @@ const ServicesDetails = ({ serviceData }) => {
               {serviceData?.Features && (
                 <ServiceFeatures featuresData={serviceData.Features} />
               )}
+              {/* Advertisement Section - Before Gallery */}
+              {serviceData?.Advertisement && (
+                <div
+                  style={{
+                    marginTop: "30px",
+                    marginBottom: "30px",
+                    borderRadius: "16px",
+                    overflow: "hidden",
+                    boxShadow: "0 8px 32px rgba(0,0,0,0.18)",
+                  }}
+                >
+                  <div
+                    style={{
+                      backgroundImage: serviceData.Advertisement
+                        ?.backgroundImage?.url
+                        ? `url(${serviceData.Advertisement.backgroundImage.url})`
+                        : "none",
+                      backgroundSize: "cover",
+                      backgroundPosition: "center",
+                      backgroundRepeat: "no-repeat",
+                      position: "relative",
+                      minHeight: "380px",
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "center",
+                    }}
+                  >
+                    {/* Multi-layer gradient overlay */}
+                    <div
+                      style={{
+                        position: "absolute",
+                        inset: 0,
+                      background:
+  "linear-gradient(to right, rgba(0,0,0,0.88) 0%, rgba(0,0,0,0.75) 50%, rgba(0,0,0,0.55) 100%)",
+                        zIndex: 0,
+                      }}
+                    />
 
+                    {/* Left accent bar */}
+                    <div
+                      style={{
+                        position: "absolute",
+                        left: 0,
+                        top: 0,
+                        bottom: 0,
+                        width: "5px",
+                        background:
+                          "linear-gradient(to bottom, #f5a623, #e05c00)",
+                        zIndex: 2,
+                      }}
+                    />
+
+                    {/* Content */}
+                    <div
+                      style={{
+                        position: "relative",
+                        zIndex: 1,
+                        padding: "50px 60px",
+                        maxWidth: "820px",
+                        marginRight: "auto",
+                        width: "100%",
+                      }}
+                    >
+                      {/* Tag label */}
+                      <div
+                        style={{
+                          display: "inline-block",
+                          backgroundColor: "#f5a623",
+                          color: "#fff",
+                          fontSize: "0.8rem",
+                          fontWeight: "700",
+                          letterSpacing: "1.5px",
+      
+                          padding: "12px 12px",
+                          borderRadius: "4px",
+                          marginBottom: "16px",
+
+                        }}
+                      >
+                       <Link href={serviceData.Advertisement?.ctaUrl} style={{color:"white",textDecoration:"none"}}>
+                          {serviceData.Advertisement?.ctaText}
+                        </Link>
+                      </div>
+
+                      {serviceData.Advertisement.heading && (
+                        <h2
+                          style={{
+                            fontSize: "1.8rem",
+                            fontWeight: "800",
+                            color: "#fff",
+                            marginBottom: "16px",
+                            lineHeight: "1.3",
+                          }}
+                        >
+                          {serviceData.Advertisement.heading}
+                        </h2>
+                      )}
+
+                      {/* Divider line */}
+                      <div
+                        style={{
+                          width: "50px",
+                          height: "3px",
+                          background: "#f5a623",
+                          borderRadius: "2px",
+                          marginBottom: "16px",
+                        }}
+                      />
+
+                      {serviceData.Advertisement.description && (
+                        <p
+                          style={{
+                            color: "rgba(255,255,255,0.85)",
+                            fontSize: "0.95rem",
+                            lineHeight: "1.75",
+                            marginBottom: "28px",
+                            textAlign: "justify",
+                          }}
+                        >
+                          {serviceData.Advertisement.description}
+                        </p>
+                      )}
+
+                      {serviceData.Advertisement.buttonText && (
+                        <a
+                          href={
+                            serviceData.Advertisement.buttonLink || "/smash"
+                          }
+                          style={{
+                            display: "inline-flex",
+                            alignItems: "center",
+                            gap: "8px",
+                            backgroundColor: "#f5a623",
+                            color: "#fff",
+                            fontWeight: "700",
+                            fontSize: "0.95rem",
+                            padding: "13px 32px",
+                            borderRadius: "8px",
+                            textDecoration: "none",
+                            boxShadow: "0 4px 15px rgba(245,166,35,0.4)",
+                            transition: "all 0.2s",
+                          }}
+                          onMouseOver={(e) => {
+                            e.currentTarget.style.backgroundColor = "#e09515";
+                            e.currentTarget.style.transform =
+                              "translateY(-2px)";
+                          }}
+                          onMouseOut={(e) => {
+                            e.currentTarget.style.backgroundColor = "#f5a623";
+                            e.currentTarget.style.transform = "translateY(0)";
+                          }}
+                        >
+                          {serviceData.Advertisement.buttonText}
+                          <svg
+                            width="16"
+                            height="16"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            stroke="currentColor"
+                            strokeWidth="2.5"
+                          >
+                            <path d="M5 12h14M12 5l7 7-7 7" />
+                          </svg>
+                        </a>
+                      )}
+                    </div>
+                  </div>
+                </div>
+              )}
               {/* Gallery Section - Inside Main Content */}
               {photos.length > 0 && (
                 <div className="service-gallery-section">
                   <h2 className="gallery-title">Our Work Gallery</h2>
                   <p className="gallery-subtitle">
-                    Browse through our completed projects and see the quality of our work
+                    Browse through our completed projects and see the quality of
+                    our work
                   </p>
-                  
+
                   <div className="gallery-wrapper">
                     <RowsPhotoAlbum
                       photos={photos}
