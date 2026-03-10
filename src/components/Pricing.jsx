@@ -1,3 +1,5 @@
+import Link from "next/link";
+import { ImageUp } from "lucide-react";
 const Pricing = ({ data }) => {
   if (
     !data ||
@@ -65,7 +67,7 @@ const Pricing = ({ data }) => {
       {/* ── Main Panel ── */}
       <div
         style={{
-          maxWidth: "1080px",
+          maxWidth: "1250px",
           width: "100%",
           margin: "0 auto",
           boxSizing: "border-box",
@@ -88,6 +90,7 @@ const Pricing = ({ data }) => {
             justifyContent: "flex-start",
             boxSizing: "border-box",
             minWidth: 0, // allows shrinking inside grid
+            width: "100%",
           }}
         >
           <h3
@@ -341,7 +344,7 @@ const Pricing = ({ data }) => {
               💡 Prices are indicative. Final quote after free vehicle assessment.
               Insurance claims welcomed.
             </p>
-            <button
+            <Link
               style={{
                 background: "#f5a623",
                 color: "#ffffff",
@@ -354,6 +357,7 @@ const Pricing = ({ data }) => {
                 whiteSpace: "nowrap",
                 flexShrink: 0,
                 transition: "background 0.18s",
+                textDecoration: "none",
               }}
               onMouseEnter={(e) => {
                 e.currentTarget.style.background = "#e0951a";
@@ -361,9 +365,11 @@ const Pricing = ({ data }) => {
               onMouseLeave={(e) => {
                 e.currentTarget.style.background = "#f5a623";
               }}
+              href="/smash"
             >
-              Upload Your Smash
-            </button>
+                 <ImageUp />
+              &nbsp;&nbsp;Upload Your Smash
+            </Link>
           </div>
         </div>
       </div>

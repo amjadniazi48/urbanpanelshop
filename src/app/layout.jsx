@@ -142,7 +142,7 @@ export default async function RootLayout({ children }) {
       <body className={poppins.variable}>
         <Preloader />
 
-        <main className="page-wrapper" style={{overflowX: "hidden",maxWidth: "100%"}}>
+        <main className="page-wrapper" style={{overflowX: "hidden"}}>
           <Header headerdata={headerData} menu={menu} />
           {children}
           <Footer footerData={footerData} />
