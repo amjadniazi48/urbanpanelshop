@@ -62,7 +62,7 @@ const Pricing = ({ data }) => {
       {/* ── Main Panel ── */}
       <div
         style={{
-          maxWidth: "1080px",
+          maxWidth: "1100px",
           margin: "0 auto",
           borderRadius: "12px",
           overflow: "hidden",
