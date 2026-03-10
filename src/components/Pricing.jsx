@@ -18,9 +18,12 @@ const Pricing = ({ data }) => {
       style={{
         background: "#ffffff",
         padding: "60px 16px",
+        boxSizing: "border-box",
+        width: "100%",
+        overflowX: "hidden", // ← prevents horizontal scroll
       }}
     >
-      {/* ── Section Header — matches other sections on the page ── */}
+      {/* ── Section Header ── */}
       <div style={{ textAlign: "center", marginBottom: "40px" }}>
         <p
           style={{
@@ -36,7 +39,7 @@ const Pricing = ({ data }) => {
         </p>
         <h2
           style={{
-            fontSize: "clamp(24px, 3.5vw, 36px)",
+            fontSize: "clamp(22px, 3vw, 34px)",
             fontWeight: 700,
             color: "#0f1c2e",
             lineHeight: 1.3,
@@ -62,13 +65,16 @@ const Pricing = ({ data }) => {
       {/* ── Main Panel ── */}
       <div
         style={{
-          maxWidth: "1100px",
+          maxWidth: "1080px",
+          width: "100%",
           margin: "0 auto",
+          boxSizing: "border-box",
           borderRadius: "12px",
           overflow: "hidden",
           boxShadow: "0 4px 32px rgba(15,28,46,0.10)",
           display: "grid",
-          gridTemplateColumns: "minmax(240px, 280px) 1fr",
+          // Left col: fixed but shrinkable; right col takes the rest
+          gridTemplateColumns: "minmax(0, 260px) minmax(0, 1fr)",
           border: "1px solid #e8f0eb",
         }}
       >
@@ -76,16 +82,18 @@ const Pricing = ({ data }) => {
         <div
           style={{
             background: "linear-gradient(160deg, #0f1c2e 0%, #1a3352 100%)",
-            padding: "40px 28px",
+            padding: "36px 24px",
             display: "flex",
             flexDirection: "column",
             justifyContent: "flex-start",
+            boxSizing: "border-box",
+            minWidth: 0, // allows shrinking inside grid
           }}
         >
           <h3
             style={{
               color: "#ffffff",
-              fontSize: "18px",
+              fontSize: "17px",
               fontWeight: 700,
               lineHeight: 1.4,
               marginBottom: "6px",
@@ -105,7 +113,7 @@ const Pricing = ({ data }) => {
               style={{
                 color: "#7a9eb5",
                 fontSize: "12px",
-                marginBottom: "24px",
+                marginBottom: "22px",
                 lineHeight: 1.65,
               }}
             >
@@ -113,7 +121,6 @@ const Pricing = ({ data }) => {
             </p>
           )}
 
-          {/* Features list */}
           {Features.length > 0 && (
             <ul style={{ listStyle: "none", padding: 0, margin: 0 }}>
               {Features.map((item) => (
@@ -122,16 +129,16 @@ const Pricing = ({ data }) => {
                   style={{
                     display: "flex",
                     alignItems: "flex-start",
-                    gap: "9px",
-                    marginBottom: "11px",
+                    gap: "8px",
+                    marginBottom: "10px",
                   }}
                 >
                   <span
                     style={{
                       flexShrink: 0,
                       marginTop: "3px",
-                      width: "15px",
-                      height: "15px",
+                      width: "14px",
+                      height: "14px",
                       borderRadius: "50%",
                       background: "rgba(31,187,140,0.18)",
                       display: "flex",
@@ -157,6 +164,7 @@ const Pricing = ({ data }) => {
                       color: "#b8cfe0",
                       fontSize: "12px",
                       lineHeight: 1.5,
+                      wordBreak: "break-word",
                     }}
                   >
                     {item.feature}
@@ -166,25 +174,25 @@ const Pricing = ({ data }) => {
             </ul>
           )}
 
-          {/* Google rating — matching the style of star ratings on the page */}
           <div
             style={{
-              marginTop: "28px",
+              marginTop: "24px",
               background: "rgba(31,187,140,0.09)",
               border: "1px solid rgba(31,187,140,0.22)",
               borderRadius: "8px",
-              padding: "12px 16px",
+              padding: "11px 14px",
               display: "flex",
               alignItems: "center",
-              gap: "12px",
+              gap: "10px",
             }}
           >
             <div
               style={{
-                fontSize: "24px",
+                fontSize: "22px",
                 fontWeight: 800,
                 color: "#1fbb8c",
                 lineHeight: 1,
+                flexShrink: 0,
               }}
             >
               4.9
@@ -201,15 +209,24 @@ const Pricing = ({ data }) => {
         </div>
 
         {/* ── RIGHT: Pricing Table ── */}
-        <div style={{ background: "#ffffff" }}>
-          {/* Table column headers */}
+        <div
+          style={{
+            background: "#ffffff",
+            minWidth: 0, // allows shrinking inside grid
+            boxSizing: "border-box",
+            overflowX: "auto", // table scrolls internally if truly too narrow
+          }}
+        >
+          {/* Column headers */}
           <div
             style={{
               display: "grid",
-              gridTemplateColumns: "1fr 140px 120px",
-              padding: "13px 28px",
+              // Use minmax(0,...) so columns can compress below their content size
+              gridTemplateColumns: "minmax(0, 1fr) minmax(0, 120px) minmax(0, 110px)",
+              padding: "12px 24px",
               background: "#f4faf7",
               borderBottom: "1.5px solid #d6ede3",
+              boxSizing: "border-box",
             }}
           >
             {["Repair Type", "Price Range", "Turnaround"].map((h) => (
@@ -221,6 +238,9 @@ const Pricing = ({ data }) => {
                   textTransform: "uppercase",
                   letterSpacing: "1.5px",
                   color: "#1fbb8c",
+                  whiteSpace: "nowrap",
+                  overflow: "hidden",
+                  textOverflow: "ellipsis",
                 }}
               >
                 {h}
@@ -228,19 +248,20 @@ const Pricing = ({ data }) => {
             ))}
           </div>
 
-          {/* Pricing rows */}
+          {/* Rows */}
           {rows.map((row, i) => (
             <div
               key={row.id}
               style={{
                 display: "grid",
-                gridTemplateColumns: "1fr 140px 120px",
+                gridTemplateColumns: "minmax(0, 1fr) minmax(0, 120px) minmax(0, 110px)",
                 alignItems: "center",
-                padding: "16px 28px",
+                padding: "15px 24px",
                 borderBottom:
                   i < rows.length - 1 ? "1px solid #f0f4f2" : "none",
                 background: i % 2 === 0 ? "#ffffff" : "#fafcfb",
                 transition: "background 0.15s",
+                boxSizing: "border-box",
               }}
               onMouseEnter={(e) => {
                 e.currentTarget.style.background = "#f4faf7";
@@ -250,30 +271,30 @@ const Pricing = ({ data }) => {
                   i % 2 === 0 ? "#ffffff" : "#fafcfb";
               }}
             >
-              {/* Service name */}
               <div
                 style={{
                   fontSize: "13px",
                   fontWeight: 600,
                   color: "#0f1c2e",
                   lineHeight: 1.4,
+                  paddingRight: "8px",
+                  wordBreak: "break-word",
                 }}
               >
                 {row.servicetype}
               </div>
 
-              {/* Price range */}
               <div
                 style={{
                   fontSize: "13px",
                   fontWeight: 700,
                   color: "#0f1c2e",
+                  whiteSpace: "nowrap",
                 }}
               >
                 {row.pricerange}
               </div>
 
-              {/* Timing badge — teal pill matching page button style */}
               <div>
                 <span
                   style={{
@@ -281,7 +302,7 @@ const Pricing = ({ data }) => {
                     background: "#eaf8f2",
                     color: "#1fbb8c",
                     border: "1px solid #c2ead8",
-                    padding: "4px 12px",
+                    padding: "4px 10px",
                     borderRadius: "20px",
                     fontSize: "11px",
                     fontWeight: 600,
@@ -297,7 +318,7 @@ const Pricing = ({ data }) => {
           {/* Footer strip */}
           <div
             style={{
-              padding: "14px 28px",
+              padding: "13px 24px",
               background: "#f4faf7",
               borderTop: "1.5px solid #d6ede3",
               display: "flex",
@@ -305,25 +326,33 @@ const Pricing = ({ data }) => {
               justifyContent: "space-between",
               gap: "12px",
               flexWrap: "wrap",
+              boxSizing: "border-box",
             }}
           >
-            <p style={{ fontSize: "11px", color: "#9aabb8", margin: 0, lineHeight: 1.5 }}>
-              💡 Prices are indicative. Final quote after free vehicle assessment.
+            <p
+              style={{
+                fontSize: "11px",
+                color: "#9aabb8",
+                margin: 0,
+                lineHeight: 1.5,
+                flex: "1 1 200px",
+              }}
+            >
+              Prices are indicative. Final quote after free vehicle assessment.
               Insurance claims welcomed.
             </p>
-            {/* Orange CTA — identical style to hero "Upload Your Smash" button */}
             <button
               style={{
                 background: "#f5a623",
                 color: "#ffffff",
                 border: "none",
                 borderRadius: "6px",
-                padding: "10px 22px",
+                padding: "10px 20px",
                 fontSize: "13px",
                 fontWeight: 700,
                 cursor: "pointer",
                 whiteSpace: "nowrap",
-                letterSpacing: "0.3px",
+                flexShrink: 0,
                 transition: "background 0.18s",
               }}
               onMouseEnter={(e) => {
