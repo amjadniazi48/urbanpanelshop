@@ -1,13 +1,13 @@
-const Pricing = ({ data }) => {
+const Pricing = ({ Pricing }) => {
   if (
-    !data ||
+    !Pricing ||
     !data.Pricing ||
     data.Pricing.length === 0
   ) {
     return null;
   }
 
-  const { heading, subheading, Features = [], Pricing: rows = [] } = data;
+  const { heading, subheading, Features = [], Pricing: rows = [] } = Pricing;
 
   const headingWords = heading ? heading.trim().split(" ") : [];
   const headingMain = headingWords.slice(0, -1).join(" ");
