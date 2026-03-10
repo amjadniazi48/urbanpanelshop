@@ -4,6 +4,7 @@ import { useEffect } from "react";
 import AOS from "aos";
 import "aos/dist/aos.css";
 import FaqAccordion from "@/components/FAQAccordion";
+import Pricing from "@/components/Pricing";
 import Hero from "../components/Hero";
 // import Testimonials from "@/components/Testimonials";
 import Carcomparsion from "@/components/Carcomparsion";
@@ -100,6 +101,12 @@ export default function HomeClient({ homeData }) {
         return (
           <div {...animationProps}>
             <FaqAccordion data={block} />
+          </div>
+        );
+          case "blocks.pricing":
+        return (
+          <div {...animationProps}>
+            <Pricing data={block} />
           </div>
         );
       default:
