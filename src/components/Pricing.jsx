@@ -308,7 +308,7 @@ const Pricing = ({ data }) => {
             }}
           >
             <p style={{ fontSize: "11px", color: "#9aabb8", margin: 0, lineHeight: 1.5 }}>
-              Prices are indicative. Final quote after free vehicle assessment.
+              💡 Prices are indicative. Final quote after free vehicle assessment.
               Insurance claims welcomed.
             </p>
             {/* Orange CTA — identical style to hero "Upload Your Smash" button */}
