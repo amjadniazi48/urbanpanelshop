@@ -6,7 +6,6 @@ import "aos/dist/aos.css";
 import FaqAccordion from "@/components/FAQAccordion";
 import Pricing from "@/components/Pricing";
 import Hero from "../components/Hero";
-// import Testimonials from "@/components/Testimonials";
 import Carcomparsion from "@/components/Carcomparsion";
 import Urbanservices from "@/components/Urbanservices";
 import Smashupload from "@/components/Smashupload";
@@ -14,9 +13,18 @@ import Workflow from "@/components/Workflow";
 import About from "../components/About";
 import WhyChoose from "@/components/WhyChoose";
 import Reviews from "@/components/Reviews";
+
+// Safe wrapper style applied to every block — prevents any child
+// from bleeding outside the viewport width
+const blockWrapperStyle = {
+  width: "100%",
+  maxWidth: "100%",
+  boxSizing: "border-box",
+  overflowX: "clip", // clips without creating a scroll context
+};
+
 export default function HomeClient({ homeData }) {
   useEffect(() => {
-    // Initialize AOS (Animate On Scroll)
     AOS.init({
       duration: 800,
       easing: "ease-in-out",
@@ -26,9 +34,7 @@ export default function HomeClient({ homeData }) {
     });
   }, []);
 
-  // BlockRenderer function with animations
   function BlockRenderer(block, index) {
-    // Different animation types for variety
     const animations = [
       "fade-up",
       "fade-down",
@@ -38,7 +44,6 @@ export default function HomeClient({ homeData }) {
       "fade-right",
     ];
 
-    // Assign animation based on index (cycle through animations)
     const animation = animations[index % animations.length];
     const delay = index * 100;
 
@@ -46,6 +51,7 @@ export default function HomeClient({ homeData }) {
       "data-aos": animation,
       "data-aos-delay": delay,
       "data-aos-duration": "1000",
+      style: blockWrapperStyle,
     };
 
     switch (block.__component) {
@@ -55,60 +61,62 @@ export default function HomeClient({ homeData }) {
             <Hero data={block} />
           </div>
         );
-      case "blocks.hero-section":
-        return (
-          <div {...animationProps}>
-            <Smashupload data={block} />
-          </div>
-        );
+
       case "blocks.workflow":
         return (
           <div {...animationProps}>
             <Workflow data={block} />
           </div>
         );
-      case "blocks.services":
-        return (
-          <div {...animationProps}>
-            <Urbanservices data={block} />
-          </div>
-        );
+
       case "blocks.reviews":
         return (
           <div {...animationProps}>
             <Reviews />
           </div>
         );
+
       case "blocks.problem-fixation":
         return (
           <div {...animationProps}>
             <WhyChoose data={block} />
           </div>
         );
+
       case "blocks.recent-repairs":
         return (
           <div {...animationProps}>
             <Carcomparsion data={block} />
           </div>
         );
+
       case "blocks.about-us":
         return (
           <div {...animationProps}>
             <About data={block} />
           </div>
         );
+
       case "blocks.faqs":
         return (
           <div {...animationProps}>
             <FaqAccordion data={block} />
           </div>
         );
-          case "blocks.pricing":
+          case "blocks.services":
+                return (
+                  <div {...animationProps}>
+                    <Urbanservices data={block} />
+                  </div>
+                );
+      case "blocks.pricing":
         return (
           <div {...animationProps}>
             <Pricing data={block} />
           </div>
         );
+   
+
       default:
         return null;
     }
@@ -119,9 +127,10 @@ export default function HomeClient({ homeData }) {
   }
 
   return (
-    <div>
+    <div style={{ width: "100%", maxWidth: "100%", overflowX: "clip" }}>
       {homeData.map((block, index) => (
-        <div key={block.id || `block-${index}`}>
+        // Single wrapper div — removed the double nesting
+        <div key={block.id || `block-${index}`} style={blockWrapperStyle}>
           {BlockRenderer(block, index)}
         </div>
       ))}
