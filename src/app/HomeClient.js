@@ -103,12 +103,12 @@ export default function HomeClient({ homeData }) {
             <FaqAccordion data={block} />
           </div>
         );
-          case "blocks.pricing":
-        return (
-          <div {...animationProps}>
-            <Pricing data={block} />
-          </div>
-        );
+        //   case "blocks.pricing":
+        // return (
+        //   <div {...animationProps}>
+        //     <Pricing data={block} />
+        //   </div>
+        // );
       default:
         return null;
     }
