@@ -28,7 +28,7 @@ export default function Reviews() {
   }, []);
 
   return (
-    <div
+    <div 
       id="featurable-7091b6e7-682f-415d-b3d3-9f94f32bc531"
       data-featurable-async
     ></div>

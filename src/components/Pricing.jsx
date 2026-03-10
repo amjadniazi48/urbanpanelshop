@@ -1,13 +1,13 @@
-const Pricing = ({ Pricing }) => {
+const Pricing = ({ data }) => {
   if (
-    !Pricing ||
+    !data ||
     !data.Pricing ||
     data.Pricing.length === 0
   ) {
     return null;
   }
 
-  const { heading, subheading, Features = [], Pricing: rows = [] } = Pricing;
+  const { heading, subheading, Features = [], Pricing: rows = [] } = data;
 
   const headingWords = heading ? heading.trim().split(" ") : [];
   const headingMain = headingWords.slice(0, -1).join(" ");
@@ -338,7 +338,7 @@ const Pricing = ({ Pricing }) => {
                 flex: "1 1 200px",
               }}
             >
-              Prices are indicative. Final quote after free vehicle assessment.
+              💡 Prices are indicative. Final quote after free vehicle assessment.
               Insurance claims welcomed.
             </p>
             <button
