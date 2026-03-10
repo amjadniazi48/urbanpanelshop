@@ -338,7 +338,7 @@ const Pricing = ({ data }) => {
                 flex: "1 1 200px",
               }}
             >
-              💡 Prices are indicative. Final quote after free vehicle assessment.
+              Prices are indicative. Final quote after free vehicle assessment.
               Insurance claims welcomed.
             </p>
             <button
