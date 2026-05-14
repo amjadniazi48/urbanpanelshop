@@ -156,6 +156,7 @@ export default async function RootLayout({ children }) {
         </a>
 
         <BootstrapClient />
+        <SpeedInsights />
       </body>
     </html>
   );
