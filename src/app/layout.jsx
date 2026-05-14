@@ -11,7 +11,7 @@ import Preloader from "@/components/Preloader";
 import BootstrapClient from "@/components/BootstrapClient";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-
+import { SpeedInsights } from "@vercel/speed-insights/next"
 // Google Font
 const poppins = Poppins({
   subsets: ["latin"],
