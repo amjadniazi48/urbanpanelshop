@@ -12,6 +12,8 @@ import BootstrapClient from "@/components/BootstrapClient";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { SpeedInsights } from "@vercel/speed-insights/next"
+import "./globals.css";
+import "./mobile-fixes.css";
 // Google Font
 const poppins = Poppins({
   subsets: ["latin"],
@@ -146,7 +148,7 @@ export default async function RootLayout({ children }) {
       <body className={poppins.variable} suppressHydrationWarning>
         <Preloader />
 
-        <main className="page-wrapper">
+        <main className="page-wrapper" style={{ width: "100%", overflow: "clip" }}>
           <Header headerdata={headerData} menu={menu} />
           {children}
           <Footer footerData={footerData} />

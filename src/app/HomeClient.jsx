@@ -139,7 +139,7 @@ export default function HomeClient({ homeData }) {
   }
 
   return (
-    <div style={{ width: "100%", maxWidth: "100%", overflowX: "clip" }}>
+    <div style={{ width: "100%", maxWidth: "100%", overflowX: "clip", boxSizing: "border-box" }}>
       {homeData.map((block, index) => (
         // Single wrapper div — removed the double nesting
         <div key={block.id || `block-${index}`} style={blockWrapperStyle}>

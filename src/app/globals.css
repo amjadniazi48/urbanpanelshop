@@ -10,20 +10,27 @@
   }
 }
 
-html,
-body {
+html {
   width: 100%;
-  max-width: 100%;
-  overflow-x: hidden;
-  overflow-y: auto;
+  overflow-x: clip;
 }
 
 body {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: clip !important;
   color: var(--foreground);
   background: var(--background);
   font-family: Arial, Helvetica, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  margin: 0;
+  padding: 0;
+}
+
+main {
+  width: 100%;
+  overflow-x: clip;
 }
 
 * {

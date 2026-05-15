@@ -297,27 +297,66 @@ export default function Header({ headerdata, menu }) {
 
         /* Fix for mobile - ensure offcanvas menu works properly */
         @media (max-width: 991.98px) {
-          /* Backdrop should be below the top bar but above page content */
-          .offcanvas-backdrop {
-            z-index: 1044 !important;
+          body.offcanvas-backdrop.show {
+            overflow: hidden;
           }
           
-          /* Offcanvas menu should be above backdrop */
-          .offcanvas.offcanvas-end {
-            z-index: 1045 !important;
-            position: fixed !important;
-            top: 0 !important;
-            height: 100vh !important;
+          /* Backdrop must allow clicks through to menu */
+          .offcanvas-backdrop {
+            background-color: rgba(0, 0, 0, 0.5) !important;
+            opacity: 1 !important;
+            z-index: 1040 !important;
+            pointer-events: auto !important;
+          }
+          
+          /* Offcanvas menu - ensure it's above everything and clickable */
+          .offcanvas {
+            z-index: 1050 !important;
             pointer-events: auto !important;
           }
 
-          /* Ensure offcanvas body is clickable */
+          .offcanvas.offcanvas-end {
+            position: fixed !important;
+            right: 0 !important;
+            top: 0 !important;
+            bottom: 0 !important;
+            width: min(100%, 420px) !important;
+            max-width: 100% !important;
+            box-shadow: -3px 0 12px rgba(0, 0, 0, 0.15);
+            overflow-y: auto !important;
+          }
+
+          .offcanvas-header {
+            pointer-events: auto !important;
+            z-index: 1051 !important;
+          }
+
           .offcanvas-body {
             pointer-events: auto !important;
+            z-index: 1051 !important;
+            overflow-y: auto;
+            overflow-x: hidden;
           }
 
           /* Ensure all menu items are clickable */
-          .navbar-nav .nav-link,
+          .navbar-nav {
+            pointer-events: auto !important;
+            width: 100% !important;
+          }
+
+          .navbar-nav .nav-item {
+            pointer-events: auto !important;
+            width: 100% !important;
+          }
+
+          .navbar-nav .nav-link {
+            pointer-events: auto !important;
+            padding: 0.75rem 0 !important;
+            display: block !important;
+            width: 100% !important;
+            user-select: none;
+          }
+
           .navbar-nav .dropdown-item,
           .offcanvas-body .btn {
             pointer-events: auto !important;
@@ -326,6 +365,31 @@ export default function Header({ headerdata, menu }) {
           /* Ensure dropdown menus work on mobile */
           .dropdown-menu {
             pointer-events: auto !important;
+            position: static !important;
+            float: none !important;
+            width: 100% !important;
+            margin-top: 0 !important;
+            background-color: #f8f9fa !important;
+            border: none !important;
+            box-shadow: none !important;
+          }
+
+          /* Close button must be clickable */
+          .btn-close {
+            pointer-events: auto !important;
+          }
+
+          /* Navbar toggler must work */
+          .navbar-toggler {
+            pointer-events: auto !important;
+            z-index: 1060 !important;
+          }
+
+          /* Ensure container doesn't overflow */
+          .container {
+            max-width: 100% !important;
+            padding-left: 12px !important;
+            padding-right: 12px !important;
           }
         }
       `}</style>
