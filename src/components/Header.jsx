@@ -290,23 +290,43 @@ export default function Header({ headerdata, menu }) {
           transition: background-color 0.3s ease;
         }
         
-        /* Fix for mobile - ensure offcanvas doesn't cover top bar */
-        @media (max-width: 991.98px) {
-          .offcanvas-backdrop {
-            top: 40px !important;
-            z-index: 1040 !important;
-          }
-          
-          .offcanvas.offcanvas-end {
-            top: 40px !important;
-            height: calc(100vh - 40px) !important;
-            z-index: 1045 !important;
-          }
-        }
-        
         /* Ensure top bar stays above offcanvas */
         .top-contact-bar {
           z-index: 1055 !important;
+        }
+
+        /* Fix for mobile - ensure offcanvas menu works properly */
+        @media (max-width: 991.98px) {
+          /* Backdrop should be below the top bar but above page content */
+          .offcanvas-backdrop {
+            z-index: 1044 !important;
+          }
+          
+          /* Offcanvas menu should be above backdrop */
+          .offcanvas.offcanvas-end {
+            z-index: 1045 !important;
+            position: fixed !important;
+            top: 0 !important;
+            height: 100vh !important;
+            pointer-events: auto !important;
+          }
+
+          /* Ensure offcanvas body is clickable */
+          .offcanvas-body {
+            pointer-events: auto !important;
+          }
+
+          /* Ensure all menu items are clickable */
+          .navbar-nav .nav-link,
+          .navbar-nav .dropdown-item,
+          .offcanvas-body .btn {
+            pointer-events: auto !important;
+          }
+
+          /* Ensure dropdown menus work on mobile */
+          .dropdown-menu {
+            pointer-events: auto !important;
+          }
         }
       `}</style>
     </>

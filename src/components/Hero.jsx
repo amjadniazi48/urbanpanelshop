@@ -170,8 +170,8 @@ const Hero = ({ data }) => {
         style={{
           top: "10%",
           right: "5%",
-          width: "400px",
-          height: "400px",
+          width: "clamp(200px, 50vw, 400px)",
+          height: "clamp(200px, 50vw, 400px)",
           background: "radial-gradient(circle, rgba(255, 165, 0, 0.1) 0%, transparent 70%)",
           borderRadius: "50%",
           filter: "blur(60px)",
@@ -183,8 +183,8 @@ const Hero = ({ data }) => {
         style={{
           bottom: "10%",
           left: "5%",
-          width: "350px",
-          height: "350px",
+          width: "clamp(175px, 45vw, 350px)",
+          height: "clamp(175px, 45vw, 350px)",
           background: "radial-gradient(circle, rgba(59, 130, 246, 0.08) 0%, transparent 70%)",
           borderRadius: "50%",
           filter: "blur(60px)",
