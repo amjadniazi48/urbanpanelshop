@@ -12,6 +12,9 @@ const Urbanservices = ({ data }) => {
   if (!data) return null;
 
   const { heading, subheading, services } = data;
+  const serviceCount = services?.length ?? 0;
+  // Loop needs enough slides for the largest slidesPerView (3 on desktop)
+  const enableLoop = serviceCount >= 6;
 
   return (
     <section 
@@ -59,8 +62,8 @@ const Urbanservices = ({ data }) => {
             el: ".custom-pagination",
             clickable: true,
           }}
-          loop={true}
-          loopAdditionalSlides={3}
+          loop={enableLoop}
+          loopAdditionalSlides={enableLoop ? 3 : 0}
           autoplay={{
             delay: 4000,
             disableOnInteraction: false,

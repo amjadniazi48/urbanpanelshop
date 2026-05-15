@@ -9,11 +9,109 @@ import "swiper/css/pagination";
 import "swiper/css/navigation";
 import "swiper/css/effect-fade";
 
-const Hero = ({ data }) => {
-  console.log("Hero component data:", data);
+function HeroSlideContent({ slide }) {
+  return (
+    <div
+      className="text-center"
+      style={{
+        width: "100%",
+        padding: "12rem 1.5rem 3rem",
+      }}
+    >
+      {slide.heading && (
+        <h1
+          className="mb-4"
+          style={{
+            fontSize: "clamp(2rem, 4.5vw, 3.25rem)",
+            fontWeight: "800",
+            color: "white",
+            lineHeight: "1.15",
+            letterSpacing: "-0.02em",
+            textShadow: "0 4px 20px rgba(0,0,0,0.4)",
+            marginBottom: "1.25rem",
+            animation: "fadeInUp 0.8s ease-out",
+          }}
+        >
+          {slide.heading}
+        </h1>
+      )}
 
+      {slide.subheading && (
+        <h2
+          className="mb-3"
+          style={{
+            fontSize: "clamp(1rem, 2.5vw, 1.375rem)",
+            color: "#ffa500",
+            fontWeight: "600",
+            letterSpacing: "0.03em",
+            textTransform: "uppercase",
+            textShadow: "0 2px 10px rgba(255, 165, 0, 0.3)",
+            marginBottom: "1.5rem",
+            animation: "fadeInUp 0.8s ease-out 0.2s backwards",
+          }}
+        >
+          {slide.subheading}
+        </h2>
+      )}
+
+      {slide.summary && (
+        <p
+          className="mb-4"
+          style={{
+            fontSize: "clamp(0.938rem, 2vw, 1.063rem)",
+            color: "rgba(255,255,255,0.92)",
+            maxWidth: "700px",
+            margin: "0 auto 2rem",
+            lineHeight: "1.7",
+            fontWeight: "400",
+            textShadow: "0 2px 8px rgba(0,0,0,0.3)",
+            animation: "fadeInUp 0.8s ease-out 0.4s backwards",
+          }}
+        >
+          {slide.summary}
+        </p>
+      )}
+
+      <div style={{ animation: "fadeInUp 0.8s ease-out 0.6s backwards" }}>
+        <Link
+          href="/smash"
+          className="btn btn-lg"
+          style={{
+            backgroundColor: "#ffa500",
+            color: "#1a1a2e",
+            padding: "1.125rem 3rem",
+            fontSize: "1.063rem",
+            fontWeight: "700",
+            borderRadius: "12px",
+            textDecoration: "none",
+            display: "inline-block",
+            border: "none",
+            boxShadow: "0 8px 32px rgba(255, 165, 0, 0.35)",
+            transition: "all 0.4s cubic-bezier(0.4, 0, 0.2, 1)",
+            letterSpacing: "0.5px",
+            position: "relative",
+            overflow: "hidden",
+          }}
+          onMouseEnter={(e) => {
+            e.target.style.backgroundColor = "#ff9500";
+            e.target.style.transform = "translateY(-4px) scale(1.02)";
+            e.target.style.boxShadow = "0 12px 40px rgba(255, 165, 0, 0.45)";
+          }}
+          onMouseLeave={(e) => {
+            e.target.style.backgroundColor = "#ffa500";
+            e.target.style.transform = "translateY(0) scale(1)";
+            e.target.style.boxShadow = "0 8px 32px rgba(255, 165, 0, 0.35)";
+          }}
+        >
+          Upload Your Smash
+        </Link>
+      </div>
+    </div>
+  );
+}
+
+const Hero = ({ data }) => {
   if (!data || data.__component !== "blocks.swiper-hero") {
-    console.warn("Invalid or missing hero block data");
     return null;
   }
 
@@ -39,13 +137,12 @@ const Hero = ({ data }) => {
       {/* Background Image with Parallax Effect */}
       {bgImage?.url && (
         <div
-          className="position-absolute top-0 start-0 w-100 h-100"
+          className="position-absolute top-0 start-0 w-100 h-100 hero-bg-layer"
           style={{
             backgroundImage: `url(${bgImage.url})`,
             backgroundSize: "cover",
             backgroundPosition: "center",
             backgroundRepeat: "no-repeat",
-            backgroundAttachment: "fixed",
             zIndex: 0,
           }}
         />
@@ -170,6 +267,7 @@ const Hero = ({ data }) => {
         <div className="container">
           <div className="row justify-content-center">
             <div className="col-xl-10 col-lg-11 col-12">
+              {showNavigation ? (
               <Swiper
                 modules={[Autoplay, Pagination, Navigation, EffectFade]}
                 effect="fade"
@@ -219,109 +317,23 @@ const Hero = ({ data }) => {
                       justifyContent: "center",
                     }}
                   >
-                    <div
-                      className="text-center"
-                      style={{
-                        width: "100%",
-                        padding: "12rem 1.5rem 3rem",
-                      }}
-                    >
-                      {/* Heading with Enhanced Typography */}
-                      {slide.heading && (
-                        <h1
-                          className="mb-4"
-                          style={{
-                            fontSize: "clamp(2rem, 4.5vw, 3.25rem)",
-                            fontWeight: "800",
-                            color: "white",
-                            lineHeight: "1.15",
-                            letterSpacing: "-0.02em",
-                            textShadow: "0 4px 20px rgba(0,0,0,0.4)",
-                            marginBottom: "1.25rem",
-                            animation: "fadeInUp 0.8s ease-out",
-                          }}
-                        >
-                          {slide.heading}
-                        </h1>
-                      )}
-
-                      {/* Subheading with Accent Color */}
-                      {slide.subheading && (
-                        <h2
-                          className="mb-3"
-                          style={{
-                            fontSize: "clamp(1rem, 2.5vw, 1.375rem)",
-                            color: "#ffa500",
-                            fontWeight: "600",
-                            letterSpacing: "0.03em",
-                            textTransform: "uppercase",
-                            textShadow: "0 2px 10px rgba(255, 165, 0, 0.3)",
-                            marginBottom: "1.5rem",
-                            animation: "fadeInUp 0.8s ease-out 0.2s backwards",
-                          }}
-                        >
-                          {slide.subheading}
-                        </h2>
-                      )}
-
-                      {/* Summary with Better Readability */}
-                      {slide.summary && (
-                        <p
-                          className="mb-4"
-                          style={{
-                            fontSize: "clamp(0.938rem, 2vw, 1.063rem)",
-                            color: "rgba(255,255,255,0.92)",
-                            maxWidth: "700px",
-                            margin: "0 auto 2rem",
-                            lineHeight: "1.7",
-                            fontWeight: "400",
-                            textShadow: "0 2px 8px rgba(0,0,0,0.3)",
-                            animation: "fadeInUp 0.8s ease-out 0.4s backwards",
-                          }}
-                        >
-                          {slide.summary}
-                        </p>
-                      )}
-
-                      {/* Enhanced CTA Button */}
-                      <div style={{ animation: "fadeInUp 0.8s ease-out 0.6s backwards" }}>
-                        <Link
-                          href="/smash"
-                          className="btn btn-lg"
-                          style={{
-                            backgroundColor: "#ffa500",
-                            color: "#1a1a2e",
-                            padding: "1.125rem 3rem",
-                            fontSize: "1.063rem",
-                            fontWeight: "700",
-                            borderRadius: "12px",
-                            textDecoration: "none",
-                            display: "inline-block",
-                            border: "none",
-                            boxShadow: "0 8px 32px rgba(255, 165, 0, 0.35)",
-                            transition: "all 0.4s cubic-bezier(0.4, 0, 0.2, 1)",
-                            letterSpacing: "0.5px",
-                            position: "relative",
-                            overflow: "hidden",
-                          }}
-                          onMouseEnter={(e) => {
-                            e.target.style.backgroundColor = "#ff9500";
-                            e.target.style.transform = "translateY(-4px) scale(1.02)";
-                            e.target.style.boxShadow = "0 12px 40px rgba(255, 165, 0, 0.45)";
-                          }}
-                          onMouseLeave={(e) => {
-                            e.target.style.backgroundColor = "#ffa500";
-                            e.target.style.transform = "translateY(0) scale(1)";
-                            e.target.style.boxShadow = "0 8px 32px rgba(255, 165, 0, 0.35)";
-                          }}
-                        >
-                          Upload Your Smash
-                        </Link>
-                      </div>
-                    </div>
+                    <HeroSlideContent slide={slide} />
                   </SwiperSlide>
                 ))}
               </Swiper>
+              ) : (
+              <div
+                style={{
+                  minHeight: "650px",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                }}
+              >
+                <HeroSlideContent slide={slides[0]} />
+              </div>
+              )}
+
 
               {/* Custom Pagination Dots - Only show if more than 1 slide */}
               {showNavigation && (
@@ -337,6 +349,16 @@ const Hero = ({ data }) => {
 
       {/* CSS Animations */}
       <style jsx>{`
+        .hero-bg-layer {
+          background-attachment: scroll;
+        }
+
+        @media (min-width: 992px) {
+          .hero-bg-layer {
+            background-attachment: fixed;
+          }
+        }
+
         @keyframes fadeInUp {
           from {
             opacity: 0;

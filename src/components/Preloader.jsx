@@ -5,8 +5,17 @@ export default function Preloader() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const timer = setTimeout(() => setLoading(false), 800); // fade out after 0.8s
-    return () => clearTimeout(timer);
+    const hide = () => setLoading(false);
+    const timer = setTimeout(hide, 800);
+    if (document.readyState === "complete") {
+      hide();
+    } else {
+      window.addEventListener("load", hide, { once: true });
+    }
+    return () => {
+      clearTimeout(timer);
+      window.removeEventListener("load", hide);
+    };
   }, []);
 
   if (!loading) return null;

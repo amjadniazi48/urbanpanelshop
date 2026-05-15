@@ -3,11 +3,7 @@
 import React from "react";
 import Image from "next/image";
 const About = ({ data }) => {
-  console.log("About component data:", data);
-
-  // Validate data
   if (!data || data.__component !== "blocks.about-us") {
-    console.warn("Invalid or missing about-us data");
     return null;
   }
 

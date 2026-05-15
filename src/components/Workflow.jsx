@@ -4,7 +4,6 @@ import Image from "next/image";
 
 const Workflow = ({ data }) => {
   if (!data?.workflow?.length) return null;
-  console.log("workflow", data.workflow);
 
   // Define gradient colors for each step circle
   const circleColors = [

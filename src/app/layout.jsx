@@ -139,7 +139,7 @@ export default async function RootLayout({ children }) {
         <link rel="stylesheet" media="screen" href="/assets/css/style.css" />
       </head>
 
-      <body className={poppins.variable}>
+      <body className={poppins.variable} suppressHydrationWarning>
         <Preloader />
 
         <main className="page-wrapper">
