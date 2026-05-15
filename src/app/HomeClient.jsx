@@ -57,7 +57,7 @@ export default function HomeClient({ homeData }) {
     switch (block.__component) {
       case "blocks.swiper-hero":
         return (
-          <div {...animationProps}>
+          <div style={blockWrapperStyle}>
             <Hero data={block} />
           </div>
         );

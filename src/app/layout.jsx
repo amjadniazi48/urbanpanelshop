@@ -82,9 +82,10 @@ export default async function RootLayout({ children }) {
           <meta name="robots" content={seo.metaRobots} />
         )}
 
-        {seo?.metaViewport && (
-          <meta name="viewport" content={seo.metaViewport} />
-        )}
+        <meta
+          name="viewport"
+          content={seo?.metaViewport || "width=device-width, initial-scale=1"}
+        />
 
         {seo?.canonicalURL && (
           <link rel="canonical" href={seo.canonicalURL} />

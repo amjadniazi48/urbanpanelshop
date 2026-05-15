@@ -1,13 +1,7 @@
 "use client";
 
-import React from "react";
-import { Swiper, SwiperSlide } from "swiper/react";
-import { Autoplay, Pagination, Navigation, EffectFade } from "swiper/modules";
+import React, { useState, useEffect, useCallback } from "react";
 import Link from "next/link";
-import "swiper/css";
-import "swiper/css/pagination";
-import "swiper/css/navigation";
-import "swiper/css/effect-fade";
 
 function HeroSlideContent({ slide }) {
   return (
@@ -15,7 +9,7 @@ function HeroSlideContent({ slide }) {
       className="text-center"
       style={{
         width: "100%",
-        padding: "12rem 1.5rem 3rem",
+        padding: "clamp(6rem, 18vw, 12rem) 1.5rem 3rem",
       }}
     >
       {slide.heading && (
@@ -111,19 +105,35 @@ function HeroSlideContent({ slide }) {
 }
 
 const Hero = ({ data }) => {
-  if (!data || data.__component !== "blocks.swiper-hero") {
+  const isValidHero =
+    data && data.__component === "blocks.swiper-hero";
+  const slides = isValidHero ? data.Swiper || [] : [];
+  const slideCount = slides.length;
+  const showNavigation = slideCount > 1;
+
+  const [activeIndex, setActiveIndex] = useState(0);
+
+  const goNext = useCallback(() => {
+    if (slideCount === 0) return;
+    setActiveIndex((i) => (i + 1) % slideCount);
+  }, [slideCount]);
+
+  const goPrev = useCallback(() => {
+    if (slideCount === 0) return;
+    setActiveIndex((i) => (i - 1 + slideCount) % slideCount);
+  }, [slideCount]);
+
+  useEffect(() => {
+    if (!showNavigation) return;
+    const id = setInterval(goNext, 6000);
+    return () => clearInterval(id);
+  }, [showNavigation, goNext]);
+
+  if (!isValidHero || slideCount === 0) {
     return null;
   }
 
   const bgImage = data.backgroundImage?.[0];
-  const slides = data.Swiper || [];
-
-  if (slides.length === 0) {
-    return null;
-  }
-
-  // Check if we should show navigation (more than 1 slide)
-  const showNavigation = slides.length > 1;
 
   return (
     <section
@@ -134,7 +144,6 @@ const Hero = ({ data }) => {
         overflow: "hidden",
       }}
     >
-      {/* Background Image with Parallax Effect */}
       {bgImage?.url && (
         <div
           className="position-absolute top-0 start-0 w-100 h-100 hero-bg-layer"
@@ -148,7 +157,6 @@ const Hero = ({ data }) => {
         />
       )}
 
-      {/* Modern Gradient Overlay */}
       <div
         className="position-absolute top-0 start-0 w-100 h-100"
         style={{
@@ -157,7 +165,6 @@ const Hero = ({ data }) => {
         }}
       />
 
-      {/* Decorative Elements */}
       <div
         className="position-absolute"
         style={{
@@ -185,11 +192,11 @@ const Hero = ({ data }) => {
         }}
       />
 
-      {/* Navigation Buttons - Only show if more than 1 slide */}
       {showNavigation && (
         <>
           <button
-            id="hero-prev"
+            type="button"
+            aria-label="Previous slide"
             className="btn btn-icon position-absolute top-50 start-0 translate-middle-y d-none d-md-flex"
             style={{
               backgroundColor: "rgba(255, 255, 255, 0.08)",
@@ -208,6 +215,7 @@ const Hero = ({ data }) => {
               justifyContent: "center",
               boxShadow: "0 8px 24px rgba(0, 0, 0, 0.2)",
             }}
+            onClick={goPrev}
             onMouseEnter={(e) => {
               e.currentTarget.style.backgroundColor = "#ffa500";
               e.currentTarget.style.borderColor = "#ffa500";
@@ -225,7 +233,8 @@ const Hero = ({ data }) => {
           </button>
 
           <button
-            id="hero-next"
+            type="button"
+            aria-label="Next slide"
             className="btn btn-icon position-absolute top-50 end-0 translate-middle-y d-none d-md-flex"
             style={{
               backgroundColor: "rgba(255, 255, 255, 0.08)",
@@ -244,6 +253,7 @@ const Hero = ({ data }) => {
               justifyContent: "center",
               boxShadow: "0 8px 24px rgba(0, 0, 0, 0.2)",
             }}
+            onClick={goNext}
             onMouseEnter={(e) => {
               e.currentTarget.style.backgroundColor = "#ffa500";
               e.currentTarget.style.borderColor = "#ffa500";
@@ -262,67 +272,12 @@ const Hero = ({ data }) => {
         </>
       )}
 
-      {/* Swiper Container */}
       <div className="position-relative" style={{ zIndex: 10 }}>
         <div className="container">
           <div className="row justify-content-center">
             <div className="col-xl-10 col-lg-11 col-12">
-              {showNavigation ? (
-              <Swiper
-                modules={[Autoplay, Pagination, Navigation, EffectFade]}
-                effect="fade"
-                fadeEffect={{
-                  crossFade: true,
-                }}
-                speed={1000}
-                autoplay={
-                  showNavigation
-                    ? {
-                        delay: 6000,
-                        disableOnInteraction: false,
-                      }
-                    : false
-                }
-                pagination={
-                  showNavigation
-                    ? {
-                        clickable: true,
-                        el: ".custom-pagination",
-                        bulletClass: "swiper-pagination-bullet-custom",
-                        bulletActiveClass: "swiper-pagination-bullet-active-custom",
-                      }
-                    : false
-                }
-                navigation={
-                  showNavigation
-                    ? {
-                        prevEl: "#hero-prev",
-                        nextEl: "#hero-next",
-                      }
-                    : false
-                }
-                loop={showNavigation}
-                style={{
-                  minHeight: "650px",
-                  display: "flex",
-                  alignItems: "center",
-                }}
-              >
-                {slides.map((slide, index) => (
-                  <SwiperSlide
-                    key={slide.id || index}
-                    style={{
-                      display: "flex",
-                      alignItems: "center",
-                      justifyContent: "center",
-                    }}
-                  >
-                    <HeroSlideContent slide={slide} />
-                  </SwiperSlide>
-                ))}
-              </Swiper>
-              ) : (
               <div
+                className="hero-slide-viewport"
                 style={{
                   minHeight: "650px",
                   display: "flex",
@@ -330,24 +285,37 @@ const Hero = ({ data }) => {
                   justifyContent: "center",
                 }}
               >
-                <HeroSlideContent slide={slides[0]} />
+                <HeroSlideContent
+                  key={slides[activeIndex]?.id ?? activeIndex}
+                  slide={slides[activeIndex]}
+                />
               </div>
-              )}
 
-
-              {/* Custom Pagination Dots - Only show if more than 1 slide */}
               {showNavigation && (
                 <div
                   className="custom-pagination d-flex justify-content-center gap-2 mt-4"
                   style={{ paddingBottom: "2rem" }}
-                />
+                >
+                  {slides.map((slide, index) => (
+                    <button
+                      key={slide.id || index}
+                      type="button"
+                      aria-label={`Go to slide ${index + 1}`}
+                      className={
+                        index === activeIndex
+                          ? "swiper-pagination-bullet-custom swiper-pagination-bullet-active-custom"
+                          : "swiper-pagination-bullet-custom"
+                      }
+                      onClick={() => setActiveIndex(index)}
+                    />
+                  ))}
+                </div>
               )}
             </div>
           </div>
         </div>
       </div>
 
-      {/* CSS Animations */}
       <style jsx>{`
         .hero-bg-layer {
           background-attachment: scroll;
@@ -356,6 +324,19 @@ const Hero = ({ data }) => {
         @media (min-width: 992px) {
           .hero-bg-layer {
             background-attachment: fixed;
+          }
+        }
+
+        .hero-slide-viewport {
+          animation: heroFadeIn 1s ease;
+        }
+
+        @keyframes heroFadeIn {
+          from {
+            opacity: 0;
+          }
+          to {
+            opacity: 1;
           }
         }
 
@@ -378,6 +359,7 @@ const Hero = ({ data }) => {
           cursor: pointer;
           transition: all 0.3s ease;
           border: 2px solid transparent;
+          padding: 0;
         }
 
         .swiper-pagination-bullet-custom:hover {
