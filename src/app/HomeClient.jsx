@@ -32,6 +32,18 @@ export default function HomeClient({ homeData }) {
       offset: 100,
       delay: 0,
     });
+
+    const refreshAOS = () => {
+      AOS.refresh();
+    };
+
+    if (document.readyState === "complete") {
+      refreshAOS();
+    } else {
+      window.addEventListener("load", refreshAOS, { once: true });
+    }
+
+    return () => window.removeEventListener("load", refreshAOS);
   }, []);
 
   function BlockRenderer(block, index) {

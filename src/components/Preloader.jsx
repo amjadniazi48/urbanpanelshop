@@ -2,17 +2,20 @@
 import { useEffect, useState } from "react";
 
 export default function Preloader() {
-  const [loading, setLoading] = useState(true);
+  const [mounted, setMounted] = useState(false);
+  const [visible, setVisible] = useState(true);
 
   useEffect(() => {
-    const timer = setTimeout(() => setLoading(false), 800);
+    setMounted(true);
+    const timer = setTimeout(() => setVisible(false), 800);
     return () => clearTimeout(timer);
   }, []);
 
-  if (!loading) return null;
+  // Do not render on the server — avoids a stuck overlay if client JS fails on mobile
+  if (!mounted || !visible) return null;
 
   return (
-    <div className="page-loading active">
+    <div className="page-loading active" aria-hidden="true">
       <div className="page-loading-inner">
         <div className="page-spinner" />
         <span>Loading...</span>

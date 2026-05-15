@@ -65,6 +65,16 @@ font-family: "Poppins" !important;
 .page-loading.active {
   opacity: 1;
   visibility: visible;
+  /* Failsafe: hide overlay even if React never hydrates (common on slow mobile) */
+  animation: page-loading-auto-hide 0.4s ease-in-out 1s forwards;
+}
+
+@keyframes page-loading-auto-hide {
+  to {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+  }
 }
 
 .page-loading-inner {
@@ -117,6 +127,15 @@ body {
 .page-wrapper {
   opacity: 1;
   transition: opacity 0.3s ease-in-out;
+}
+
+/* If AOS does not init on mobile, keep sections visible (opacity: 0 otherwise) */
+@media (max-width: 767.98px) {
+  [data-aos] {
+    opacity: 1 !important;
+    transform: none !important;
+    pointer-events: auto;
+  }
 }
 .text-gradient-secondary {
     background: linear-gradient(90deg, #1E3A8A, #2563EB 40%, #F97316);

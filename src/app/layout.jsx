@@ -64,6 +64,12 @@ export default async function RootLayout({ children }) {
   const metaImageUrl = seo?.metaImage?.url;
   const ogImageUrl = seo?.openGraph?.ogImage?.url;
 
+  const viewportContent =
+    typeof seo?.metaViewport === "string" &&
+    seo.metaViewport.trim().includes("device-width")
+      ? seo.metaViewport.trim()
+      : "width=device-width, initial-scale=1";
+
   return (
     <html lang="en" className={poppins.variable} suppressHydrationWarning>
       <head>
@@ -82,10 +88,7 @@ export default async function RootLayout({ children }) {
           <meta name="robots" content={seo.metaRobots} />
         )}
 
-        <meta
-          name="viewport"
-          content={seo?.metaViewport || "width=device-width, initial-scale=1"}
-        />
+        <meta name="viewport" content={viewportContent} />
 
         {seo?.canonicalURL && (
           <link rel="canonical" href={seo.canonicalURL} />
