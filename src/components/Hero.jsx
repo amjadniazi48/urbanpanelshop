@@ -12,6 +12,7 @@ function HeroSlideContent({ slide }) {
         padding: "clamp(6rem, 18vw, 12rem) 1.5rem 3rem",
       }}
     >
+      
       {slide.heading && (
         <h1
           className="mb-4"
