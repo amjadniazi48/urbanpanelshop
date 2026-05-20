@@ -20,18 +20,13 @@ export default function Header({ headerdata, menu }) {
 
   // Function to close the offcanvas menu
   const closeOffcanvas = () => {
-    try {
-      if (typeof window !== "undefined" && window.bootstrap?.Offcanvas) {
-        const offcanvasEl = document.getElementById("navbarNav");
-        if (offcanvasEl) {
-          const offcanvas = window.bootstrap.Offcanvas.getOrCreateInstance(offcanvasEl);
-          if (offcanvas) {
-            offcanvas.hide();
-          }
-        }
+    if (typeof window !== "undefined" && window.bootstrap) {
+      const offcanvasEl = document.getElementById("navbarNav");
+      if (offcanvasEl) {
+        const offcanvas =
+          window.bootstrap.Offcanvas.getOrCreateInstance(offcanvasEl);
+        offcanvas.hide();
       }
-    } catch (error) {
-      // Silently fail if Bootstrap isn't ready yet
     }
   };
 

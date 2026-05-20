@@ -1,0 +1,135 @@
+/* Mobile Overflow Prevention and Menu Fixes */
+
+/* Ensure no element exceeds viewport width */
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  width: 100%;
+  max-width: 100%;
+}
+
+/* Prevent all overflow */
+@media (max-width: 768px) {
+  html,
+  body,
+  main,
+  .page-wrapper {
+    width: 100% !important;
+    max-width: 100% !important;
+    overflow-x: clip !important;
+    overflow-y: visible !important;
+  }
+
+  /* Fix Bootstrap container on mobile */
+  .container,
+  .container-fluid {
+    width: 100% !important;
+    max-width: 100% !important;
+    padding-left: 12px !important;
+    padding-right: 12px !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+  }
+
+  /* Ensure all rows wrap properly */
+  .row {
+    margin-left: -6px !important;
+    margin-right: -6px !important;
+  }
+
+  .col,
+  .col-12,
+  [class*="col-"] {
+    padding-left: 6px !important;
+    padding-right: 6px !important;
+  }
+
+  /* Prevent any element from exceeding viewport */
+  img,
+  video {
+    max-width: 100% !important;
+    height: auto !important;
+  }
+
+  /* ============ CRITICAL TOUCH/POINTER FIXES ============ */
+  
+  /* Hamburger menu button - MUST be clickable */
+  .navbar-toggler {
+    position: relative !important;
+    z-index: 1060 !important;
+    pointer-events: auto !important;
+    touch-action: manipulation !important;
+    cursor: pointer !important;
+    -webkit-tap-highlight-color: transparent !important;
+  }
+
+  .navbar-toggler:active,
+  .navbar-toggler:focus {
+    outline: none !important;
+  }
+
+  .navbar-toggler-icon {
+    pointer-events: auto !important;
+    display: inline-block !important;
+  }
+
+  /* Offcanvas menu - ensure it's interactive */
+  .offcanvas {
+    touch-action: auto !important;
+    pointer-events: auto !important;
+  }
+
+  .offcanvas-body {
+    touch-action: auto !important;
+    pointer-events: auto !important;
+  }
+
+  .offcanvas-backdrop {
+    pointer-events: auto !important;
+    z-index: 1040 !important;
+  }
+
+  /* FAQ Accordion buttons */
+  button[type="button"],
+  .accordion-button,
+  [role="button"] {
+    touch-action: auto !important;
+    pointer-events: auto !important;
+    -webkit-user-select: none !important;
+    user-select: none !important;
+    cursor: pointer !important;
+    -webkit-tap-highlight-color: transparent !important;
+  }
+
+  /* Comparison slider - allow drag/touch */
+  .react-compare-slider,
+  [class*="slider"],
+  [class*="compare"] {
+    touch-action: manipulation !important;
+    pointer-events: auto !important;
+    -webkit-user-select: none !important;
+    user-select: none !important;
+  }
+
+  /* Generic button and interactive elements */
+  .btn,
+  .dropdown-item,
+  [onclick],
+  a[href] {
+    touch-action: auto !important;
+    pointer-events: auto !important;
+    cursor: pointer !important;
+  }
+
+  /* Ensure nav items are clickable */
+  .navbar-nav,
+  .navbar-nav .nav-link,
+  .dropdown-menu {
+    touch-action: auto !important;
+    pointer-events: auto !important;
+  }
+
+}
