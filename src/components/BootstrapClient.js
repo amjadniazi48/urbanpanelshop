@@ -20,33 +20,47 @@ export default function BootstrapClient() {
         const navToggler = document.querySelector('.navbar-toggler');
         const offcanvasNav = document.getElementById('navbarNav');
 
-        if (navToggler && offcanvasNav) {
-          navToggler.addEventListener('click', (e) => {
-            e.preventDefault();
-            e.stopPropagation();
-            
-            // Toggle the show class directly
-            const isOpen = offcanvasNav.classList.contains('show');
-            
-            if (isOpen) {
-              offcanvasNav.classList.remove('show');
-              offcanvasNav.setAttribute('aria-hidden', 'true');
-              // Remove backdrop
-              const backdrop = document.querySelector('.offcanvas-backdrop');
-              if (backdrop) backdrop.remove();
-            } else {
-              offcanvasNav.classList.add('show');
-              offcanvasNav.setAttribute('aria-hidden', 'false');
-              // Add backdrop
-              const backdrop = document.createElement('div');
-              backdrop.className = 'offcanvas-backdrop fade show';
-              document.body.appendChild(backdrop);
-              backdrop.addEventListener('click', () => {
-                navToggler.click(); // Close when clicking backdrop
-              });
-            }
-          }, { passive: false });
+        if (!navToggler || !offcanvasNav) {
+          console.log('[v0] Menu elements not found. Toggler:', !!navToggler, 'Nav:', !!offcanvasNav);
+          return;
         }
+
+        // Remove any existing click listeners by cloning to reset
+        const newToggler = navToggler.cloneNode(true);
+        navToggler.parentNode?.replaceChild(newToggler, navToggler);
+        
+        newToggler.addEventListener('click', (e) => {
+          e.preventDefault();
+          e.stopPropagation();
+          console.log('[v0] Menu clicked, current state:', offcanvasNav.classList.contains('show'));
+          
+          // Toggle the show class directly
+          const isOpen = offcanvasNav.classList.contains('show');
+          
+          if (isOpen) {
+            offcanvasNav.classList.remove('show');
+            offcanvasNav.setAttribute('aria-hidden', 'true');
+            // Remove backdrop
+            const backdrop = document.querySelector('.offcanvas-backdrop');
+            if (backdrop) backdrop.remove();
+            console.log('[v0] Menu closed');
+          } else {
+            offcanvasNav.classList.add('show');
+            offcanvasNav.setAttribute('aria-hidden', 'false');
+            // Add backdrop
+            const backdrop = document.createElement('div');
+            backdrop.className = 'offcanvas-backdrop fade show';
+            backdrop.style.pointerEvents = 'auto';
+            backdrop.style.zIndex = '1040';
+            document.body.appendChild(backdrop);
+            backdrop.addEventListener('click', (be) => {
+              be.preventDefault();
+              be.stopPropagation();
+              newToggler.click(); // Close when clicking backdrop
+            }, { passive: false });
+            console.log('[v0] Menu opened');
+          }
+        }, { passive: false });
       };
 
       // CUSTOM FAQ ACCORDION HANDLER

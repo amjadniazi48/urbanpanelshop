@@ -1,0 +1,82 @@
+/* Mobile Interactivity Fixes - Minimal CSS for Vercel Production */
+
+/* Ensure hamburger menu can be clicked */
+.navbar-toggler {
+  pointer-events: auto !important;
+  touch-action: manipulation !important;
+  cursor: pointer !important;
+  -webkit-tap-highlight-color: transparent !important;
+  position: relative !important;
+  z-index: 1060 !important;
+}
+
+/* Offcanvas menu styling */
+.offcanvas {
+  pointer-events: auto !important;
+  touch-action: auto !important;
+}
+
+.offcanvas-body {
+  pointer-events: auto !important;
+  touch-action: auto !important;
+}
+
+.offcanvas-backdrop {
+  pointer-events: auto !important;
+  z-index: 1040 !important;
+}
+
+/* FAQ Accordion buttons */
+.accordion-button {
+  pointer-events: auto !important;
+  touch-action: auto !important;
+  cursor: pointer !important;
+  -webkit-tap-highlight-color: transparent !important;
+}
+
+/* Comparison slider */
+.react-compare-slider {
+  touch-action: manipulation !important;
+  pointer-events: auto !important;
+  -webkit-user-select: none !important;
+  user-select: none !important;
+}
+
+/* All buttons */
+button {
+  -webkit-tap-highlight-color: transparent !important;
+}
+
+/* Navigation items */
+.navbar-nav .nav-link {
+  pointer-events: auto !important;
+  touch-action: auto !important;
+}
+
+.dropdown-item {
+  pointer-events: auto !important;
+  touch-action: auto !important;
+}
+
+/* Mobile-specific responsive fixes */
+@media (max-width: 991.98px) {
+  /* Prevent body overflow when offcanvas is open */
+  body.offcanvas-backdrop {
+    overflow: hidden;
+  }
+
+  /* Ensure offcanvas slides in from the right */
+  .offcanvas.offcanvas-end {
+    position: fixed !important;
+    top: 0 !important;
+    right: 0 !important;
+    bottom: 0 !important;
+    width: min(100%, 420px) !important;
+    box-shadow: -3px 0 12px rgba(0, 0, 0, 0.15);
+  }
+
+  /* Prevent menu from being cut off by container overflow */
+  .container {
+    max-width: 100% !important;
+  }
+}

@@ -13,7 +13,7 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { SpeedInsights } from "@vercel/speed-insights/next"
 import "./globals.css";
-import "./mobile-fixes.css";
+import "./mobile-interactivity.css";
 // Google Font
 const poppins = Poppins({
   subsets: ["latin"],
