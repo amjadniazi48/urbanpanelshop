@@ -103,6 +103,18 @@ body {
     -webkit-tap-highlight-color: transparent;
   }
 
+  /* CRITICAL: Hamburger menu button specific styles */
+  .navbar-toggler {
+    position: relative;
+    z-index: 1060 !important;
+    pointer-events: auto !important;
+  }
+
+  .navbar-toggler:active,
+  .navbar-toggler:focus {
+    outline: none !important;
+  }
+
   /* Slider/drag elements */
   .swiper,
   .carousel,

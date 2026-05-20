@@ -92,7 +92,7 @@ export default async function RootLayout({ children }) {
 
         <meta name="viewport" content={viewportContent} />
 
-        {/* ✅ CRITICAL: Fix touch events on production BEFORE React loads */}
+        {/* ✅ CRITICAL: Fix hamburger menu on mobile production builds */}
         <script
           dangerouslySetInnerHTML={{
             __html: `
@@ -100,46 +100,82 @@ export default async function RootLayout({ children }) {
                 const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
                 if (!isMobile) return;
 
-                // Enable touch-action on all elements immediately
+                // Ensure navbar-toggler button is clickable
                 const style = document.createElement('style');
                 style.textContent = \`
-                  * { touch-action: auto !important; }
-                  button, a, input, textarea, select, [role="button"], .btn, .navbar-toggler, 
-                  .offcanvas, .dropdown-item, .compare-slider, [draggable="true"], .accordion-button {
+                  .navbar-toggler {
+                    position: relative;
+                    z-index: 1060 !important;
                     touch-action: auto !important;
                     pointer-events: auto !important;
+                    cursor: pointer !important;
                     -webkit-tap-highlight-color: transparent;
+                    padding: 0.25rem 0.75rem !important;
+                    background: transparent !important;
+                    border: 1px solid transparent !important;
                   }
-                  .swiper, .carousel, [class*="slider"], [class*="compare"], .react-compare-slider {
-                    touch-action: manipulation !important;
+                  .navbar-toggler:active,
+                  .navbar-toggler:focus {
+                    outline: none !important;
+                  }
+                  .navbar-toggler-icon {
+                    pointer-events: auto !important;
+                    display: inline-block !important;
+                  }
+                  .offcanvas {
+                    touch-action: auto !important;
+                    pointer-events: auto !important;
+                  }
+                  .offcanvas-body {
+                    touch-action: auto !important;
+                    pointer-events: auto !important;
                   }
                 \`;
                 document.head.appendChild(style);
 
-                // Patch addEventListener to ensure touch events aren't prevented
-                const originalAddEventListener = Element.prototype.addEventListener;
-                Element.prototype.addEventListener = function(type, listener, options) {
-                  if (type && type.toLowerCase().includes('touch')) {
-                    if (typeof options === 'object' && options.passive !== false) {
-                      options = { ...options, passive: true };
-                    }
+                // Wait for DOM and Bootstrap, then set up click handler
+                const setupMenu = () => {
+                  const toggler = document.querySelector('.navbar-toggler');
+                  const offcanvasEl = document.querySelector('#navbarNav');
+                  
+                  if (!toggler || !offcanvasEl) {
+                    setTimeout(setupMenu, 100);
+                    return;
                   }
-                  return originalAddEventListener.call(this, type, listener, options);
+
+                  // Add direct click handler as fallback
+                  toggler.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    
+                    // Try Bootstrap first
+                    if (window.bootstrap && window.bootstrap.Offcanvas) {
+                      const offcanvas = window.bootstrap.Offcanvas.getOrCreateInstance(offcanvasEl);
+                      offcanvas.toggle();
+                    } else {
+                      // Fallback: manually toggle
+                      if (offcanvasEl.classList.contains('show')) {
+                        offcanvasEl.classList.remove('show');
+                        offcanvasEl.style.visibility = 'hidden';
+                      } else {
+                        offcanvasEl.classList.add('show');
+                        offcanvasEl.style.visibility = 'visible';
+                      }
+                    }
+                  }, false);
+
+                  // Ensure pointer-events are set
+                  toggler.style.pointerEvents = 'auto';
+                  toggler.style.touchAction = 'auto';
                 };
 
-                // Prevent any element from blocking touch events
-                document.addEventListener('touchstart', function(e) {
-                  if (!e.cancelable) return;
-                  const target = e.target;
-                  const isButton = target.matches('button, a, input, [role="button"], .btn, [onclick]') || 
-                                   target.closest('button, a, input, [role="button"], .btn, [onclick]');
-                  const isSlider = target.matches('[draggable], .compare-slider, .react-compare-slider, .swiper') ||
-                                   target.closest('[draggable], .compare-slider, .react-compare-slider, .swiper');
-                  
-                  if (!isButton && !isSlider) {
-                    // Don't prevent on other elements, let scroll happen
-                  }
-                }, { passive: true, capture: true });
+                if (document.readyState === 'loading') {
+                  document.addEventListener('DOMContentLoaded', setupMenu);
+                } else {
+                  setupMenu();
+                }
+
+                setTimeout(setupMenu, 500);
               })();
             `
           }}
