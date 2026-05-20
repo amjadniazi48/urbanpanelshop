@@ -88,13 +88,7 @@ export default function FaqAccordion({ data }) {
               >
                 {/* Question button */}
                 <button
-                  type="button"
                   onClick={() => toggleFaq(index)}
-                  onTouchEnd={(e) => {
-                    e.preventDefault();
-                    e.stopPropagation();
-                    toggleFaq(index);
-                  }}
                   aria-expanded={isOpen}
                   style={{
                     width: "100%",
@@ -107,8 +101,6 @@ export default function FaqAccordion({ data }) {
                     cursor: "pointer",
                     textAlign: "left",
                     boxSizing: "border-box",
-                    touchAction: "manipulation",
-                    WebkitTapHighlightColor: "transparent",
                   }}
                 >
                   <span

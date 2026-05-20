@@ -220,19 +220,10 @@ export default function CarComparison({ data }) {
                   </div>
 
                   {/* Window Content - Comparison Slider */}
-                  <div
-                    style={{
-                      width: "100%",
-                      touchAction: "manipulation",
-                      userSelect: "none",
-                      WebkitUserSelect: "none",
-                    }}
-                  >
                   <ReactCompareSlider
                     style={{
                       width: "100%",
                       height: "450px",
-                      touchAction: "manipulation",
                     }}
                     handle={
                       <div
@@ -335,7 +326,6 @@ export default function CarComparison({ data }) {
                       </div>
                     }
                   />
-                  </div>
                 </div>
               </div>
             </div>
