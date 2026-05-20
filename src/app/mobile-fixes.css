@@ -54,9 +54,9 @@ body {
     height: auto !important;
   }
 
-  /* ============ CRITICAL TOUCH/POINTER FIXES ============ */
+  /* ============ MOBILE INTERACTIVITY FIXES ============ */
   
-  /* Hamburger menu button - MUST be clickable */
+  /* Hamburger menu button */
   .navbar-toggler {
     position: relative !important;
     z-index: 1060 !important;
@@ -64,6 +64,8 @@ body {
     touch-action: manipulation !important;
     cursor: pointer !important;
     -webkit-tap-highlight-color: transparent !important;
+    min-height: 44px !important;
+    min-width: 44px !important;
   }
 
   .navbar-toggler:active,
@@ -71,12 +73,7 @@ body {
     outline: none !important;
   }
 
-  .navbar-toggler-icon {
-    pointer-events: auto !important;
-    display: inline-block !important;
-  }
-
-  /* Offcanvas menu - ensure it's interactive */
+  /* Offcanvas menu */
   .offcanvas {
     touch-action: auto !important;
     pointer-events: auto !important;
@@ -92,42 +89,33 @@ body {
     z-index: 1040 !important;
   }
 
-  /* FAQ Accordion buttons */
-  button[type="button"],
-  .accordion-button,
-  [role="button"] {
+  /* Accordion buttons */
+  .accordion-button {
     touch-action: auto !important;
     pointer-events: auto !important;
-    -webkit-user-select: none !important;
-    user-select: none !important;
     cursor: pointer !important;
     -webkit-tap-highlight-color: transparent !important;
+    min-height: 44px !important;
   }
 
-  /* Comparison slider - allow drag/touch */
-  .react-compare-slider,
-  [class*="slider"],
-  [class*="compare"] {
+  /* Comparison slider - allow touch drag */
+  .react-compare-slider {
     touch-action: manipulation !important;
     pointer-events: auto !important;
     -webkit-user-select: none !important;
     user-select: none !important;
   }
 
-  /* Generic button and interactive elements */
-  .btn,
-  .dropdown-item,
-  [onclick],
-  a[href] {
+  /* All buttons */
+  button {
+    -webkit-tap-highlight-color: transparent !important;
     touch-action: auto !important;
     pointer-events: auto !important;
-    cursor: pointer !important;
   }
 
-  /* Ensure nav items are clickable */
+  /* Nav items */
   .navbar-nav,
-  .navbar-nav .nav-link,
-  .dropdown-menu {
+  .navbar-nav .nav-link {
     touch-action: auto !important;
     pointer-events: auto !important;
   }
