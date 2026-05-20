@@ -47,25 +47,6 @@ body {
     padding-right: 6px !important;
   }
 
-  /* Fix offcanvas on mobile */
-  .offcanvas-backdrop {
-    display: block !important;
-    opacity: 0.5 !important;
-  }
-
-  .offcanvas {
-    visibility: visible !important;
-  }
-
-  /* Ensure navbar doesn't overflow */
-  .navbar {
-    overflow-x: clip !important;
-  }
-
-  .navbar-brand {
-    max-width: calc(100vw - 60px);
-  }
-
   /* Prevent any element from exceeding viewport */
   img,
   video {
@@ -73,41 +54,16 @@ body {
     height: auto !important;
   }
 
-  /* ============ TOUCH EVENT FIX FOR MOBILE ============ */
-  /* Enable touch handling without breaking overflow */
-  * {
-    -webkit-touch-callout: auto !important;
-    touch-action: auto;
-  }
-
-  /* Ensure interactive elements receive touch events */
-  button,
-  a,
-  input,
-  textarea,
-  select,
-  [role="button"],
-  [onclick],
-  .btn,
-  .navbar-toggler,
-  .offcanvas,
-  .dropdown-item,
-  .compare-slider,
-  [draggable="true"],
-  .accordion-button {
-    touch-action: auto !important;
-    -webkit-user-select: none;
-    user-select: none;
-    -webkit-touch-callout: auto !important;
-    cursor: pointer;
-    -webkit-tap-highlight-color: transparent;
-  }
-
-  /* CRITICAL: Hamburger menu button specific styles */
+  /* ============ CRITICAL TOUCH/POINTER FIXES ============ */
+  
+  /* Hamburger menu button - MUST be clickable */
   .navbar-toggler {
-    position: relative;
+    position: relative !important;
     z-index: 1060 !important;
     pointer-events: auto !important;
+    touch-action: manipulation !important;
+    cursor: pointer !important;
+    -webkit-tap-highlight-color: transparent !important;
   }
 
   .navbar-toggler:active,
@@ -115,22 +71,65 @@ body {
     outline: none !important;
   }
 
-  /* Slider/drag elements */
-  .swiper,
-  .carousel,
-  [class*="slider"],
-  [class*="compare"],
-  .react-compare-slider {
-    touch-action: manipulation !important;
-    -webkit-user-select: none;
-    user-select: none;
+  .navbar-toggler-icon {
+    pointer-events: auto !important;
+    display: inline-block !important;
   }
 
-  /* Ensure menu works */
+  /* Offcanvas menu - ensure it's interactive */
+  .offcanvas {
+    touch-action: auto !important;
+    pointer-events: auto !important;
+  }
+
+  .offcanvas-body {
+    touch-action: auto !important;
+    pointer-events: auto !important;
+  }
+
+  .offcanvas-backdrop {
+    pointer-events: auto !important;
+    z-index: 1040 !important;
+  }
+
+  /* FAQ Accordion buttons */
+  button[type="button"],
+  .accordion-button,
+  [role="button"] {
+    touch-action: auto !important;
+    pointer-events: auto !important;
+    -webkit-user-select: none !important;
+    user-select: none !important;
+    cursor: pointer !important;
+    -webkit-tap-highlight-color: transparent !important;
+  }
+
+  /* Comparison slider - allow drag/touch */
+  .react-compare-slider,
+  [class*="slider"],
+  [class*="compare"] {
+    touch-action: manipulation !important;
+    pointer-events: auto !important;
+    -webkit-user-select: none !important;
+    user-select: none !important;
+  }
+
+  /* Generic button and interactive elements */
+  .btn,
+  .dropdown-item,
+  [onclick],
+  a[href] {
+    touch-action: auto !important;
+    pointer-events: auto !important;
+    cursor: pointer !important;
+  }
+
+  /* Ensure nav items are clickable */
   .navbar-nav,
-  .offcanvas-body,
+  .navbar-nav .nav-link,
   .dropdown-menu {
     touch-action: auto !important;
+    pointer-events: auto !important;
   }
 
 }
