@@ -92,6 +92,59 @@ export default async function RootLayout({ children }) {
 
         <meta name="viewport" content={viewportContent} />
 
+        {/* ✅ CRITICAL: Fix touch events on production BEFORE React loads */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              (function() {
+                const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+                if (!isMobile) return;
+
+                // Enable touch-action on all elements immediately
+                const style = document.createElement('style');
+                style.textContent = \`
+                  * { touch-action: auto !important; }
+                  button, a, input, textarea, select, [role="button"], .btn, .navbar-toggler, 
+                  .offcanvas, .dropdown-item, .compare-slider, [draggable="true"], .accordion-button {
+                    touch-action: auto !important;
+                    pointer-events: auto !important;
+                    -webkit-tap-highlight-color: transparent;
+                  }
+                  .swiper, .carousel, [class*="slider"], [class*="compare"], .react-compare-slider {
+                    touch-action: manipulation !important;
+                  }
+                \`;
+                document.head.appendChild(style);
+
+                // Patch addEventListener to ensure touch events aren't prevented
+                const originalAddEventListener = Element.prototype.addEventListener;
+                Element.prototype.addEventListener = function(type, listener, options) {
+                  if (type && type.toLowerCase().includes('touch')) {
+                    if (typeof options === 'object' && options.passive !== false) {
+                      options = { ...options, passive: true };
+                    }
+                  }
+                  return originalAddEventListener.call(this, type, listener, options);
+                };
+
+                // Prevent any element from blocking touch events
+                document.addEventListener('touchstart', function(e) {
+                  if (!e.cancelable) return;
+                  const target = e.target;
+                  const isButton = target.matches('button, a, input, [role="button"], .btn, [onclick]') || 
+                                   target.closest('button, a, input, [role="button"], .btn, [onclick]');
+                  const isSlider = target.matches('[draggable], .compare-slider, .react-compare-slider, .swiper') ||
+                                   target.closest('[draggable], .compare-slider, .react-compare-slider, .swiper');
+                  
+                  if (!isButton && !isSlider) {
+                    // Don't prevent on other elements, let scroll happen
+                  }
+                }, { passive: true, capture: true });
+              })();
+            `
+          }}
+        />
+
         {seo?.canonicalURL && (
           <link rel="canonical" href={seo.canonicalURL} />
         )}

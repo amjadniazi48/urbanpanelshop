@@ -4,112 +4,59 @@ import { useEffect } from "react";
 
 export default function BootstrapClient() {
   useEffect(() => {
+    // ✅ Load Bootstrap
     import("bootstrap/dist/js/bootstrap.bundle.min.js").then((bootstrap) => {
-      // ✅ Ensure Bootstrap is available globally
       if (typeof window !== "undefined") {
         window.bootstrap = bootstrap;
       }
     });
 
-    // ✅ Fix for mobile touch events on Vercel
-    if (typeof window !== "undefined" && /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
-      // Detect Safari specifically
-      const isSafari = /Safari/.test(navigator.userAgent) && !/Chrome/.test(navigator.userAgent);
-      
-      // Ensure all interactive elements can receive touch events
-      const enableTouchEvents = () => {
-        const interactiveSelectors = [
-          'button',
-          'a',
-          'input',
-          'textarea',
-          'select',
-          '[role="button"]',
-          '[onclick]',
-          '.btn',
-          '.navbar-toggler',
-          '.offcanvas',
-          '.dropdown-item',
-          '[draggable="true"]',
-          '.compare-slider',
-          '.accordion-button'
-        ];
+    // ✅ Re-apply touch fixes after React hydration (catch any dynamically added elements)
+    const applyTouchFixes = () => {
+      if (typeof window === "undefined") return;
 
-        interactiveSelectors.forEach(selector => {
-          try {
-            document.querySelectorAll(selector).forEach(el => {
-              el.style.touchAction = 'auto';
-              el.style.pointerEvents = 'auto';
-              if (isSafari) {
-                el.style.webkitUserSelect = 'text';
-                el.style.webkitTouchCallout = 'auto';
-              }
-            });
-          } catch (e) {
-            // Selector might not be valid, continue
-          }
-        });
-      };
+      const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+      if (!isMobile) return;
 
-      // Run on DOM ready
-      if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', enableTouchEvents);
-      } else {
-        enableTouchEvents();
-      }
+      // Ensure all interactive elements have proper touch handling
+      const selectors = [
+        'button', 'a', 'input', 'textarea', 'select', '[role="button"]', 
+        '.btn', '.navbar-toggler', '.offcanvas', '.dropdown-item', 
+        '.compare-slider', '[draggable="true"]', '.accordion-button',
+        '.react-compare-slider', '[onclick]'
+      ];
 
-      // Also run after a short delay to catch dynamically added elements
-      setTimeout(enableTouchEvents, 100);
-      setTimeout(enableTouchEvents, 500);
+      selectors.forEach(selector => {
+        try {
+          document.querySelectorAll(selector).forEach(el => {
+            el.style.touchAction = 'auto';
+            el.style.pointerEvents = 'auto';
+            el.style.webkitTapHighlightColor = 'transparent';
+          });
+        } catch (e) {
+          // Ignore invalid selectors
+        }
+      });
+    };
 
-      // ✅ Safari Fix: Prevent unwanted scrolling/dragging while allowing intentional scrolling
-      if (isSafari) {
-        let touchStartX = 0;
-        let touchStartY = 0;
-        let isSliding = false;
-        
-        document.addEventListener('touchstart', (e) => {
-          touchStartX = e.touches[0].clientX;
-          touchStartY = e.touches[0].clientY;
-          isSliding = false;
-          
-          // Check if touching an interactive element
-          const target = e.target;
-          const isInteractive = target.closest('button, a, input, textarea, select, [role="button"], .btn, .navbar-toggler, .accordion-button, [draggable="true"]');
-          
-          if (isInteractive) {
-            isSliding = false;
-          }
-        }, { passive: true });
+    // Apply fixes immediately and after common framework timings
+    applyTouchFixes();
+    setTimeout(applyTouchFixes, 50);
+    setTimeout(applyTouchFixes, 200);
+    setTimeout(applyTouchFixes, 1000);
 
-        document.addEventListener('touchmove', (e) => {
-          const target = e.target;
-          
-          // Always allow moves on interactive/scrollable elements
-          const isInteractive = target.closest('button, a, input, textarea, select, [role="button"], .btn, .navbar-toggler, .accordion-button, .compare-slider, .react-compare-slider, [draggable="true"]');
-          const isScrollable = target.closest('.offcanvas-body, .dropdown-menu, main, [style*="overflow-y"]');
-          
-          if (isInteractive || isScrollable) {
-            return; // Allow normal behavior
-          }
+    // Also apply when DOM changes
+    const observer = new MutationObserver(() => {
+      applyTouchFixes();
+    });
 
-          const currentX = e.touches[0].clientX;
-          const currentY = e.touches[0].clientY;
-          const diffX = Math.abs(currentX - touchStartX);
-          const diffY = Math.abs(currentY - touchStartY);
+    observer.observe(document.body, {
+      childList: true,
+      subtree: true,
+      attributes: false
+    });
 
-          // If significant horizontal movement detected, prevent default
-          if (diffX > 10 && diffX > diffY * 1.2) {
-            isSliding = true;
-            e.preventDefault();
-          }
-        }, { passive: false });
-
-        document.addEventListener('touchend', () => {
-          isSliding = false;
-        }, { passive: true });
-      }
-    }
+    return () => observer.disconnect();
   }, []);
 
   return null;
