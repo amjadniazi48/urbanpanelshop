@@ -12,24 +12,6 @@ export default function BootstrapClient() {
         if (typeof window !== "undefined") {
           window.bootstrap = bootstrap.default || bootstrap;
           
-          // Initialize ALL offcanvas menus
-          const offcanvasElements = document.querySelectorAll('[data-bs-toggle="offcanvas"]');
-          offcanvasElements.forEach((toggler) => {
-            toggler.addEventListener('click', (e) => {
-              e.preventDefault();
-              e.stopPropagation();
-              
-              const target = toggler.getAttribute('data-bs-target');
-              if (target) {
-                const offcanvasEl = document.querySelector(target);
-                if (offcanvasEl && window.bootstrap && window.bootstrap.Offcanvas) {
-                  const offcanvas = window.bootstrap.Offcanvas.getOrCreateInstance(offcanvasEl);
-                  offcanvas.toggle();
-                }
-              }
-            });
-          });
-
           // Initialize all dropdowns
           const dropdownElements = document.querySelectorAll('[data-bs-toggle="dropdown"]');
           dropdownElements.forEach((element) => {
@@ -68,9 +50,26 @@ export default function BootstrapClient() {
           setTimeout(initInteractiveElements, 300);
           setTimeout(initInteractiveElements, 1000);
 
-          // Watch for new content
-          const observer = new MutationObserver(() => {
-            initInteractiveElements();
+          // Watch for new content - but exclude offcanvas element changes
+          let mutationTimeout;
+          const observer = new MutationObserver((mutations) => {
+            // Check if mutations are only to offcanvas elements (skip those)
+            const isOnlyOffcanvasMutation = mutations.every((mutation) => {
+              if (mutation.type === 'attributes' && mutation.attributeName === 'class') {
+                const target = mutation.target;
+                // Skip if the mutation is on .offcanvas or .offcanvas-backdrop elements
+                if (target.classList && (target.classList.contains('offcanvas') || target.classList.contains('offcanvas-backdrop'))) {
+                  return true;
+                }
+              }
+              return false;
+            });
+
+            // Only reinitialize if there are meaningful changes
+            if (!isOnlyOffcanvasMutation) {
+              clearTimeout(mutationTimeout);
+              mutationTimeout = setTimeout(initInteractiveElements, 100);
+            }
           });
 
           observer.observe(document.body, {

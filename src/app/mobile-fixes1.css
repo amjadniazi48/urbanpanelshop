@@ -132,4 +132,34 @@ body {
     pointer-events: auto !important;
   }
 
+  /* ============ OFFCANVAS MENU STABILITY ============ */
+  
+  /* When offcanvas is showing, ensure it remains interactive */
+  .offcanvas.show {
+    pointer-events: auto !important;
+    touch-action: auto !important;
+    animation-name: none !important;
+  }
+
+  /* Offcanvas header and body when showing */
+  .offcanvas.show .offcanvas-header,
+  .offcanvas.show .offcanvas-body {
+    pointer-events: auto !important;
+    touch-action: auto !important;
+  }
+
+  /* All interactive elements inside offcanvas */
+  .offcanvas .nav-link,
+  .offcanvas .dropdown-item,
+  .offcanvas .btn,
+  .offcanvas a {
+    pointer-events: auto !important;
+    touch-action: auto !important;
+  }
+
+  /* Prevent body scroll when offcanvas is open */
+  body.offcanvas-open {
+    overflow: hidden !important;
+  }
+
 }
