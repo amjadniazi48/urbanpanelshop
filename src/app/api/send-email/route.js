@@ -8,9 +8,13 @@ export async function POST(req) {
 
     const { name, email, phone, suburb, carMake, registration, year, fault, smashDetails } = body;
 
+    // Log for debugging
+    console.log("Email API called with:", { name, email });
+    console.log("Resend API Key available:", !!process.env.RESEND_API_KEY);
+
     // Send email to admin
     const data = await resend.emails.send({
-      from: process.env.RESEND_FROM_EMAIL || "onboarding@resend.dev",
+      from: "noreply@resend.dev",
       to: "urbanpanelshop@gmail.com",
       subject: `New Smash Submission from ${name}`,
       html: `
