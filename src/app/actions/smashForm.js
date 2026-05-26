@@ -243,7 +243,11 @@ export async function uploadSmashForm(prevState, formData) {
 
     // Send email notification to admin
     try {
-      const emailResponse = await fetch(`/api/send-email`, {
+      const baseUrl = process.env.VERCEL_URL 
+        ? `https://${process.env.VERCEL_URL}` 
+        : 'http://localhost:3000';
+      
+      const emailResponse = await fetch(`${baseUrl}/api/send-email`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
