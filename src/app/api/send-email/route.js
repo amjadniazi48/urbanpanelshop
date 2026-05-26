@@ -1,16 +1,29 @@
 import { Resend } from "resend";
 
-const resend = new Resend(process.env.RESEND_API_KEY);
-
 export async function POST(req) {
   try {
+    // Initialize Resend inside the function for Vercel compatibility
+    const resend = new Resend(process.env.RESEND_API_KEY);
+
     const body = await req.json();
 
     const { name, email, phone, suburb, carMake, registration, year, fault, smashDetails } = body;
 
-    // Log for debugging
-    console.log("Email API called with:", { name, email });
-    console.log("Resend API Key available:", !!process.env.RESEND_API_KEY);
+    // Validate required fields
+    if (!process.env.RESEND_API_KEY) {
+      console.error("RESEND_API_KEY not set");
+      return Response.json(
+        {
+          success: false,
+          error: "Email service not configured",
+        },
+        { status: 500 }
+      );
+    }
+
+    console.log("Sending email to:", "urbanpanelshop@gmail.com");
+    console.log("From:", "noreply@resend.dev");
+    console.log("Customer name:", name);
 
     // Send email to admin
     const data = await resend.emails.send({
@@ -98,15 +111,24 @@ export async function POST(req) {
       `,
     });
 
-    return Response.json({
-      success: true,
-      data,
-    });
+    return Response.json(
+      {
+        success: true,
+        data,
+      },
+      { status: 200 }
+    );
   } catch (error) {
     console.error("Email sending error:", error);
-    return Response.json({
-      success: false,
-      error: error.message,
-    }, { status: 500 });
+    console.error("Error message:", error.message);
+    console.error("Error details:", error);
+
+    return Response.json(
+      {
+        success: false,
+        error: error.message || "Failed to send email",
+      },
+      { status: 500 }
+    );
   }
 }
