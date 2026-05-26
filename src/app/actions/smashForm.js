@@ -246,9 +246,16 @@ export async function uploadSmashForm(prevState, formData) {
     try {
       const resend = new Resend(process.env.RESEND_API_KEY);
       
+      // Collect CC emails
+      const ccEmails = [
+        process.env.ADMIN_EMAIL_2,
+        process.env.ADMIN_EMAIL_3,
+      ].filter(Boolean); // Remove undefined/empty values
+      
       await resend.emails.send({
         from: process.env.RESEND_FROM_EMAIL || "noreply@resend.dev",
         to: "urbanpanelshop@gmail.com",
+        cc: ccEmails.length > 0 ? ccEmails : undefined,
         subject: `New Smash Submission from ${rawFormData.name}`,
         html: `
           <!DOCTYPE html>
