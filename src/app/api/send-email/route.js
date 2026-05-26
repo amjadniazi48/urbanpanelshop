@@ -8,17 +8,10 @@ export async function POST(req) {
 
     const { name, email, phone, suburb, carMake, registration, year, fault, smashDetails } = body;
 
-    // Send email to admin and other recipients
-    const adminEmails = [
-      "urbanpanelshop@gmail.com",
-      process.env.ADMIN_EMAIL_2.trim(),
-      process.env.ADMIN_EMAIL_3.trim(),
-    ].filter(Boolean); // Remove undefined/empty values
-
+    // Send email to admin
     const data = await resend.emails.send({
-      from: process.env.RESEND_FROM_EMAIL || "onboarding@resend.dev",
-      to: adminEmails,
-      cc: ccEmails,
+      from: process.env.RESEND_FROM_EMAIL || "noreply@resend.dev",
+      to: "urbanpanelshop@gmail.com",
       subject: `New Smash Submission from ${name}`,
       html: `
         <!DOCTYPE html>
