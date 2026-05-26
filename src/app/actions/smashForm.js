@@ -241,6 +241,33 @@ export async function uploadSmashForm(prevState, formData) {
 
     const result = await res.json()
 
+    // Send email notification to admin
+    try {
+      const emailResponse = await fetch(`${process.env.NEXTAUTH_URL || 'http://localhost:3000'}/api/send-email`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          name: rawFormData.name,
+          email: rawFormData.email,
+          phone: rawFormData.phone,
+          suburb: rawFormData.suburb,
+          carMake: rawFormData.carMake,
+          registration: rawFormData.registration,
+          year: rawFormData.year,
+          fault: rawFormData.fault,
+          smashDetails: rawFormData.smashDetails,
+        }),
+      })
+
+      if (!emailResponse.ok) {
+        console.warn("Failed to send email notification:", await emailResponse.text())
+      }
+    } catch (emailError) {
+      console.warn("Error sending email notification:", emailError)
+    }
+
     return {
       message: `Form submitted successfully ✅ with ${imageFiles.length} image(s)`,
       fieldErrors: {},
