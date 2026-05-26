@@ -10,7 +10,7 @@ export async function POST(req) {
 
     // Send email to admin
     const data = await resend.emails.send({
-      from: process.env.RESEND_FROM_EMAIL || "noreply@resend.dev",
+      from: process.env.RESEND_FROM_EMAIL || "onboarding@resend.dev",
       to: "urbanpanelshop@gmail.com",
       subject: `New Smash Submission from ${name}`,
       html: `
