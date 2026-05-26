@@ -247,7 +247,7 @@ export async function uploadSmashForm(prevState, formData) {
       const resend = new Resend(process.env.RESEND_API_KEY);
       
       await resend.emails.send({
-        from: "noreply@resend.dev",
+        from: process.env.RESEND_FROM_EMAIL || "noreply@resend.dev",
         to: "urbanpanelshop@gmail.com",
         subject: `New Smash Submission from ${rawFormData.name}`,
         html: `
