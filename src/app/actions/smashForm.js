@@ -243,7 +243,7 @@ export async function uploadSmashForm(prevState, formData) {
 
     // Send email notification to admin
     try {
-      const emailResponse = await fetch(`${process.env.NEXTAUTH_URL || 'http://localhost:3000'}/api/send-email`, {
+      const emailResponse = await fetch(`/api/send-email`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
