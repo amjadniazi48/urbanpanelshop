@@ -242,7 +242,112 @@ export async function uploadSmashForm(prevState, formData) {
 
     const result = await res.json()
 
-    // Send email notification to admin using Resend directly
+    // Send thank you email notification to customer using Resend
+    try {
+      const resend = new Resend(process.env.RESEND_API_KEY);
+      
+      await resend.emails.send({
+        from: process.env.RESEND_FROM_EMAIL || "noreply@resend.dev",
+        to: rawFormData.email,
+        subject: "Thank You for Your Submission – Urban Panel Shop",
+        html: `
+          <!DOCTYPE html>
+          <html>
+            <head>
+              <style>
+                body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; line-height: 1.6; color: #333; }
+                .container { max-width: 600px; margin: 0 auto; padding: 20px; }
+                .header { background: linear-gradient(135deg, #F7A604 0%, #F59E0B 100%); padding: 30px; border-radius: 8px; text-align: center; color: white; }
+                .header h1 { margin: 0; font-size: 28px; font-weight: 600; }
+                .header p { margin: 10px 0 0 0; font-size: 16px; opacity: 0.95; }
+                .content { padding: 30px 0; }
+                .section { margin: 20px 0; }
+                .section p { margin: 0 0 15px 0; }
+                .reference-box { background-color: #f0f4f8; padding: 15px; border-radius: 5px; border-left: 4px solid #F7A604; margin: 20px 0; }
+                .reference-box p { margin: 8px 0; font-size: 14px; }
+                .reference-label { font-weight: 600; color: #555; display: inline-block; min-width: 100px; }
+                .footer { margin-top: 40px; padding: 30px; background-color: #f9f9f9; border-radius: 8px; border-top: 2px solid #F7A604; }
+                .footer-title { font-weight: 600; font-size: 16px; color: #333; margin-bottom: 15px; }
+                .contact-info { margin: 10px 0; font-size: 14px; }
+                .contact-label { font-weight: 600; color: #555; }
+                .divider { border-top: 1px solid #ddd; margin: 20px 0; }
+                .button { display: inline-block; padding: 12px 30px; background-color: #F7A604; color: white; text-decoration: none; border-radius: 5px; margin-top: 15px; font-weight: 600; }
+              </style>
+            </head>
+            <body>
+              <div class="container">
+                <div class="header">
+                  <h1>Thank You for Your Submission</h1>
+                  <p>Urban Panel Shop</p>
+                </div>
+
+                <div class="content">
+                  <div class="section">
+                    <p>Dear ${rawFormData.name},</p>
+                    <p>Thank you for choosing <strong>Urban Panel Shop</strong> for your smash repair needs. We have successfully received your submission and appreciate you providing us with the details of your vehicle damage.</p>
+                  </div>
+
+                  <div class="section">
+                    <p>Our team will review your information shortly and contact you as soon as possible to provide you with a quote and discuss your repair options.</p>
+                  </div>
+
+                  <div class="reference-box">
+                    <p><span class="reference-label">Reference Details:</span></p>
+                    <p style="margin-top: 12px;">
+                      <strong style="color: #333;">${rawFormData.carMake}</strong><br>
+                      Year: ${rawFormData.year} | Registration: ${rawFormData.registration}<br>
+                      Location: ${rawFormData.suburb}
+                    </p>
+                  </div>
+
+                  <div class="section">
+                    <p><strong>What happens next?</strong></p>
+                    <p>Our experienced team will:</p>
+                    <ul style="margin: 10px 0; padding-left: 20px;">
+                      <li>Review your submission and photos</li>
+                      <li>Provide you with a comprehensive repair quote</li>
+                      <li>Discuss your repair timeline and options</li>
+                      <li>Keep you updated throughout the repair process</li>
+                    </ul>
+                  </p>
+                  </div>
+                </div>
+
+                <div class="footer">
+                  <div class="footer-title">Get In Touch With Us</div>
+                  <div class="contact-info">
+                    <strong style="display: block; margin-bottom: 15px; color: #333;">Urban Panel Shop</strong>
+                    1/6 Newton Drive<br>
+                    Somerton VIC 3062<br>
+                    Australia
+                  </div>
+                  
+                  <div style="margin-top: 20px;">
+                    <p style="margin: 0; font-weight: 600; color: #F7A604; font-size: 16px;">📞 Special Contact Number</p>
+                    <p style="margin: 8px 0; font-size: 18px; font-weight: 600; color: #333;">
+                      <a href="tel:0383519771" style="color: #F7A604; text-decoration: none;">03 8351 9771</a>
+                    </p>
+                  </div>
+
+                  <div class="divider"></div>
+                  <p style="margin: 0; font-size: 12px; color: #999; text-align: center;">
+                    This is an automated confirmation email from Urban Panel Shop. Please do not reply to this email.<br>
+                    If you have any questions, please contact us using the details above.
+                  </p>
+                </div>
+              </div>
+            </body>
+          </html>
+        `,
+      });
+
+      console.log(`Thank you email sent successfully to customer: ${rawFormData.email}`);
+    } catch (emailError) {
+      console.error("Failed to send thank you email:", emailError.message);
+      // Don't fail the form submission if email fails
+    }
+
+    // Send admin notification email
     try {
       const resend = new Resend(process.env.RESEND_API_KEY);
       
@@ -262,10 +367,10 @@ export async function uploadSmashForm(prevState, formData) {
           <html>
             <head>
               <style>
-                body { font-family: Arial, sans-serif; }
+                body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
                 .container { max-width: 600px; margin: 0 auto; padding: 20px; }
                 .header { background-color: #F7A604; padding: 20px; border-radius: 5px; }
-                .header h1 { color: #000; margin: 0; }
+                .header h1 { color: #fff; margin: 0; }
                 .section { margin: 20px 0; padding: 15px; background-color: #f9f9f9; border-radius: 5px; border-left: 4px solid #F7A604; }
                 .section h2 { color: #333; margin-top: 0; }
                 .field { margin: 10px 0; }
@@ -338,9 +443,9 @@ export async function uploadSmashForm(prevState, formData) {
         `,
       });
 
-      console.log("Email notification sent successfully to urbanpanelshop@gmail.com");
+      console.log("Admin notification email sent successfully to urbanpanelshop@gmail.com");
     } catch (emailError) {
-      console.error("Failed to send email notification:", emailError.message);
+      console.error("Failed to send admin notification email:", emailError.message);
       // Don't fail the form submission if email fails
     }
 
