@@ -1,5 +1,3 @@
-export const dynamic = "force-dynamic";
-
 export const metadata = {
   icons: {
     icon: "/favicon.ico",
@@ -28,7 +26,7 @@ async function getGlobalSettings() {
       headers: {
         Authorization: `Bearer ${process.env.STRAPI_JWT}`,
       },
-      cache: "no-store",
+      next: { revalidate: 60 },
     });
 
     if (!res.ok) {

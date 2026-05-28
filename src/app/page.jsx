@@ -11,7 +11,7 @@ export default async function Home() {
     const authToken = process.env.STRAPI_JWT;
 
     return await fetchData(url.href, authToken, {
-      cache: "no-store",
+      next: { revalidate: 60 },
     });
   }
 

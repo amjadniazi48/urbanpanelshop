@@ -1,5 +1,3 @@
-export const dynamic = "force-dynamic";
-
 export const metadata = {
   icons: {
     icon: "/favicon.ico",
@@ -28,7 +26,7 @@ async function getGlobalSettings() {
       headers: {
         Authorization: `Bearer ${process.env.STRAPI_JWT}`,
       },
-      cache: "no-store",
+      next: { revalidate: 60 },
     });
 
     if (!res.ok) {
@@ -75,6 +73,10 @@ export default async function RootLayout({ children }) {
   return (
     <html lang="en" className={poppins.variable} suppressHydrationWarning>
       <head>
+        {/* ================= FONT PRELOAD ================= */}
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        
         {/* ================= BASIC SEO ================= */}
         <title>{seo?.metaTitle}</title>
 
