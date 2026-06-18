@@ -46,6 +46,17 @@ useEffect(() => {
 
     // ✅ open custom popup
     setShowPopup(true);
+  } else if (state.message && !state.success) {
+    // On validation error, preserve form values but clear image previews
+    // This ensures the UI is consistent with the cleared file inputs
+    setImageCount(0);
+    setImagePreviews([null, null, null]);
+    
+    // Preserve other form data
+    if (state.formData) {
+      setFormValues(state.formData);
+      setIsAtFault(state.formData.fault || "0");
+    }
   } else if (state.formData) {
     setFormValues(state.formData);
     setIsAtFault(state.formData.fault || "0");
