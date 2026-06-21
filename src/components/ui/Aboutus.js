@@ -1,8 +1,9 @@
 "use client";
+import { useState, useEffect } from "react";
+import Breadcrumb from "@/components/Breadcrumb";
 
-import React, { useState, useEffect } from "react";
-import { MasonryPhotoAlbum } from "react-photo-album";
-import "react-photo-album/masonry.css";
+import { RowsPhotoAlbum } from "react-photo-album";
+import "react-photo-album/rows.css";
 
 import Lightbox from "yet-another-react-lightbox";
 import "yet-another-react-lightbox/styles.css";
@@ -11,130 +12,211 @@ import Slideshow from "yet-another-react-lightbox/plugins/slideshow";
 import Thumbnails from "yet-another-react-lightbox/plugins/thumbnails";
 import Zoom from "yet-another-react-lightbox/plugins/zoom";
 import "yet-another-react-lightbox/plugins/thumbnails.css";
+import Image from "next/image";
+import "./aboutus.css"
 
-const rawPhotos = Array.from({ length: 15 }, (_, i) => ({
-  src: `/gallery/${i + 1}.jpg`,
-  alt: `AL-FAJR University Campus ${i + 1}`,
-}));
-
-const GallerySection = () => {
+const Aboutus = ({ data }) => {
+  // ✅ All hooks MUST be declared before any early returns
   const [photos, setPhotos] = useState([]);
-  const [index, setIndex] = useState(-1);
+  const [galleryOpen, setGalleryOpen] = useState(false);
+  const [videoOpen, setVideoOpen] = useState(false);
+  const [index, setIndex] = useState(0);
 
+  // ✅ Extract hero data after hooks but before early return
+  const hero = data?.Hero;
+  const bgImage = hero?.backgroundImage?.url;
+
+  // Load Cloudinary images with real dimensions
   useEffect(() => {
-    const loadImages = async () => {
-      const photoData = await Promise.all(
-        rawPhotos.map(
-          (img) =>
-            new Promise((resolve) => {
-              const image = new window.Image();
-              image.src = img.src;
-              image.onload = () =>
-                resolve({
-                  src: img.src,
-                  width: image.width,
-                  height: image.height,
-                  alt: img.alt,
-                });
-              image.onerror = () =>
-                resolve({
-                  src: img.src,
-                  width: 800,
-                  height: 600,
-                  alt: img.alt,
-                });
-            })
-        )
-      );
-      setPhotos(photoData);
-    };
+    if (hero?.images?.length) {
+      const loadImages = async () => {
+        const photoData = await Promise.all(
+          hero.images.map(
+            (img) =>
+              new Promise((resolve) => {
+                const image = new window.Image();
+                image.src = img.url;
+                image.onload = () =>
+                  resolve({
+                    src: img.url,
+                    width: image.width,
+                    height: image.height,
+                    alt: img?.alternativeText || img?.name || "Gallery Image",
+                  });
+              })
+          )
+        );
+        setPhotos(photoData);
+      };
+      loadImages();
+    }
+  }, [hero?.images]);
 
-    loadImages();
-  }, []);
+  // ✅ Early return AFTER all hooks are declared
+  if (!hero) return null;
 
   return (
-    <section className="py-20 px-4 bg-[#f8faf6]">
-      <div className="max-w-6xl mx-auto">
+    <>
+      {/* Hero Section */}
+      <section
+        className="position-relative pt-5 mt-2 hero-section pb-5"
+       style={{ 
+        background: "linear-gradient(180deg, #ffffff 0%, #fafbfc 50%, #f4f7fa 100%)",
+        position: "relative",
+     
+      }}
+      >
 
-        {/* Header */}
-        <div className="text-center mb-12">
-          <span className="inline-flex items-center gap-2 bg-emerald-50 text-emerald-700 text-xs font-semibold uppercase tracking-widest px-4 py-1.5 rounded-full mb-5 border border-emerald-200">
-            Campus Life
-          </span>
-          <h2 className="text-4xl md:text-5xl font-bold text-[#1a2e1f] leading-tight">
-            Life at{" "}
-            <span className="text-emerald-700">AL-FAJR</span>{" "}
-            University
-          </h2>
-          <p className="mt-4 text-[#4a6352] text-base max-w-xl mx-auto leading-relaxed">
-            From classrooms to conferences, innovation hubs to cultural events —
-            a glimpse into our vibrant campus community.
-          </p>
-        </div>
+        <div className="container position-relative zindex-5 pt-3">
+          <div className="row">
+            <div className="col-lg-6">
+              <div className="custom-breadcrumb mb-4">
+                <a href="/" className="breadcrumb-link">Home</a>
+                <span className="breadcrumb-separator">/</span>
+                <span className="breadcrumb-current">About Us</span>
+              </div>
+              <h1 className="pb-2 pb-md-3  hero-title">{hero?.title}</h1>
+              <p className="fs-xl pb-4 mb-1 mb-md-2 mb-lg-3 hero-description">
+                {hero?.summary}
+              </p>
+            </div>
 
-        {/* Gallery */}
-        {photos.length > 0 ? (
-          <MasonryPhotoAlbum
-            photos={photos}
-            columns={(containerWidth) => {
-              if (containerWidth < 600) return 2;
-              if (containerWidth < 900) return 3;
-              return 4;
-            }}
-            spacing={10}
-            onClick={({ index: i }) => setIndex(i)}
-            render={{
-              photo: (props, { photo }) => (
-                <div
-                  {...props}
-                  className="overflow-hidden rounded-xl cursor-pointer group"
-                  style={{ ...props.style }}
-                >
-                  <img
-                    src={photo.src}
-                    alt={photo.alt}
-                    style={{
-                      width: "100%",
-                      height: "100%",
-                      objectFit: "cover",
-                      display: "block",
-                      borderRadius: "12px",
-                      transition: "transform 0.5s ease",
+            {/* Gallery */}
+            <div className="col-lg-6 mt-xl-3 pt-5 pt-lg-4 gallery-container">
+              {photos.length > 0 && (
+                <div className="mt-2 photo-gallery">
+                  <RowsPhotoAlbum
+                    photos={photos}
+                    onClick={({ index }) => {
+                      setIndex(index);
+                      setGalleryOpen(true);
                     }}
-                    className="group-hover:scale-105"
+                  />
+
+                  {/* Lightbox for images only */}
+                  <Lightbox
+                    open={galleryOpen}
+                    index={index}
+                    close={() => setGalleryOpen(false)}
+                    plugins={[Fullscreen, Slideshow, Thumbnails, Zoom]}
+                    slides={photos.map((p) => ({
+                      src: p.src,
+                      title: p.alt,
+                    }))}
                   />
                 </div>
-              ),
-            }}
-          />
-        ) : (
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
-            {Array.from({ length: 8 }).map((_, i) => (
-              <div
-                key={i}
-                className="rounded-xl bg-emerald-100/50 animate-pulse"
-                style={{ aspectRatio: "4/3" }}
-              />
-            ))}
+              )}
+            </div>
           </div>
-        )}
+        </div>
+      </section>
 
-        {/* Lightbox */}
-        <Lightbox
-          open={index >= 0}
-          index={index}
-          close={() => setIndex(-1)}
-          slides={photos.map((p) => ({ src: p.src, title: p.alt }))}
-          plugins={[Fullscreen, Slideshow, Thumbnails, Zoom]}
-          on={{ view: ({ index: i }) => setIndex(i) }}
-          styles={{
-            container: { backgroundColor: "rgba(13, 31, 20, 0.97)" },
-          }}
-        />
+      {/* Video Section - Mobile Responsive */}
+      <section className="container pb-5 mt-2 mt-md-0 mb-md-2 mb-lg-4 video-section">
+        <div className="row justify-content-center">
+          <div className="col-12 col-md-10 col-lg-8">
+            <div className="position-relative rounded-3 overflow-hidden video-wrapper">
+              {/* Play Button - Properly Centered */}
+              <div className="position-absolute top-0 start-0 w-100 h-100 d-flex align-items-center justify-content-center zindex-5">
+                <button
+                  className="btn btn-video btn-icon btn-xl stretched-link"
+                  aria-label="Play video"
+                  onClick={() => setVideoOpen(true)}
+                >
+                  <i className="bx bx-play"></i>
+                </button>
+              </div>
+              
+              {/* Dark Overlay */}
+              <div className="position-absolute top-0 start-0 w-100 h-100 video-overlay"></div>
+              
+              {/* Video Thumbnail */}
+              <div className="w-100" style={{ aspectRatio: "16/9" }}>
+                <Image
+                  src="https://res.cloudinary.com/dlcgduiez/image/upload/v1763048912/urbanpanel_kkfe9l.jpg"
+                  alt="Video thumbnail"
+                  fill
+                  className="object-cover rounded-3"
+                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 70vw"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
 
-      </div>
-    </section>
+      {/* Custom Video Modal - Mobile Responsive */}
+      {videoOpen && (
+        <div 
+          className="modal fade show video-modal" 
+          style={{ display: 'block', backgroundColor: 'rgba(0,0,0,0.95)' }}
+          onClick={() => setVideoOpen(false)}
+        >
+          <div 
+            className="modal-dialog modal-dialog-centered"
+            style={{ 
+              maxWidth: "min(400px, 90vw)",
+              margin: "1rem auto"
+            }}
+            onClick={(e) => e.stopPropagation()}
+          >
+            <div className="modal-content bg-transparent border-0">
+              <div className="modal-header border-0 pb-2">
+                <button
+                  type="button"
+                  className="btn-close btn-close-white ms-auto"
+                  onClick={() => setVideoOpen(false)}
+                ></button>
+              </div>
+              <div className="modal-body p-0">
+                <div 
+                  className="d-flex justify-content-center align-items-center"
+                  style={{ minHeight: "60vh" }}
+                >
+                  <iframe
+                    src="https://www.facebook.com/plugins/video.php?href=https://www.facebook.com/61579001102477/videos/1428859824844883&show_text=false&autoplay=false&mute=0"
+                    style={{ 
+                      border: "none",
+                      width: "min(350px, 90vw)",
+                      height: "min(600px, 80vh)",
+                      maxWidth: "100%",
+                      borderRadius: "10px"
+                    }}
+                    scrolling="no"
+                    frameBorder="0"
+                    allow="encrypted-media; picture-in-picture; web-share"
+                    allowFullScreen
+                    title="Facebook Video"
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+ {/* CTA Section */}
+      <section className="service-detail-cta bg-gradient-primary p-5">
+        <div className="container">
+          <div className="cta-card">
+            <h2 className="cta-title">Ready to Get Started?</h2>
+            <p className="cta-description">
+              Contact us today to get a quick quote for smash repairs
+            </p>
+            <div className="cta-buttons">
+              <a href="/smash" className="btn-primary-cta">
+                Contact Us
+              </a>
+              <a href="/smash" className="btn-secondary-cta">
+                Upload Your Smash
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+
+    </>
   );
 };
 
-export default GallerySection;
+export default Aboutus;
